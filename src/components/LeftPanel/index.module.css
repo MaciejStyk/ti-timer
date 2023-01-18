@@ -1,0 +1,85 @@
+.playersList {
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.playersListNarrow {
+  gap: 0.7em;
+}
+
+.playerBar {
+  border: 1px solid rgb(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(66, 68, 90, 1);
+  border-radius: 0 5em 5em 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  width: 8vw;
+  height: 7vh;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: none;
+  position: relative;
+  transition: width 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.narrow {
+  height: 6vh;
+}
+
+.playerBarContent {
+  position: absolute;
+  top: 50%;
+  left: 0.7vw;
+  width: 75%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playerBarContent:hover {
+  cursor: context-menu;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.active {
+  width: 10vw;
+  box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.8);
+}
+
+.passed {
+  background: rgb(100, 100, 100)!important;
+  color: white!important;
+  text-shadow: 1px 1px 1px black;
+}
+
+@media (max-height: 700px) {
+
+  .playersList {
+    gap: 0.5em;
+  }
+
+  .playerBar {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-height: 500px) {
+
+  .playersList {
+    gap: 0.2em;
+  }
+
+  .playerBar {
+    font-size: 0.6rem;
+  }
+}

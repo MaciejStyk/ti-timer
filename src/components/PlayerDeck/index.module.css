@@ -1,0 +1,52 @@
+.playerDeck {
+  border-radius: 2em;
+  padding: 1em 1.5em;
+  box-sizing: border-box;
+  background: rgb(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  font-style: italic;
+  line-height: 1.8;
+  text-align: center;
+  aspect-ratio: 1.8;
+}
+
+.canDrop {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+.notDuringSwapCards {
+  position: fixed;
+  bottom: max(12%, 70px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25vh;
+}
+
+.duringSwapCardsWide {
+  height: 22.5vh;
+  max-height: 22.5vw;
+  width: 100%;
+}
+
+.duringSwapCardsNarrow {
+  height: 25vh;
+  max-height: 20vw;
+  aspect-ratio: 1.4;
+  width: 100%;
+}
+
+@media (max-aspect-ratio: 17/10) {
+  .sevenOrEightPlayers {
+    height: 20vh;
+    max-height: 20vw;
+  }
+}
+
+@media (min-height: 1000px) {
+  .playerCards {
+    gap: 2em;
+  }
+}

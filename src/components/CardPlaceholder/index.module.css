@@ -1,0 +1,6 @@
+.cardPlaceholder {
+  width: 16vh;
+  height: 90%;
+  background: rgb(255, 255, 255, 0.4);
+  clip-path: polygon(4% 0, 90% 0, 98% 10%, 55% 100%, 0 100%, 0 4%);
+}

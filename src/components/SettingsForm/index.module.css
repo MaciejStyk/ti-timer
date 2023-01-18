@@ -1,0 +1,65 @@
+.settingsForm {
+  box-sizing: border-box;
+  margin: 1em 0;
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 43% 14% 13% 14% 13%;
+  align-items: center;
+  column-gap: 2%;
+  row-gap: 1em;
+  border-radius: 0.5em;
+  background: rgb(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.empty {
+  grid-column-end: -1;
+}
+
+input {
+  border: 1px solid grey;
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  padding: 0.3em 0.5em;
+  text-align: center;
+  height: 40px;
+  background: rgb(255, 255, 255, 0.3);
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+input:hover {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background: rgb(255, 255, 255, 0.3);
+  width: 2.2em;
+  place-self: center;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+  background: rgb(255, 255, 255, 0.4);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  background: rgb(255, 255, 255, 0.4);
+  border-radius: 0.3em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}

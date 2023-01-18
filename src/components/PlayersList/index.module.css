@@ -1,0 +1,43 @@
+.draggableArea {
+  width: 100%;
+}
+
+.listElement {
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 0.5em;
+  margin: 0.2em 0;
+  padding: 0.3em 1em;
+  height: 40px;
+  line-height: 30px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.listElement:hover {
+  opacity: 0.9;
+}
+
+.speakerImg {
+  height: 100%;
+}
+
+.removePlayerButton {
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 1rem;
+  background: rgb(255, 255, 255, 0.5);
+  margin-left: 1em;
+}
+
+.removePlayerButton:hover,
+.removePlayerButton:focus {
+  background: rgb(255, 255, 255, 0.9);
+  outline: none;
+}

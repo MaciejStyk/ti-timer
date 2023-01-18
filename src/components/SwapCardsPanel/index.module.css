@@ -1,0 +1,133 @@
+.swapCardsPanel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 4rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.playersContainer {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: center;
+  gap: min(3vh, 2vw);
+  flex-wrap: wrap;
+  max-width: 120vh;
+}
+
+@media (min-aspect-ratio: 15/10) {
+  .threePlayers {
+    max-width: unset;
+  }
+}
+
+@media (min-aspect-ratio: 20/10) {
+  .fourPlayers {
+    max-width: unset;
+  }
+}
+
+@media (min-aspect-ratio: 25/10) {
+  .fivePlayers {
+    max-width: unset;
+  }
+}
+
+@media (min-aspect-ratio: 30/10) {
+  .sixPlayers {
+    max-width: unset;
+  }
+}
+
+.sevenPlayers {
+  max-width: 150vh;
+}
+
+.eightPlayers {
+  max-width: 180vh;
+}
+
+.playerContainer {
+  position: relative;
+}
+
+.bigger {
+  scale: 1.05
+}
+
+.playerName {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  width: 90%;
+  color: rgb(255, 255, 255, 0.7);
+  font-size: min(3vh, 2vw);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 1rem;
+  text-align: left;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.maxWidth {
+  max-width: 800px;
+}
+
+.button,
+.disabledButton {
+  padding: 1em;
+  width: 45%;
+  border: none;
+  color: inherit;
+  background: rgb(255, 255, 255, 0.2);
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: inherit;
+  font-weight: bold;
+  transition: background-color 0.1s ease-in-out;
+  max-width: 350px;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.button:hover {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1200px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}

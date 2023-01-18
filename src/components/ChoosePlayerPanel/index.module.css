@@ -1,0 +1,158 @@
+.choosePlayerPanel {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1;
+  color: white;
+  transition: background-color 0.5s ease-in-out, color 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.duringStrategyPhase {
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+  background: none !important;
+  color: white!important;
+}
+
+.duringActionPhase {
+  left: 70%;
+  width: 45%;
+  height: calc(100% - 8rem);
+}
+
+.duringAgendaPhase {
+  left: 50%;
+  width: 70%;
+  height: 90%;
+  background: none !important;
+  color: white!important;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+.playerContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.playerBar {
+  border: 1px solid rgb(0, 0, 0, 0.5);
+  border-radius: 5em;
+  padding: 0.5em;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-shadow: none;
+  position: relative;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.playerBar:hover {
+  cursor: pointer;
+}
+
+.oneColumn {
+  width: 70%;
+  height: 7vh;
+}
+
+.twoColumns {
+  width: 45%;
+  height: 8vh;
+}
+
+.whiteShadow {
+  box-shadow: 0px 0px 10px 0px rgb(66, 68, 90);
+}
+
+.chosen,
+.playerBar:hover {
+  border: 3px solid rgb(220, 220, 220);
+  box-shadow: 0px 0px 10px 0px rgb(220, 220, 220);
+}
+
+.playerBarContent {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 75%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button,
+.disabledButton {
+  padding: 1em;
+  width: 45%;
+  border: none;
+  color: inherit;
+  background: rgb(255, 255, 255, 0.2);
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: inherit;
+  font-weight: bold;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.button:hover {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+@media (max-height: 700px) {
+  .playerContainer {
+    gap: 0.8em;
+  }
+
+  .playerBar {
+    font-size: 1rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .playerContainer {
+    gap: 0.5em;
+  }
+
+  .playerBar {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}

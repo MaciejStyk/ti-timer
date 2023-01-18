@@ -1,0 +1,6 @@
+.fullScreenContainer {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  transition: background-color 0.5s ease-in-out, color 0.3s ease-in-out;
+}

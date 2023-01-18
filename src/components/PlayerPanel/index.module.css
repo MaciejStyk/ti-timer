@@ -1,0 +1,99 @@
+.playerPanel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72%;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  z-index: 1;
+  transition: background-color 1s, color 1s;
+  height: max-content;
+}
+
+.playerPanelActionPhase {
+  top: 35%;
+}
+
+.playerPanelStrategyAction {
+  top: 60%;
+  left: 70%;
+  width: 45%;
+  height: 100%;
+}
+
+.playerName {
+  min-width: 45vh;
+  max-width: 30vw;
+  font-size: 4rem;
+  text-transform: uppercase;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.playerNameStrategyAction {
+  top: 20%;
+}
+
+.timeBankLeft,
+.timeBankRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: max-content;
+}
+
+.timeBankLeft {
+  left: 0;
+}
+
+.timeBankRight {
+  right: 0;
+}
+
+.timer {
+  margin-top: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.timerStrategyAction {
+  font-size: 3rem;
+}
+
+.timer span {
+  min-width: 1.6em;
+}
+
+@media (max-height: 700px) or (max-width: 1400px) {
+  .playerName {
+    font-size: 3rem;
+    min-width: 200px;
+  }
+
+  .timeBankLeft,
+  .timeBankRight {
+    font-size: 1.5rem;
+  }
+
+  .timer {
+    min-width: unset;
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 1500px) {
+  .playerPanelStrategyAction {
+    width: 45%;
+  }
+}

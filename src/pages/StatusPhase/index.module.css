@@ -1,0 +1,148 @@
+.background {
+  width: 100%;
+  min-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  background: url("../../assets/other/status-phase-cover.jpg") rgb(70, 70, 70);
+  background-blend-mode: multiply;
+  object-fit: cover;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.container {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  height: calc(100% - 5rem);
+  width: 90%;
+  max-width: 1700px;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: auto;
+}
+
+.flexContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.list {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.title {
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 6%;
+}
+
+.bar {
+  position: relative;
+  text-shadow: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 7vh;
+  min-height: 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 5em;
+  border: 1px solid rgb(0, 0, 0, 0.5);
+
+}
+
+.blackPlayerBar {
+  box-shadow: 0px 0px 10px 0px rgb(66, 68, 90);
+}
+
+.stepBar {
+  background: rgba(80, 80, 80, 0.4);
+  text-shadow: inherit;
+}
+
+.barContent {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  width: 88%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.left {
+  width: 60%;
+  max-width: calc(80% - 100px);
+}
+
+.right {
+  width: 20%;
+  min-width: 120px;
+  left: unset;
+  right: 6%;
+  text-align: right;
+  text-transform: lowercase;
+}
+
+.endPhaseButton {
+  margin: 0.5em;
+  padding: 1em 1em;
+  width: 250px;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  background: rgb(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-transform: uppercase;
+}
+
+.endPhaseButton:hover {
+  background: rgb(255, 255, 255, 0.4);
+  outline: none;
+}
+
+@media (max-height: 620px) {
+  .flexContainer {
+    margin-top: 80px;
+  }
+
+  .bar {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-height: 550px) {
+  .flexContainer {
+    margin-top: 150px;
+  }
+}
+
+@media (max-height: 480px) {
+  .flexContainer {
+    margin-top: 220px;
+  }
+}

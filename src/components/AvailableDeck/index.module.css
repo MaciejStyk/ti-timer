@@ -1,0 +1,56 @@
+.strategyCardsContainer {
+  height: 25vh;
+  min-width: 45vh;
+  max-width: 80vw;
+  position: fixed;
+  overflow: overlay;
+  top: max(12%, 80px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2em;
+  padding: 1em 1.5em 1em 2.3em;
+  box-sizing: border-box;
+  background: rgb(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+@media (min-height: 1000px) {
+  .strategyCardsContainer {
+    gap: 1em;
+  }
+}
+
+.canDrop {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+.strategyCardsContainerNarrow {
+  justify-content: center;
+}
+
+.strategyCardsContainer::-webkit-scrollbar-thumb {
+  background: none;
+  box-shadow: inset 0 0 10px 10px rgb(255, 255, 255, 0.2);
+  border: solid 4px transparent;
+}
+
+.strategyCardsContainer::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px rgb(255, 255, 255, 0.4);
+}
+
+.strategyCardsContainer::-webkit-scrollbar-track {
+  background: none;
+  box-shadow: inset 0 0 10px 10px transparent;
+  border: solid 4px transparent;
+}
+
+.strategyCardsContainer::-webkit-scrollbar-track-piece:start {
+  margin-left: 1.6em;
+}
+
+.strategyCardsContainer::-webkit-scrollbar-track-piece:end {
+  margin-right: 1.6em;
+}

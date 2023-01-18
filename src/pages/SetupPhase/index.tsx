@@ -1,0 +1,57 @@
+import { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import PlayerForm from "../../components/PlayerForm";
+import PlayersList from "../../components/PlayersList";
+import SettingsForm from "../../components/SettingsForm";
+import styles from "./index.module.css";
+
+interface ISetupPhase {
+  endPhase: () => void;
+}
+
+const SetupPhase: FunctionComponent<ISetupPhase> = (props) => {
+  const { endPhase } = props;
+
+  const { players, races } = useSelector((state: RootState) => state);
+
+  const numberOfPlayersCheck = players.length >= 3;
+  const argentCheck =
+    races.argent.inGame === (races.argent.playedBy ? true : false);
+  const canStartGame = numberOfPlayersCheck && argentCheck;
+
+  // ======== RENDER PAGE ======================================================
+
+  return (
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Game Setup</h1>
+        <p>
+          Add players and set them in a clock-wise order starting from the
+          speaker
+        </p>
+
+        <PlayerForm />
+
+        <PlayersList />
+
+        <SettingsForm />
+
+        <button
+          className={canStartGame ? styles.actionButton : styles.disabledButton}
+          onClick={() => {
+            if (canStartGame) endPhase();
+          }}
+        >
+          {numberOfPlayersCheck
+            ? argentCheck
+              ? "Start game"
+              : "Choose argent player"
+            : "Min 3 players"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SetupPhase;

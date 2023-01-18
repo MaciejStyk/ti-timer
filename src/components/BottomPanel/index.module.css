@@ -1,0 +1,51 @@
+.bottomPanel {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  background: inherit;
+  text-shadow: inherit;
+  z-index: 100;
+}
+
+.bottomPanel {
+  bottom: 0;
+}
+
+.actionButton,
+.disabledButton,
+.swapCardsButton {
+  padding: 1em;
+  width: 250px;
+  border: none;
+  color: inherit;
+  background-color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px black;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: inherit;
+  font-weight: bold;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.actionButton:hover,
+.swapCardsButton:hover {
+  background: rgb(255, 255, 255, 0.2);
+  outline: none;
+}
+
+.smallerFont {
+  font-size: 0.7rem;
+}
+
+.swapCardsButton {
+  position: absolute;
+  top: -100%;
+  right: 0;
+}

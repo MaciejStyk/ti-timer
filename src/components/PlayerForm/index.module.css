@@ -1,0 +1,50 @@
+.playerForm {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+  padding: 0.3em 1em;
+  position: relative;
+}
+
+.formInput {
+  width: 100%;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  padding: 0.3em 1em;
+  height: 40px;
+  background: rgb(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-align: left;
+}
+
+.formInput:hover {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+.actionButton,
+.disabledButton {
+  min-width: 180px;
+  border: none;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: rgb(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-transform: uppercase;
+}
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.actionButton:hover {
+  background: rgb(255, 255, 255, 0.4);
+  outline: none;
+}
