@@ -12,15 +12,7 @@ import PauseScreen from "../../components/PauseScreen";
 import styles from "./index.module.css";
 
 const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const {
-    time,
-    handlePause,
-    handleEndTurn,
-    endTurnDisabled,
-    handlePass,
-    passDisabled,
-    endPhase,
-  } = props;
+  const { time, handle } = props;
   const { players, playerIndex, agendaPhase } = useSelector(
     (state: RootState) => state
   );
@@ -32,14 +24,14 @@ const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
     return (
       <div className={styles.background}>
         <TopPanel />
-        <CustodianPanel endPhase={endPhase} />
+        <CustodianPanel endPhase={handle.endPhase} />
       </div>
     );
   } else if (!agendaPhase.isBeingVoted) {
     return (
       <div className={styles.background}>
         <TopPanel />
-        <AgendaPanel endPhase={endPhase} />
+        <AgendaPanel endPhase={handle.endPhase} />
       </div>
     );
   } else {
@@ -53,14 +45,7 @@ const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
 
         <PlayerPanel time={time} />
 
-        <BottomPanel
-          time={time}
-          handlePause={handlePause}
-          handleEndTurn={handleEndTurn}
-          endTurnDisabled={endTurnDisabled}
-          handlePass={handlePass}
-          passDisabled={passDisabled}
-        />
+        <BottomPanel {...props} />
       </div>
     );
   }

@@ -1,12 +1,7 @@
 import { Timer } from "./hooks/useTimer/types";
 export interface IPhaseProps {
   time: ITime;
-  handlePause: () => void;
-  handleEndTurn: () => void;
-  endTurnDisabled: boolean;
-  handlePass: () => void;
-  passDisabled: boolean;
-  endPhase: () => void;
+  handle: IHandle;
 }
 
 export interface ITime {
@@ -14,4 +9,13 @@ export interface ITime {
   elapsed: Timer;
   bank: Timer;
   isRunning: boolean;
+}
+
+export interface IHandle {
+  pause: () => void;
+  endTurn: () => void;
+  endTurnDisabled: boolean;
+  pass: () => void;
+  passDisabled: boolean;
+  endPhase: () => void;
 }

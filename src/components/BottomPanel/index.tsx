@@ -1,27 +1,11 @@
 import { useState, useEffect, FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { ITime } from "../../types";
+import { IPhaseProps } from "../../types";
 import styles from "./index.module.css";
 
-interface IBottomPanel {
-  time: ITime;
-  handlePause: () => void;
-  handleEndTurn: () => void;
-  endTurnDisabled: boolean;
-  handlePass?: () => void;
-  passDisabled: boolean;
-}
-
-const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
-  const {
-    handleEndTurn,
-    endTurnDisabled,
-    handlePause,
-    time,
-    handlePass,
-    passDisabled,
-  } = props;
+const BottomPanel: FunctionComponent<IPhaseProps> = (props) => {
+  const { time, handle } = props;
   const { choosePlayerAction } = useSelector((state: RootState) => state);
 
   const [hover, setHover] = useState<{
@@ -36,16 +20,16 @@ const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
 
   useEffect(() => {
     setHover({ pass: false, pause: false, endTurn: false });
-  }, [passDisabled, time.isRunning, endTurnDisabled]);
+  }, [handle.passDisabled, time.isRunning, handle.endTurnDisabled]);
 
   // ======== RENDER COMPONENT =================================================
 
   return (
     <div className={styles.bottomPanel}>
       <button
-        className={passDisabled ? styles.disabledButton : styles.actionButton}
-        disabled={passDisabled}
-        onDoubleClick={handlePass}
+        className={handle.passDisabled ? styles.disabledButton : styles.actionButton}
+        disabled={handle.passDisabled}
+        onDoubleClick={handle.pass}
         onMouseEnter={() =>
           setHover((prevState) => ({ ...prevState, pass: true }))
         }
@@ -62,7 +46,7 @@ const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
 
       <button
         className={styles.actionButton}
-        onClick={handlePause}
+        onClick={handle.pause}
         onMouseEnter={() =>
           setHover((prevState) => ({ ...prevState, pause: true }))
         }
@@ -81,10 +65,10 @@ const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
 
       <button
         className={
-          endTurnDisabled ? styles.disabledButton : styles.actionButton
+          handle.endTurnDisabled ? styles.disabledButton : styles.actionButton
         }
-        disabled={endTurnDisabled}
-        onClick={handleEndTurn}
+        disabled={handle.endTurnDisabled}
+        onClick={handle.endTurn}
         onMouseEnter={() =>
           setHover((prevState) => ({ ...prevState, endTurn: true }))
         }

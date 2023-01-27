@@ -20,14 +20,7 @@ import PlayerDeck from "../../components/PlayerDeck";
 import StrategyAction from "../../components/StrategyAction";
 
 const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const {
-    time,
-    handlePause,
-    handleEndTurn,
-    endTurnDisabled,
-    handlePass,
-    passDisabled,
-  } = props;
+  const { time } = props;
   const { players, playerIndex, tableOrder, strategyAction } = useSelector(
     (state: RootState) => state
   );
@@ -152,14 +145,7 @@ const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
           makeStrategyAction={makeStrategyAction}
         />
 
-        <BottomPanel
-          time={time}
-          handlePause={handlePause}
-          handleEndTurn={handleEndTurn}
-          endTurnDisabled={endTurnDisabled}
-          handlePass={handlePass}
-          passDisabled={passDisabled}
-        />
+        <BottomPanel {...props} />
       </div>
     );
 };

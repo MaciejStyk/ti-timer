@@ -1,18 +1,15 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import { IPhaseProps } from "../../types";
 import TopPanel from "../../components/TopPanel";
 import RenderTime from "../../components/RenderTime";
 import themes from "../../global/themes";
 import cn from "classnames";
 import styles from "./index.module.css";
 
-interface IStatusPhase {
-  endPhase: () => void;
-}
-
-const StatusPhase: FunctionComponent<IStatusPhase> = (props) => {
-  const { endPhase } = props;
+const StatusPhase: FunctionComponent<IPhaseProps> = (props) => {
+  const { handle } = props;
   const { players } = useSelector((state: RootState) => state);
 
   const stepsArray = [
@@ -91,7 +88,7 @@ const StatusPhase: FunctionComponent<IStatusPhase> = (props) => {
           </div>
         </div>
 
-        <button className={styles.endPhaseButton} onClick={endPhase}>
+        <button className={styles.endPhaseButton} onClick={handle.endPhase}>
           Next phase
         </button>
       </div>

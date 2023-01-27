@@ -13,7 +13,7 @@ import triggers from "../../global/triggers";
 import styles from "./index.module.css";
 
 const StrategyAction: FunctionComponent<IPhaseProps> = (props) => {
-  const { time, handlePause, handleEndTurn, endTurnDisabled } = props;
+  const { time } = props;
   const { players, playerIndex, strategyAction, choosePlayerAction } =
     useSelector((state: RootState) => state);
   const currentPlayer = players[playerIndex];
@@ -39,13 +39,7 @@ const StrategyAction: FunctionComponent<IPhaseProps> = (props) => {
         <ChoosePlayerPanel trigger={triggers.politicsStrategyCard} />
       )}
 
-      <BottomPanel
-        time={time}
-        handleEndTurn={handleEndTurn}
-        endTurnDisabled={endTurnDisabled}
-        handlePause={handlePause}
-        passDisabled={true}
-      />
+      <BottomPanel {...props} />
     </div>
   );
 };

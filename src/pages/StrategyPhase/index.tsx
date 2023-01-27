@@ -24,7 +24,7 @@ import triggers from "../../global/triggers";
 import SwapCardsPanel from "../../components/SwapCardsPanel";
 
 const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const { time, handlePause, handleEndTurn, endTurnDisabled, endPhase } = props;
+  const { time, handle } = props;
   const { players, strategyPhase, playerIndex, races } = useSelector(
     (state: RootState) => state
   );
@@ -90,11 +90,11 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
       players.length !== 7
     ) {
       moveToPlayersDeck(strategyPhase.availableStrategyCards[0]);
-      handleEndTurn();
+      handle.endTurn();
     }
   }, [
     currentPlayer.id,
-    handleEndTurn,
+    handle,
     moveToPlayersDeck,
     players,
     strategyPhase.availableStrategyCards,
@@ -155,7 +155,7 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
         <div className={styles.panelContainer}>
           <ChoosePlayerPanel
             trigger={triggers.naaluTokenChange}
-            endPhase={endPhase}
+            endPhase={handle.endPhase}
           />
         </div>
       </div>
@@ -165,7 +165,7 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
       <div className={styles.background}>
         <TopPanel />
         <div className={styles.panelContainer}>
-          <SwapCardsPanel endPhase={endPhase} />
+          <SwapCardsPanel endPhase={handle.endPhase} />
         </div>
       </div>
     );
@@ -192,13 +192,7 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
           currentPlayerCanPick={currentPlayerCanPick}
         />
 
-        <BottomPanel
-          time={time}
-          handlePause={handlePause}
-          handleEndTurn={handleEndTurn}
-          endTurnDisabled={endTurnDisabled}
-          passDisabled={true}
-        />
+        <BottomPanel {...props} />
       </div>
     );
 };

@@ -1,18 +1,14 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import { IPhaseProps } from "../../types";
 import PlayerForm from "../../components/PlayerForm";
 import PlayersList from "../../components/PlayersList";
 import SettingsForm from "../../components/SettingsForm";
 import styles from "./index.module.css";
 
-interface ISetupPhase {
-  endPhase: () => void;
-}
-
-const SetupPhase: FunctionComponent<ISetupPhase> = (props) => {
-  const { endPhase } = props;
-
+const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
+  const { handle } = props;
   const { players, races } = useSelector((state: RootState) => state);
 
   const numberOfPlayersCheck = players.length >= 3;
@@ -40,7 +36,7 @@ const SetupPhase: FunctionComponent<ISetupPhase> = (props) => {
         <button
           className={canStartGame ? styles.actionButton : styles.disabledButton}
           onClick={() => {
-            if (canStartGame) endPhase();
+            if (canStartGame) handle.endPhase();
           }}
         >
           {numberOfPlayersCheck
