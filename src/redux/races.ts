@@ -1,7 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { IPlayer } from "./players";
 
-interface IRaces {
+export interface IRaces {
   naalu: {
     inGame: boolean;
     tokenBeingChanged: boolean;

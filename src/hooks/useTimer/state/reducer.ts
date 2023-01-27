@@ -8,10 +8,10 @@ function reducer(state: State, action: TimerActionsType): State {
 
       return {
         ...state,
-        time:
+        value:
           state.timerType === 'DECREMENTAL'
-            ? state.time - timeToAdd
-            : state.time + timeToAdd,
+            ? state.value - timeToAdd
+            : state.value + timeToAdd,
       };
     }
     case 'pause': {
@@ -24,13 +24,13 @@ function reducer(state: State, action: TimerActionsType): State {
       return {
         ...state,
         status: 'STOPPED',
-        time: action.payload.initialTime,
+        value: action.payload.initialTime,
       };
     }
     case 'set': {
       return {
         ...state,
-        time: action.payload.newTime,
+        value: action.payload.newTime,
       };
     }
     case 'start': {
@@ -39,7 +39,7 @@ function reducer(state: State, action: TimerActionsType): State {
       return {
         ...state,
         status: 'RUNNING',
-        time: state.status === 'STOPPED' ? initialTime : state.time,
+        value: state.status === 'STOPPED' ? initialTime : state.value,
       };
     }
     case 'stop': {

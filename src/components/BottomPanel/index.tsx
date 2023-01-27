@@ -1,13 +1,14 @@
 import { useState, useEffect, FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import { ITime } from "../../types";
 import styles from "./index.module.css";
 
 interface IBottomPanel {
-  handleEndTurn: () => void;
-  nextTurnDisabled: boolean;
+  time: ITime;
   handlePause: () => void;
-  isRunning: boolean;
+  handleEndTurn: () => void;
+  endTurnDisabled: boolean;
   handlePass?: () => void;
   passDisabled: boolean;
 }
@@ -15,9 +16,9 @@ interface IBottomPanel {
 const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
   const {
     handleEndTurn,
-    nextTurnDisabled,
+    endTurnDisabled,
     handlePause,
-    isRunning,
+    time,
     handlePass,
     passDisabled,
   } = props;
@@ -35,7 +36,7 @@ const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
 
   useEffect(() => {
     setHover({ pass: false, pause: false, endTurn: false });
-  }, [passDisabled, isRunning, nextTurnDisabled]);
+  }, [passDisabled, time.isRunning, endTurnDisabled]);
 
   // ======== RENDER COMPONENT =================================================
 
@@ -71,18 +72,18 @@ const BottomPanel: FunctionComponent<IBottomPanel> = (props) => {
       >
         {hover.pause ? (
           <span className={styles.smallerFont}>
-            Press space to {isRunning ? "pause" : "resume"}
+            Press space to {time.isRunning ? "pause" : "resume"}
           </span>
         ) : (
-          <span>{isRunning ? "pause" : "resume"}</span>
+          <span>{time.isRunning ? "pause" : "resume"}</span>
         )}
       </button>
 
       <button
         className={
-          nextTurnDisabled ? styles.disabledButton : styles.actionButton
+          endTurnDisabled ? styles.disabledButton : styles.actionButton
         }
-        disabled={nextTurnDisabled}
+        disabled={endTurnDisabled}
         onClick={handleEndTurn}
         onMouseEnter={() =>
           setHover((prevState) => ({ ...prevState, endTurn: true }))

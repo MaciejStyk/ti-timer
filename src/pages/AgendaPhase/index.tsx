@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { IGameProps } from "../../types";
+import { IPhaseProps } from "../../types";
 import TopPanel from "../../components/TopPanel";
 import CustodianPanel from "../../components/CustodianPanel";
 import AgendaPanel from "../../components/AgendaPanel";
@@ -11,15 +11,12 @@ import BottomPanel from "../../components/BottomPanel";
 import PauseScreen from "../../components/PauseScreen";
 import styles from "./index.module.css";
 
-const AgendaPhase: FunctionComponent<IGameProps> = (props) => {
+const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
   const {
-    isRunning,
-    timeDelayed,
-    timeElapsed,
-    timeBank,
+    time,
     handlePause,
     handleEndTurn,
-    nextTurnDisabled,
+    endTurnDisabled,
     handlePass,
     passDisabled,
     endPhase,
@@ -48,23 +45,19 @@ const AgendaPhase: FunctionComponent<IGameProps> = (props) => {
   } else {
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!isRunning && <PauseScreen />}
+        {!time.isRunning && <PauseScreen />}
 
         <TopPanel />
 
         <LeftPanel />
 
-        <PlayerPanel
-          timeDelayed={timeDelayed}
-          timeElapsed={timeElapsed}
-          timeBank={timeBank}
-        />
+        <PlayerPanel time={time} />
 
         <BottomPanel
-          handleEndTurn={handleEndTurn}
-          nextTurnDisabled={nextTurnDisabled}
+          time={time}
           handlePause={handlePause}
-          isRunning={isRunning}
+          handleEndTurn={handleEndTurn}
+          endTurnDisabled={endTurnDisabled}
           handlePass={handlePass}
           passDisabled={passDisabled}
         />

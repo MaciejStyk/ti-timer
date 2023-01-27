@@ -10,7 +10,7 @@ import {
   removeStrategyCardFromAvailableDeck,
 } from "../../redux/strategyPhase";
 import { IStrategyCard } from "../../global/strategyCards";
-import { IGameProps } from "../../types";
+import { IPhaseProps } from "../../types";
 import PauseScreen from "../../components/PauseScreen";
 import TopPanel from "../../components/TopPanel";
 import LeftPanel from "../../components/LeftPanel";
@@ -23,17 +23,8 @@ import ChoosePlayerPanel from "../../components/ChoosePlayerPanel";
 import triggers from "../../global/triggers";
 import SwapCardsPanel from "../../components/SwapCardsPanel";
 
-const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
-  const {
-    isRunning,
-    timeDelayed,
-    timeElapsed,
-    timeBank,
-    handlePause,
-    handleEndTurn,
-    nextTurnDisabled,
-    endPhase,
-  } = props;
+const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
+  const { time, handlePause, handleEndTurn, endTurnDisabled, endPhase } = props;
   const { players, strategyPhase, playerIndex, races } = useSelector(
     (state: RootState) => state
   );
@@ -113,7 +104,7 @@ const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      if (isRunning && Number(event.key) && Number(event.key) > 0) {
+      if (time.isRunning && Number(event.key) && Number(event.key) > 0) {
         const cardID = Number(event.key);
         if (
           strategyPhase.availableStrategyCards.some(
@@ -148,7 +139,7 @@ const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
   }, [
     currentPlayer.strategyCards,
     currentPlayerCanPick,
-    isRunning,
+    time.isRunning,
     moveToAvailableDeck,
     moveToPlayersDeck,
     strategyPhase.availableStrategyCards,
@@ -181,7 +172,7 @@ const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
   } else
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!isRunning && <PauseScreen />}
+        {!time.isRunning && <PauseScreen />}
         <TopPanel />
 
         <AvailableDeck
@@ -192,11 +183,7 @@ const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
 
         <LeftPanel />
 
-        <PlayerPanel
-          timeDelayed={timeDelayed}
-          timeElapsed={timeElapsed}
-          timeBank={timeBank}
-        />
+        <PlayerPanel time={time} />
 
         <PlayerDeck
           player={currentPlayer}
@@ -206,10 +193,10 @@ const StrategyPhase: FunctionComponent<IGameProps> = (props) => {
         />
 
         <BottomPanel
-          handleEndTurn={handleEndTurn}
-          nextTurnDisabled={nextTurnDisabled}
+          time={time}
           handlePause={handlePause}
-          isRunning={isRunning}
+          handleEndTurn={handleEndTurn}
+          endTurnDisabled={endTurnDisabled}
           passDisabled={true}
         />
       </div>

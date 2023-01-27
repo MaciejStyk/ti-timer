@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { IGameProps } from "../../types";
+import { IPhaseProps } from "../../types";
 import BottomPanel from "../BottomPanel";
 import LeftPanel from "../LeftPanel";
 import PauseScreen from "../PauseScreen";
@@ -12,16 +12,8 @@ import TopPanel from "../TopPanel";
 import triggers from "../../global/triggers";
 import styles from "./index.module.css";
 
-const StrategyAction: FunctionComponent<IGameProps> = (props) => {
-  const {
-    isRunning,
-    timeDelayed,
-    timeElapsed,
-    timeBank,
-    handlePause,
-    handleEndTurn,
-    nextTurnDisabled,
-  } = props;
+const StrategyAction: FunctionComponent<IPhaseProps> = (props) => {
+  const { time, handlePause, handleEndTurn, endTurnDisabled } = props;
   const { players, playerIndex, strategyAction, choosePlayerAction } =
     useSelector((state: RootState) => state);
   const currentPlayer = players[playerIndex];
@@ -30,7 +22,7 @@ const StrategyAction: FunctionComponent<IGameProps> = (props) => {
 
   return (
     <div className={styles.strategyActionContainer} style={currentPlayer.theme}>
-      {!isRunning && <PauseScreen />}
+      {!time.isRunning && <PauseScreen />}
 
       <TopPanel />
 
@@ -41,21 +33,17 @@ const StrategyAction: FunctionComponent<IGameProps> = (props) => {
         draggable={false}
       />
 
-      <PlayerPanel
-        timeDelayed={timeDelayed}
-        timeElapsed={timeElapsed}
-        timeBank={timeBank}
-      />
+      <PlayerPanel time={time} />
 
       {choosePlayerAction.isBeingPlayed && (
         <ChoosePlayerPanel trigger={triggers.politicsStrategyCard} />
       )}
 
       <BottomPanel
+        time={time}
         handleEndTurn={handleEndTurn}
-        nextTurnDisabled={nextTurnDisabled}
+        endTurnDisabled={endTurnDisabled}
         handlePause={handlePause}
-        isRunning={isRunning}
         passDisabled={true}
       />
     </div>

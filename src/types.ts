@@ -1,12 +1,17 @@
-export interface IGameProps {
-  isRunning: boolean;
-  timeDelayed: number;
-  timeElapsed: number;
-  timeBank: number;
+import { Timer } from "./hooks/useTimer/types";
+export interface IPhaseProps {
+  time: ITime;
   handlePause: () => void;
   handleEndTurn: () => void;
+  endTurnDisabled: boolean;
   handlePass: () => void;
-  nextTurnDisabled: boolean;
   passDisabled: boolean;
   endPhase: () => void;
+}
+
+export interface ITime {
+  delayed: Timer;
+  elapsed: Timer;
+  bank: Timer;
+  isRunning: boolean;
 }

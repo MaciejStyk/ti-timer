@@ -23,9 +23,8 @@ import { setPlayersTimeBank } from "./redux/players";
 import { changeView } from "./redux/view";
 import { setPlayerIndex } from "./redux/playerIndex";
 import { incrementGameRound } from "./redux/gameRound";
-import { useTimer } from "./hooks/useTimer";
 import views from "./global/views";
-import { IGameProps } from "./types";
+import { IPhaseProps } from "./types";
 import { setRoundOrder } from "./redux/roundOrder";
 import { resetStrategyAction } from "./redux/strategyAction";
 import {
@@ -38,6 +37,8 @@ import StrategyPhase from "./pages/StrategyPhase";
 import ActionPhase from "./pages/ActionPhase";
 import StatusPhase from "./pages/StatusPhase";
 import AgendaPhase from "./pages/AgendaPhase";
+import useTime from "./hooks/useTime";
+import useKeyBindings from "./hooks/useKeyBindings";
 
 const App = () => {
   const {
@@ -60,76 +61,33 @@ const App = () => {
 
   const [delayTimeHasEnded, setDelayTimeHasEnded] = useState(false);
 
-  const {
-    time: timeDelayed,
-    start: startTimeDelayed,
-    pause: pauseTimeDelayed,
-    reset: resetTimeDelayed,
-    status: timeDelayedStatus,
-  } = useTimer({
-    initialTime:
-      timer.timeDelayedPerTurn.min * 60 + timer.timeDelayedPerTurn.sec,
-    endTime: 0,
-    timerType: "DECREMENTAL",
-    onTimeOver: () => {
-      if (!delayTimeHasEnded) {
-        startTimeBank();
-        startTimeElapsed();
-        setDelayTimeHasEnded(true);
-      }
-    },
-  });
-
-  const {
-    time: timeElapsed,
-    start: startTimeElapsed,
-    pause: pauseTimeElapsed,
-    reset: resetTimeElapsed,
-  } = useTimer({
-    initialTime: 0,
-  });
-
   const [initialTimeBank, setInitialTimeBank] = useState(
     timer.timeBank.min * 60 + timer.timeBank.sec
   );
 
-  const {
-    time: timeBank,
-    start: startTimeBank,
-    pause: pauseTimeBank,
-    reset: resetTimeBank,
-    status: timeBankStatus,
-  } = useTimer({
-    initialTime: initialTimeBank,
-    timerType: "DECREMENTAL",
+  const time = useTime({
+    timer,
+    delayTimeHasEnded,
+    setDelayTimeHasEnded,
+    initialTimeBank,
   });
 
-  const isRunning =
-    timeBankStatus === "RUNNING" || timeDelayedStatus === "RUNNING";
+  // ======== TIMER FUNCTIONS ==================================================
 
   const handlePause = useCallback(() => {
-    if (isRunning) {
-      pauseTimeBank();
-      pauseTimeElapsed();
-      pauseTimeDelayed();
+    if (time.isRunning) {
+      time.bank.pause();
+      time.elapsed.pause();
+      time.delayed.pause();
     } else {
-      if (timeDelayed > 0) {
-        startTimeDelayed();
+      if (time.delayed.value > 0) {
+        time.delayed.start();
       } else {
-        startTimeElapsed();
-        startTimeBank();
+        time.elapsed.start();
+        time.bank.start();
       }
     }
-  }, [
-    isRunning,
-    pauseTimeBank,
-    pauseTimeDelayed,
-    pauseTimeElapsed,
-    startTimeBank,
-    startTimeDelayed,
-    startTimeElapsed,
-    timeDelayed,
-  ]);
+  }, [time]);
 
   useEffect(() => {
     setInitialTimeBank(
@@ -138,9 +96,9 @@ const App = () => {
         : timer.timeBank.min * 60 + timer.timeBank.sec
     );
     setDelayTimeHasEnded(false);
-    resetTimeDelayed();
-    resetTimeElapsed();
-    resetTimeBank();
+    time.delayed.reset();
+    time.elapsed.reset();
+    time.bank.reset();
     if (
       (view === views.strategyPhase &&
         !races.naalu.tokenBeingChanged &&
@@ -148,14 +106,14 @@ const App = () => {
       view === views.actionPhase ||
       (view === views.agendaPhase && agendaPhase.isBeingVoted)
     ) {
-      startTimeDelayed();
+      time.delayed.start();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     view,
     currentPlayer?.id,
-    resetTimeBank,
-    startTimeBank,
+    time.bank.reset,
+    time.bank.start,
     agendaPhase.isBeingVoted,
     races.naalu.tokenBeingChanged,
     strategyPhase.swapCards.isBeingPlayed,
@@ -185,7 +143,9 @@ const App = () => {
             dispatch(setStrategyPhaseRound(1));
             dispatch(sortPlayersStrategyCards());
             dispatch(
-              sortPlayersByInitiative({ naaluInGame: races.naalu.inGame })
+              sortPlayersByInitiative({
+                naaluInGame: races.naalu.inGame,
+              })
             );
             dispatch(setRoundOrder(store.getState().players));
             dispatch(changeView(views.actionPhase));
@@ -302,13 +262,13 @@ const App = () => {
           id: currentPlayer.id,
           timeBank: {
             min:
-              timeBank > 0
-                ? Math.floor(timeBank / 60)
-                : Math.ceil(timeBank / 60),
+              time.bank.value > 0
+                ? Math.floor(time.bank.value / 60)
+                : Math.ceil(time.bank.value / 60),
             sec:
-              timeBank > 0
-                ? Math.floor(timeBank % 60)
-                : Math.ceil(timeBank % 60),
+              time.bank.value > 0
+                ? Math.floor(time.bank.value % 60)
+                : Math.ceil(time.bank.value % 60),
           },
         })
       );
@@ -376,25 +336,25 @@ const App = () => {
     strategyPhase.numberOfRounds,
     strategyPhase.round,
     strategyPhase.swapCards.playable,
-    timeBank,
+    time.bank.value,
     view,
   ]);
 
-  const [nextTurnDisabled, setNextTurnDisabled] = useState(true);
+  const [endTurnDisabled, setEndTurnDisabled] = useState(true);
 
   useEffect(() => {
     switch (view) {
       case views.strategyPhase:
-        setNextTurnDisabled(
-          !isRunning ||
+        setEndTurnDisabled(
+          !time.isRunning ||
             currentPlayer?.strategyCards.length !== strategyPhase.round
         );
         break;
       case views.actionPhase:
-        setNextTurnDisabled(!isRunning || choosePlayerAction.playable);
+        setEndTurnDisabled(!time.isRunning || choosePlayerAction.playable);
         break;
       default:
-        setNextTurnDisabled(!isRunning);
+        setEndTurnDisabled(!time.isRunning);
     }
   }, [
     currentPlayer?.strategyCards.length,
@@ -402,7 +362,7 @@ const App = () => {
     choosePlayerAction.playable,
     strategyPhase.numberOfRounds,
     view,
-    isRunning,
+    time.isRunning,
   ]);
 
   // ======== PASS =============================================================
@@ -417,22 +377,20 @@ const App = () => {
   const [passDisabled, setPassDisabled] = useState(true);
 
   useEffect(() => {
-    switch (view) {
-      case views.actionPhase:
-        setPassDisabled(
-          !isRunning ||
-            strategyAction.isBeingPlayed ||
-            (currentPlayer
-              ? currentPlayer!.strategyCards.some((card) => !card.exhausted)
-              : true)
-        );
-        break;
-      default:
-        setPassDisabled(true);
+    if (view === views.actionPhase) {
+      setPassDisabled(
+        !time.isRunning ||
+          strategyAction.isBeingPlayed ||
+          (currentPlayer
+            ? currentPlayer!.strategyCards.some((card) => !card.exhausted)
+            : true)
+      );
+    } else {
+      setPassDisabled(true);
     }
   }, [
     currentPlayer?.strategyCards.length,
-    isRunning,
+    time.isRunning,
     view,
     strategyAction.isBeingPlayed,
     currentPlayer,
@@ -440,64 +398,27 @@ const App = () => {
 
   // ======== KEY BINDINGS =====================================================
 
-  useEffect(() => {
-    const listener = (event: KeyboardEvent) => {
-      if (
-        (view === views.strategyPhase &&
-          !races.naalu.tokenBeingChanged &&
-          !strategyPhase.swapCards.isBeingPlayed) ||
-        view === views.actionPhase ||
-        (view === views.agendaPhase && agendaPhase.isBeingVoted)
-      ) {
-        if (
-          !event.ctrlKey &&
-          (event.code === "Enter" || event.code === "NumpadEnter")
-        ) {
-          if (!nextTurnDisabled) {
-            event.preventDefault();
-            handleEndTurn();
-          }
-        }
-        if (event.code === "Space") {
-          event.preventDefault();
-          handlePause();
-        }
-      }
-      if (view === views.actionPhase && !passDisabled) {
-        if (event.ctrlKey && event.code === "Enter") {
-          event.preventDefault();
-          handlePass();
-        }
-      }
-    };
-    window.addEventListener("keydown", listener);
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, [
+  useKeyBindings({
     view,
-    nextTurnDisabled,
-    isRunning,
+    time,
+    races,
     handleEndTurn,
+    endTurnDisabled,
     handlePause,
-    agendaPhase.isBeingVoted,
-    passDisabled,
     handlePass,
-    races.naalu.tokenBeingChanged,
-    strategyPhase.swapCards.isBeingPlayed,
-  ]);
+    passDisabled,
+    strategyPhase,
+    agendaPhase,
+  });
 
   // ======== RENDER APP =======================================================
 
-  const gameProps: IGameProps = {
-    isRunning,
-    timeDelayed,
-    timeElapsed,
-    timeBank,
+  const phaseProps: IPhaseProps = {
+    time,
     handlePause,
     handleEndTurn,
+    endTurnDisabled,
     handlePass,
-    nextTurnDisabled,
     passDisabled,
     endPhase,
   };
@@ -505,15 +426,15 @@ const App = () => {
   const renderApp = () => {
     switch (view) {
       case views.setupPhase:
-        return <SetupPhase endPhase={endPhase} />;
+        return <SetupPhase {...phaseProps} />;
       case views.strategyPhase:
-        return <StrategyPhase {...gameProps} />;
+        return <StrategyPhase {...phaseProps} />;
       case views.actionPhase:
-        return <ActionPhase {...gameProps} />;
+        return <ActionPhase {...phaseProps} />;
       case views.statusPhase:
-        return <StatusPhase endPhase={endPhase} />;
+        return <StatusPhase {...phaseProps} />;
       case views.agendaPhase:
-        return <AgendaPhase {...gameProps} />;
+        return <AgendaPhase {...phaseProps} />;
     }
   };
 

@@ -1,6 +1,6 @@
-export type TimerType = 'DECREMENTAL' | 'INCREMENTAL';
+export type TimerType = "DECREMENTAL" | "INCREMENTAL";
 
-export type Status = 'RUNNING' | 'PAUSED' | 'STOPPED';
+export type Status = "RUNNING" | "PAUSED" | "STOPPED";
 
 export type Config = {
   autostart: boolean;
@@ -14,17 +14,17 @@ export type Config = {
   timerType: TimerType;
 };
 
-export type ReturnValue = {
+export type Timer = {
   advanceTime: (timeToAdd: number) => void;
   pause: () => void;
   reset: () => void;
   start: () => void;
   status: Status;
-  time: number;
+  value: number;
 };
 
 export interface State {
   status: Status;
-  time: number;
+  value: number;
   timerType: TimerType;
 }

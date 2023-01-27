@@ -1,6 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-interface IAgendaPhase {
+export interface IAgendaPhase {
   unlocked: boolean;
   beforeVoting: boolean;
   isBeingVoted: boolean;

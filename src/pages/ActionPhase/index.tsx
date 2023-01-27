@@ -1,7 +1,7 @@
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { IGameProps } from "../../types";
+import { IPhaseProps } from "../../types";
 import { IStrategyCard } from "../../global/strategyCards";
 import { playStrategyAction } from "../../redux/strategyAction";
 import {
@@ -19,15 +19,12 @@ import styles from "./index.module.css";
 import PlayerDeck from "../../components/PlayerDeck";
 import StrategyAction from "../../components/StrategyAction";
 
-const ActionPhase: FunctionComponent<IGameProps> = (props) => {
+const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
   const {
-    isRunning,
-    timeDelayed,
-    timeElapsed,
-    timeBank,
+    time,
     handlePause,
     handleEndTurn,
-    nextTurnDisabled,
+    endTurnDisabled,
     handlePass,
     passDisabled,
   } = props;
@@ -84,7 +81,7 @@ const ActionPhase: FunctionComponent<IGameProps> = (props) => {
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      if (isRunning && Number(event.key) && Number(event.key) > 0) {
+      if (time.isRunning && Number(event.key) && Number(event.key) > 0) {
         const cardID = Number(event.key);
         if (
           currentPlayer.strategyCards.some(
@@ -123,7 +120,7 @@ const ActionPhase: FunctionComponent<IGameProps> = (props) => {
   }, [
     currentPlayer.strategyCards,
     firstPress,
-    isRunning,
+    time.isRunning,
     makeStrategyAction,
     strategyAction.isBeingPlayed,
   ]);
@@ -142,17 +139,13 @@ const ActionPhase: FunctionComponent<IGameProps> = (props) => {
   else
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!isRunning && <PauseScreen />}
+        {!time.isRunning && <PauseScreen />}
 
         <TopPanel />
 
         <LeftPanel />
 
-        <PlayerPanel
-          timeDelayed={timeDelayed}
-          timeElapsed={timeElapsed}
-          timeBank={timeBank}
-        />
+        <PlayerPanel time={time} />
 
         <PlayerDeck
           player={currentPlayer}
@@ -160,10 +153,10 @@ const ActionPhase: FunctionComponent<IGameProps> = (props) => {
         />
 
         <BottomPanel
-          handleEndTurn={handleEndTurn}
-          nextTurnDisabled={nextTurnDisabled}
+          time={time}
           handlePause={handlePause}
-          isRunning={isRunning}
+          handleEndTurn={handleEndTurn}
+          endTurnDisabled={endTurnDisabled}
           handlePass={handlePass}
           passDisabled={passDisabled}
         />
