@@ -1,21 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
-import store from "../../redux";
-import {
-  IPlayer,
-  removeAllStrategyCards,
-  reorderPlayers,
-} from "../../redux/players";
+import store, { RootState } from "../../redux";
+import { removeAllStrategyCards, reorderPlayers } from "../../redux/players";
 import { resetAvailableStrategyCards } from "../../redux/strategyPhase";
 import { changeView } from "../../redux/view";
 
-interface IProps {
-  players: IPlayer[];
-  tableOrder: IPlayer[];
-}
-
-const useEndStatusPhase = (props: IProps) => {
-  const { players, tableOrder } = props;
+const useEndStatusPhase = () => {
+  const { players, tableOrder } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   const endStatusPhase = () => {

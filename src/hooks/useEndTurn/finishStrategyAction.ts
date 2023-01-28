@@ -1,21 +1,13 @@
-import { useDispatch } from "react-redux";
-import store from "../../redux";
+import { useDispatch, useSelector } from "react-redux";
+import store, { RootState } from "../../redux";
 import { setPlayerIndex } from "../../redux/playerIndex";
-import { IPlayer, reorderPlayers } from "../../redux/players";
-import {
-  IStrategyAction,
-  resetStrategyAction,
-} from "../../redux/strategyAction";
+import { reorderPlayers } from "../../redux/players";
+import { resetStrategyAction } from "../../redux/strategyAction";
 
-interface IProps {
-  players: IPlayer[];
-  playerIndex: number;
-  roundOrder: IPlayer[];
-  strategyAction: IStrategyAction;
-}
-
-const useFinishStrategyAction = (props: IProps) => {
-  const { players, playerIndex, roundOrder, strategyAction } = props;
+const useFinishStrategyAction = () => {
+  const { players, roundOrder, playerIndex, strategyAction } = useSelector(
+    (state: RootState) => state
+  );
   const dispatch = useDispatch();
 
   const finishStrategyAction = () => {

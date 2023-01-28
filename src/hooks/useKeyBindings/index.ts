@@ -1,21 +1,19 @@
 import { useEffect } from "react";
-import views from "../../global/views";
-import { IAgendaPhase } from "../../redux/agendaPhase";
-import { IRaces } from "../../redux/races";
-import { IStrategyPhase } from "../../redux/strategyPhase";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
 import { IHandle, ITime } from "../../types";
+import views from "../../global/views";
 
 interface IProps {
-  view: string;
   time: ITime;
-  races: IRaces;
   handle: IHandle;
-  strategyPhase: IStrategyPhase;
-  agendaPhase: IAgendaPhase;
 }
 
 const useKeyBindings = (props: IProps) => {
-  const { view, time, races, handle, strategyPhase, agendaPhase } = props;
+  const { time, handle } = props;
+  const { view, races, strategyPhase, agendaPhase } = useSelector(
+    (state: RootState) => state
+  );
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {

@@ -1,30 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
-import store from "../../redux";
-import { IAgendaPhase } from "../../redux/agendaPhase";
+import store, { RootState } from "../../redux";
 import { incrementGameRound } from "../../redux/gameRound";
 import { setPlayerIndex } from "../../redux/playerIndex";
 import {
   addTimeToAllPlayersAfterRound,
-  IPlayer,
   reorderPlayers,
   unpassPlayers,
 } from "../../redux/players";
-import { IRaces, setNaaluTokenChangeable } from "../../redux/races";
+import { setNaaluTokenChangeable } from "../../redux/races";
 import { setSwapCardsPlayable } from "../../redux/strategyPhase";
-import { ITimer } from "../../redux/timer";
 import { changeView } from "../../redux/view";
 
-interface IProps {
-  players: IPlayer[];
-  timer: ITimer;
-  races: IRaces;
-  tableOrder: IPlayer[];
-  agendaPhase: IAgendaPhase;
-}
-
-const useEndAgendaPhase = (props: IProps) => {
-  const { players, timer, races, tableOrder, agendaPhase } = props;
+const useEndAgendaPhase = () => {
+  const { players, timer, races, tableOrder, agendaPhase } = useSelector(
+    (state: RootState) => state
+  );
   const dispatch = useDispatch();
 
   const endAgendaPhase = () => {

@@ -1,23 +1,16 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
-import { IPlayer, setPlayersTimeBank } from "../../redux/players";
-import { IRaces } from "../../redux/races";
+import { RootState } from "../../redux";
+import { setPlayersTimeBank } from "../../redux/players";
 import {
   setStrategyPhaseNumberOfRounds,
   setSwapCardsPlayable,
 } from "../../redux/strategyPhase";
 import { setTableOrder } from "../../redux/tableOrder";
-import { ITimer } from "../../redux/timer";
 import { changeView } from "../../redux/view";
 
-interface IProps {
-  players: IPlayer[];
-  timer: ITimer;
-  races: IRaces;
-}
-
-const useEndSetupPhase = (props: IProps) => {
-  const { players, timer, races } = props;
+const useEndSetupPhase = () => {
+  const { players, races, timer } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   const endSetupPhase = () => {

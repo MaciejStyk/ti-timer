@@ -1,16 +1,16 @@
-import { ITimer } from "../../redux/timer";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
 import { useTimer } from "../useTimer";
+import useTimeAutoReset from "./autoReset";
 
-interface IProps {
-  timer: ITimer;
-  delayTimeHasEnded: boolean;
-  setDelayTimeHasEnded: React.Dispatch<React.SetStateAction<boolean>>;
-  initialTimeBank: number;
-}
+const useTime = () => {
+  const { timer } = useSelector((state: RootState) => state);
 
-const useTime = (props: IProps) => {
-  const { timer, delayTimeHasEnded, setDelayTimeHasEnded, initialTimeBank } =
-    props;
+  const [delayEnded, setDelayEnded] = useState(false);
+  const [initialBank, setInitialBank] = useState(
+    timer.timeBank.min * 60 + timer.timeBank.sec
+  );
 
   const delayed = useTimer({
     initialTime:
@@ -18,10 +18,10 @@ const useTime = (props: IProps) => {
     endTime: 0,
     timerType: "DECREMENTAL",
     onTimeOver: () => {
-      if (!delayTimeHasEnded) {
+      if (!delayEnded) {
         bank.start();
         elapsed.start();
-        setDelayTimeHasEnded(true);
+        setDelayEnded(true);
       }
     },
   });
@@ -29,11 +29,14 @@ const useTime = (props: IProps) => {
   const elapsed = useTimer({ initialTime: 0 });
 
   const bank = useTimer({
-    initialTime: initialTimeBank,
+    initialTime: initialBank,
     timerType: "DECREMENTAL",
   });
 
   const isRunning = bank.status === "RUNNING" || delayed.status === "RUNNING";
+  const time = { delayed, elapsed, bank, isRunning };
+
+  useTimeAutoReset({ time, setInitialBank, setDelayEnded });
 
   return { delayed, elapsed, bank, isRunning };
 };

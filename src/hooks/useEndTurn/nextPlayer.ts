@@ -1,24 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
+import { RootState } from "../../redux";
 import { setPlayerIndex } from "../../redux/playerIndex";
-import { IPlayer } from "../../redux/players";
-import { IRaces, setNaaluTokenBeingChanged } from "../../redux/races";
-import {
-  IStrategyPhase,
-  setSwapCardsBeingPlayed,
-} from "../../redux/strategyPhase";
+import { setNaaluTokenBeingChanged } from "../../redux/races";
+import { setSwapCardsBeingPlayed } from "../../redux/strategyPhase";
 import useNextPlayerIndex from "./nextPlayerIndex";
 
-interface IProps {
-  view: string;
-  players: IPlayer[];
-  races: IRaces;
-  playerIndex: number;
-  strategyPhase: IStrategyPhase;
-}
-
-const useNextPlayer = (props: IProps) => {
-  const { view, players, races, playerIndex, strategyPhase } = props;
+const useNextPlayer = () => {
+  const { view, players, races, playerIndex, strategyPhase } = useSelector(
+    (state: RootState) => state
+  );
   const dispatch = useDispatch();
 
   const findNextPlayerIndex = useNextPlayerIndex();

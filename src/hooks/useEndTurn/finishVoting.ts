@@ -1,19 +1,11 @@
-import { useDispatch } from "react-redux";
-import {
-  IAgendaPhase,
-  stopVoting,
-  switchVotingStage,
-} from "../../redux/agendaPhase";
-import { IPlayer } from "../../redux/players";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { stopVoting, switchVotingStage } from "../../redux/agendaPhase";
 
-interface IProps {
-  players: IPlayer[];
-  playerIndex: number;
-  agendaPhase: IAgendaPhase;
-}
-
-const useFinishVoting = (props: IProps) => {
-  const { players, playerIndex, agendaPhase } = props;
+const useFinishVoting = () => {
+  const { players, playerIndex, agendaPhase } = useSelector(
+    (state: RootState) => state
+  );
   const dispatch = useDispatch();
 
   const finishVoting = () => {

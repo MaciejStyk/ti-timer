@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import views from "../../global/views";
-import { IPlayer, passPlayer } from "../../redux/players";
-import { IStrategyAction } from "../../redux/strategyAction";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { passPlayer } from "../../redux/players";
 import { ITime } from "../../types";
+import usePassDisabled from "./passDisabled";
 
 interface IProps {
   time: ITime;
-  view: string;
-  currentPlayer: IPlayer | null;
-  strategyAction: IStrategyAction;
   endTurn: () => void;
 }
 
 const usePass = (props: IProps) => {
-  const { time, view, currentPlayer, strategyAction, endTurn } = props;
+  const { time, endTurn } = props;
+  const { players, playerIndex } = useSelector((state: RootState) => state);
+  const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
   const dispatch = useDispatch();
+
+  const passDisabled = usePassDisabled(time);
 
   const pass = () => {
     if (currentPlayer) {
@@ -23,28 +23,6 @@ const usePass = (props: IProps) => {
     }
     endTurn();
   };
-
-  const [passDisabled, setPassDisabled] = useState(true);
-
-  useEffect(() => {
-    if (view === views.actionPhase) {
-      setPassDisabled(
-        !time.isRunning ||
-          strategyAction.isBeingPlayed ||
-          (currentPlayer
-            ? currentPlayer!.strategyCards.some((card) => !card.exhausted)
-            : true)
-      );
-    } else {
-      setPassDisabled(true);
-    }
-  }, [
-    currentPlayer?.strategyCards.length,
-    time.isRunning,
-    view,
-    strategyAction.isBeingPlayed,
-    currentPlayer,
-  ]);
 
   return { pass, passDisabled };
 };

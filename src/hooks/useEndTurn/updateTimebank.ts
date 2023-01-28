@@ -1,14 +1,11 @@
-import { useDispatch } from "react-redux";
-import { IPlayer, updatePlayersTimebank } from "../../redux/players";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux";
+import { updatePlayersTimebank } from "../../redux/players";
 import { ITime } from "../../types";
 
-interface IProps {
-  time: ITime;
-  currentPlayer: IPlayer | null;
-}
-
-const useUpdateTimebank = (props: IProps) => {
-  const { time, currentPlayer } = props;
+const useUpdateTimebank = (time: ITime) => {
+  const { players, playerIndex } = useSelector((state: RootState) => state);
+  const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
   const dispatch = useDispatch();
 
   const updateCurrentPlayerTimebank = () => {
