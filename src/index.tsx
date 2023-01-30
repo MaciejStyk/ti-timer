@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import { Provider } from "react-redux";
-import store from "./redux/";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import store from "./redux/";
+import App from "./App";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
