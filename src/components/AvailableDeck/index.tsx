@@ -3,19 +3,19 @@ import { useDrop } from "react-dnd";
 import StrategyCard from "../StrategyCard";
 import CardPlaceholder from "../CardPlaceholder";
 import { IStrategyCard } from "../../global/strategyCards";
-import cn from "classnames";
-import styles from "./index.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import { IMove } from "../../types";
+import cn from "classnames";
+import styles from "./index.module.css";
 
 interface IAvailableDeck {
-  moveToPlayersDeck: (strategyCard: IStrategyCard) => void;
-  moveToAvailableDeck: (strategyCard: IStrategyCard) => void;
+move: IMove;
   currentPlayerCanPick: boolean;
 }
 
 const AvailableDeck: FunctionComponent<IAvailableDeck> = (props) => {
-  const { moveToPlayersDeck, moveToAvailableDeck, currentPlayerCanPick } =
+  const { move, currentPlayerCanPick } =
     props;
   const { strategyPhase } = useSelector((state: RootState) => state);
 
@@ -23,7 +23,7 @@ const AvailableDeck: FunctionComponent<IAvailableDeck> = (props) => {
 
   const [{ isOver, draggedCard, canDrop }, dropRefBack] = useDrop({
     accept: "strategyCard",
-    drop: (strategyCard: IStrategyCard) => moveToAvailableDeck(strategyCard),
+    drop: (strategyCard: IStrategyCard) => move.toAvailableDeck(strategyCard),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       draggedCard: monitor.getItem(),
@@ -50,6 +50,7 @@ const AvailableDeck: FunctionComponent<IAvailableDeck> = (props) => {
         strategyPhase.availableStrategyCards.length === 0 && (
           <CardPlaceholder />
         )}
+
       {strategyPhase.availableStrategyCards.map(
         (strategyCard, index, cardsArray) => {
           let showBefore = true;
@@ -67,7 +68,7 @@ const AvailableDeck: FunctionComponent<IAvailableDeck> = (props) => {
                 index === placeholderIndex && <CardPlaceholder />}
               <StrategyCard
                 strategyCard={strategyCard}
-                moveBetweenDecks={moveToPlayersDeck}
+                moveBetweenDecks={move.toPlayersDeck}
                 draggable={currentPlayerCanPick}
               />
               {showTopPlaceholder &&

@@ -1,3 +1,4 @@
+import { IStrategyCard } from "./global/strategyCards";
 import { Timer } from "./hooks/useTimer/types";
 export interface IPhaseProps {
   time: ITime;
@@ -18,4 +19,9 @@ export interface IHandle {
   pass: () => void;
   passDisabled: boolean;
   endPhase: () => void;
+}
+
+export interface IMove {
+  toPlayersDeck: (strategyCard: IStrategyCard) => void;
+  toAvailableDeck: (strategyCard: IStrategyCard) => void;
 }

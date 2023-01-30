@@ -16,8 +16,6 @@ const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
     races.argent.inGame === (races.argent.playedBy ? true : false);
   const canStartGame = numberOfPlayersCheck && argentCheck;
 
-  // ======== RENDER PAGE ======================================================
-
   return (
     <div className={styles.background}>
       <div className={styles.container}>
@@ -28,9 +26,7 @@ const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
         </p>
 
         <PlayerForm />
-
         <PlayersList />
-
         <SettingsForm />
 
         <button

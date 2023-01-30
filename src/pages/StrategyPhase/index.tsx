@@ -1,15 +1,6 @@
-import { FunctionComponent, useCallback, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import {
-  addStrategyCardToPlayerDeck,
-  removeStrategyCardFromPlayerDeck,
-} from "../../redux/players";
-import {
-  addStrategyCardToAvailableDeck,
-  removeStrategyCardFromAvailableDeck,
-} from "../../redux/strategyPhase";
-import { IStrategyCard } from "../../global/strategyCards";
 import { IPhaseProps } from "../../types";
 import PauseScreen from "../../components/PauseScreen";
 import TopPanel from "../../components/TopPanel";
@@ -18,135 +9,27 @@ import AvailableDeck from "../../components/AvailableDeck";
 import PlayerPanel from "../../components/PlayerPanel";
 import PlayerDeck from "../../components/PlayerDeck";
 import BottomPanel from "../../components/BottomPanel";
-import styles from "./index.module.css";
 import ChoosePlayerPanel from "../../components/ChoosePlayerPanel";
 import triggers from "../../global/triggers";
 import SwapCardsPanel from "../../components/SwapCardsPanel";
+import useKeyBindings from "./hooks/useKeyBindings";
+import useMove from "./hooks/useMove";
+import useAutoDeal from "./hooks/useAutoDeal";
+import styles from "./index.module.css";
 
 const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
   const { time, handle } = props;
-  const { players, strategyPhase, playerIndex, races } = useSelector(
+  const { players, playerIndex, races, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const currentPlayer = players[playerIndex];
-  const dispatch = useDispatch();
-
   const currentPlayerCanPick =
     currentPlayer.strategyCards.length <
     Math.min(strategyPhase.round, strategyPhase.numberOfRounds);
 
-  // ======== MOVE CARDS =======================================================
-
-  const moveToPlayersDeck = useCallback(
-    (strategyCard: IStrategyCard) => {
-      if (
-        !currentPlayer.strategyCards.some(
-          (card) => card.id === strategyCard.id
-        ) &&
-        currentPlayerCanPick
-      ) {
-        dispatch(
-          addStrategyCardToPlayerDeck({
-            id: currentPlayer.id,
-            strategyCard: strategyCard,
-          })
-        );
-        dispatch(removeStrategyCardFromAvailableDeck(strategyCard));
-      }
-    },
-    [
-      currentPlayer.id,
-      currentPlayer.strategyCards,
-      currentPlayerCanPick,
-      dispatch,
-    ]
-  );
-
-  const moveToAvailableDeck = useCallback(
-    (strategyCard: IStrategyCard) => {
-      if (
-        !strategyPhase.availableStrategyCards.some(
-          (card) => card.id === strategyCard.id
-        )
-      ) {
-        dispatch(addStrategyCardToAvailableDeck(strategyCard));
-        dispatch(
-          removeStrategyCardFromPlayerDeck({
-            id: currentPlayer.id,
-            strategyCard: strategyCard,
-          })
-        );
-      }
-    },
-    [currentPlayer.id, dispatch, strategyPhase.availableStrategyCards]
-  );
-
-  // ======== DEAL LAST CARD AND END TURN AUTOMATICALLY ========================
-
-  useEffect(() => {
-    if (
-      strategyPhase.availableStrategyCards.length === 1 &&
-      currentPlayer.id === players[players.length - 1].id &&
-      players.length !== 7
-    ) {
-      moveToPlayersDeck(strategyPhase.availableStrategyCards[0]);
-      handle.endTurn();
-    }
-  }, [
-    currentPlayer.id,
-    handle,
-    moveToPlayersDeck,
-    players,
-    strategyPhase.availableStrategyCards,
-  ]);
-
-  // ======== KEY BINDINGS =====================================================
-
-  useEffect(() => {
-    const listener = (event: KeyboardEvent) => {
-      if (time.isRunning && Number(event.key) && Number(event.key) > 0) {
-        const cardID = Number(event.key);
-        if (
-          strategyPhase.availableStrategyCards.some(
-            (card) => card.id === cardID
-          ) &&
-          currentPlayerCanPick
-        ) {
-          event.preventDefault();
-          moveToPlayersDeck(
-            strategyPhase.availableStrategyCards.find(
-              (card) => card.id === cardID
-            )!
-          );
-        }
-        if (
-          currentPlayer.strategyCards.some(
-            (card, index) =>
-              card.id === cardID && index === strategyPhase.round - 1
-          )
-        ) {
-          event.preventDefault();
-          moveToAvailableDeck(
-            currentPlayer.strategyCards[strategyPhase.round - 1]
-          );
-        }
-      }
-    };
-    window.addEventListener("keydown", listener);
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, [
-    currentPlayer.strategyCards,
-    currentPlayerCanPick,
-    time.isRunning,
-    moveToAvailableDeck,
-    moveToPlayersDeck,
-    strategyPhase.availableStrategyCards,
-    strategyPhase.round,
-  ]);
-
-  // ======== RENDER PAGE ======================================================
+  const move = useMove({ currentPlayer, currentPlayerCanPick });
+  useAutoDeal({ currentPlayer, move, handle });
+  useKeyBindings({ time, currentPlayer, currentPlayerCanPick, move });
 
   if (races.naalu.tokenBeingChanged) {
     return (
@@ -176,8 +59,7 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
         <TopPanel />
 
         <AvailableDeck
-          moveToPlayersDeck={moveToPlayersDeck}
-          moveToAvailableDeck={moveToAvailableDeck}
+          move={move}
           currentPlayerCanPick={currentPlayerCanPick}
         />
 
@@ -187,8 +69,8 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
 
         <PlayerDeck
           player={currentPlayer}
-          onDrop={(strategyCard) => moveToPlayersDeck(strategyCard)}
-          moveToAvailableDeck={moveToAvailableDeck}
+          onDrop={(strategyCard) => move.toPlayersDeck(strategyCard)}
+          moveToAvailableDeck={move.toAvailableDeck}
           currentPlayerCanPick={currentPlayerCanPick}
         />
 
