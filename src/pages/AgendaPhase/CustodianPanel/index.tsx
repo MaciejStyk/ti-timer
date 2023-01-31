@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { unlockAgendaPhase } from "../../redux/agendaPhase";
-import { IPhaseProps } from "../../types";
-import mecatolWithCustodian from "../../assets/other/mecatol-rex-custodian.png";
-import mecatolWithoutCustodian from "../../assets/other/mecatol-rex-no-custodian.png";
+import { unlockAgendaPhase } from "../../../redux/agendaPhase";
+import { IPhaseProps } from "../../../types";
+import mecatolWithCustodian from "../../../assets/other/mecatol-rex-custodian.png";
+import mecatolWithoutCustodian from "../../../assets/other/mecatol-rex-no-custodian.png";
 import cn from "classnames";
 import styles from "./index.module.css";
 
@@ -18,8 +18,6 @@ const CustodianPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
     noToken: false,
   });
 
-  // ======== CLASSES ==========================================================
-
   const tokenButtonClasses = cn({
     [styles.button]: true,
     [styles.hovered]: hover.token,
@@ -29,8 +27,6 @@ const CustodianPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
     [styles.button]: true,
     [styles.hovered]: hover.noToken,
   });
-
-  // ======== RENDER COMPONENT =================================================
 
   return (
     <div className={styles.container}>

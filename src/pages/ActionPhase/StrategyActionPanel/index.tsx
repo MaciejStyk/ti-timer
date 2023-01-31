@@ -1,15 +1,15 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
-import { IPhaseProps } from "../../types";
-import BottomPanel from "../BottomPanel";
-import LeftPanel from "../LeftPanel";
-import PausePanel from "../PausePanel";
-import PlayerPanel from "../PlayerPanel";
-import ChoosePlayerPanel from "../ChoosePlayerPanel";
-import StrategyCard from "../../components/StrategyCard";
-import TopPanel from "../TopPanel";
-import triggers from "../../global/triggers";
+import { RootState } from "../../../redux";
+import { IPhaseProps } from "../../../types";
+import BottomPanel from "../../../panels/BottomPanel";
+import LeftPanel from "../../../panels/LeftPanel";
+import PausePanel from "../../../panels/PausePanel";
+import PlayerPanel from "../../../panels/PlayerPanel";
+import ChoosePlayerPanel from "../../../panels/ChoosePlayerPanel";
+import StrategyCard from "../../../components/StrategyCard";
+import TopPanel from "../../../panels/TopPanel";
+import triggers from "../../../global/triggers";
 import styles from "./index.module.css";
 
 const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {

@@ -5,13 +5,13 @@ import { IPhaseProps } from "../../types";
 import PausePanel from "../../panels/PausePanel";
 import TopPanel from "../../panels/TopPanel";
 import LeftPanel from "../../panels/LeftPanel";
-import AvailableDeckPanel from "../../panels/AvailableDeckPanel";
+import AvailableCardsPanel from "./AvailableCardsPanel";
 import PlayerPanel from "../../panels/PlayerPanel";
-import PlayerDeckPanel from "../../panels/PlayerDeckPanel";
+import PlayerCardsPanel from "../../panels/PlayerCardsPanel";
 import BottomPanel from "../../panels/BottomPanel";
 import ChoosePlayerPanel from "../../panels/ChoosePlayerPanel";
 import triggers from "../../global/triggers";
-import SwapCardsPanel from "../../panels/SwapCardsPanel";
+import SwapCardsPanel from "./SwapCardsPanel";
 import useKeyBindings from "./hooks/useKeyBindings";
 import useMove from "./hooks/useMove";
 import useAutoDeal from "./hooks/useAutoDeal";
@@ -57,23 +57,18 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
         {!time.isRunning && <PausePanel />}
         <TopPanel />
-
-        <AvailableDeckPanel
+        <AvailableCardsPanel
           move={move}
           currentPlayerCanPick={currentPlayerCanPick}
         />
-
         <LeftPanel />
-
         <PlayerPanel {...props} />
-
-        <PlayerDeckPanel
+        <PlayerCardsPanel
           player={currentPlayer}
           onDrop={(strategyCard) => move.toPlayersDeck(strategyCard)}
           moveToAvailableDeck={move.toAvailableDeck}
           currentPlayerCanPick={currentPlayerCanPick}
         />
-
         <BottomPanel {...props} />
       </div>
     );

@@ -1,20 +1,20 @@
 import React, { FunctionComponent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux";
+import { RootState } from "../../../redux";
 import {
   addStrategyCardToPlayerDeck,
   addStrategyCardToPlayerDeckFront,
   removeStrategyCardFromPlayerDeck,
-} from "../../redux/players";
+} from "../../../redux/players";
 import {
   setSwapCardsBeingPlayed,
   setSwapCardsPlayable,
   switchSwapCardsStage,
-} from "../../redux/strategyPhase";
-import { setNaaluTokenBeingChanged } from "../../redux/races";
-import { IStrategyCard } from "../../global/strategyCards";
-import { IPhaseProps } from "../../types";
-import PlayerDeck from "../PlayerDeckPanel";
+} from "../../../redux/strategyPhase";
+import { setNaaluTokenBeingChanged } from "../../../redux/races";
+import { IStrategyCard } from "../../../global/strategyCards";
+import { IPhaseProps } from "../../../types";
+import PlayerCardsPanel from "../../../panels/PlayerCardsPanel";
 import cn from "classnames";
 import styles from "./index.module.css";
 
@@ -207,7 +207,7 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
               >
                 {player.name}
               </div>
-              <PlayerDeck
+              <PlayerCardsPanel
                 player={player}
                 onDrop={(strategyCard) =>
                   moveBetweenPlayersDeck(strategyCard, index)

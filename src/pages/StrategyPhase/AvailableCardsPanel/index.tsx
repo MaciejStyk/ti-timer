@@ -1,20 +1,20 @@
 import { FunctionComponent, Fragment } from "react";
 import { useDrop } from "react-dnd";
-import StrategyCard from "../../components/StrategyCard";
-import CardPlaceholder from "../../components/CardPlaceholder";
-import { IStrategyCard } from "../../global/strategyCards";
+import StrategyCard from "../../../components/StrategyCard";
+import CardPlaceholder from "../../../components/CardPlaceholder";
+import { IStrategyCard } from "../../../global/strategyCards";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
-import { IMove } from "../../types";
+import { RootState } from "../../../redux";
+import { IMove } from "../../../types";
 import cn from "classnames";
 import styles from "./index.module.css";
 
-interface IAvailableDeck {
+interface IProps {
   move: IMove;
   currentPlayerCanPick: boolean;
 }
 
-const AvailableDeckPanel: FunctionComponent<IAvailableDeck> = (props) => {
+const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
   const { move, currentPlayerCanPick } = props;
   const { strategyPhase } = useSelector((state: RootState) => state);
 
@@ -81,4 +81,4 @@ const AvailableDeckPanel: FunctionComponent<IAvailableDeck> = (props) => {
   );
 };
 
-export default AvailableDeckPanel;
+export default AvailableCardsPanel;

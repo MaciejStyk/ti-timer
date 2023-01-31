@@ -18,7 +18,7 @@ interface IProps {
   makeStrategyAction?: (strategyCard: IStrategyCard) => void;
 }
 
-const PlayerDeckPanel: FunctionComponent<IProps> = (props) => {
+const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
   const {
     player,
     onDrop,
@@ -89,4 +89,4 @@ const PlayerDeckPanel: FunctionComponent<IProps> = (props) => {
   );
 };
 
-export default PlayerDeckPanel;
+export default PlayerCardsPanel;

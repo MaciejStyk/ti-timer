@@ -9,9 +9,9 @@ import TopPanel from "../../panels/TopPanel";
 import LeftPanel from "../../panels/LeftPanel";
 import PlayerPanel from "../../panels/PlayerPanel";
 import BottomPanel from "../../panels/BottomPanel";
+import PlayerCardsPanel from "../../panels/PlayerCardsPanel";
+import StrategyActionPanel from "./StrategyActionPanel";
 import styles from "./index.module.css";
-import PlayerDeckPanel from "../../panels/PlayerDeckPanel";
-import StrategyActionPanel from "../../panels/StrategyActionPanel";
 
 const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
@@ -39,7 +39,7 @@ const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
         <TopPanel />
         <LeftPanel />
         <PlayerPanel {...props} />
-        <PlayerDeckPanel
+        <PlayerCardsPanel
           player={currentPlayer}
           makeStrategyAction={makeStrategyAction}
         />

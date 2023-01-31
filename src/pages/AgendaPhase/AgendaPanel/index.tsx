@@ -1,11 +1,11 @@
 import { FunctionComponent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import store, { RootState } from "../../redux";
+import store, { RootState } from "../../../redux";
 import {
   reorderPlayers,
   reorderPlayersWithArgentAsFirst,
-} from "../../redux/players";
-import { setPlayerIndex } from "../../redux/playerIndex";
+} from "../../../redux/players";
+import { setPlayerIndex } from "../../../redux/playerIndex";
 import {
   beginVoting,
   resetAgendaRound,
@@ -14,12 +14,12 @@ import {
   switchHackElection,
   switchImperialArbiter,
   switchVotingStage,
-} from "../../redux/agendaPhase";
-import { setChoosePlayerAction } from "../../redux/choosePlayerAction";
-import { IPhaseProps } from "../../types";
-import themes from "../../global/themes";
-import ChoosePlayerPanel from "../ChoosePlayerPanel";
-import triggers from "../../global/triggers";
+} from "../../../redux/agendaPhase";
+import { setChoosePlayerAction } from "../../../redux/choosePlayerAction";
+import { IPhaseProps } from "../../../types";
+import themes from "../../../global/themes";
+import ChoosePlayerPanel from "../../../panels/ChoosePlayerPanel";
+import triggers from "../../../global/triggers";
 import cn from "classnames";
 import styles from "./index.module.css";
 
