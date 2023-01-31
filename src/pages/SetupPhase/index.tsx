@@ -1,20 +1,14 @@
 import { FunctionComponent } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
-import PlayerForm from "../../components/PlayerForm";
-import PlayersList from "../../components/PlayersList";
-import SettingsForm from "../../components/SettingsForm";
+import PlayerForm from "./PlayerForm";
+import PlayersList from "./PlayersList";
+import SettingsForm from "./SettingsForm";
+import useCheck from "./hooks/useCheck";
 import styles from "./index.module.css";
 
 const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
   const { handle } = props;
-  const { players, races } = useSelector((state: RootState) => state);
-
-  const numberOfPlayersCheck = players.length >= 3;
-  const argentCheck =
-    races.argent.inGame === (races.argent.playedBy ? true : false);
-  const canStartGame = numberOfPlayersCheck && argentCheck;
+  const check = useCheck();
 
   return (
     <div className={styles.background}>
@@ -30,13 +24,15 @@ const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
         <SettingsForm />
 
         <button
-          className={canStartGame ? styles.actionButton : styles.disabledButton}
+          className={
+            check.gameStart ? styles.actionButton : styles.disabledButton
+          }
           onClick={() => {
-            if (canStartGame) handle.endPhase();
+            if (check.gameStart) handle.endPhase();
           }}
         >
-          {numberOfPlayersCheck
-            ? argentCheck
+          {check.playersNumber
+            ? check.argent
               ? "Start game"
               : "Choose argent player"
             : "Min 3 players"}

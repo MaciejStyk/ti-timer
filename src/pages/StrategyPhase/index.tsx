@@ -2,16 +2,16 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
-import PauseScreen from "../../components/PauseScreen";
-import TopPanel from "../../components/TopPanel";
-import LeftPanel from "../../components/LeftPanel";
-import AvailableDeck from "../../components/AvailableDeck";
-import PlayerPanel from "../../components/PlayerPanel";
-import PlayerDeck from "../../components/PlayerDeck";
-import BottomPanel from "../../components/BottomPanel";
-import ChoosePlayerPanel from "../../components/ChoosePlayerPanel";
+import PausePanel from "../../panels/PausePanel";
+import TopPanel from "../../panels/TopPanel";
+import LeftPanel from "../../panels/LeftPanel";
+import AvailableDeckPanel from "../../panels/AvailableDeckPanel";
+import PlayerPanel from "../../panels/PlayerPanel";
+import PlayerDeckPanel from "../../panels/PlayerDeckPanel";
+import BottomPanel from "../../panels/BottomPanel";
+import ChoosePlayerPanel from "../../panels/ChoosePlayerPanel";
 import triggers from "../../global/triggers";
-import SwapCardsPanel from "../../components/SwapCardsPanel";
+import SwapCardsPanel from "../../panels/SwapCardsPanel";
 import useKeyBindings from "./hooks/useKeyBindings";
 import useMove from "./hooks/useMove";
 import useAutoDeal from "./hooks/useAutoDeal";
@@ -48,26 +48,26 @@ const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
       <div className={styles.background}>
         <TopPanel />
         <div className={styles.panelContainer}>
-          <SwapCardsPanel endPhase={handle.endPhase} />
+          <SwapCardsPanel {...props} />
         </div>
       </div>
     );
   } else
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!time.isRunning && <PauseScreen />}
+        {!time.isRunning && <PausePanel />}
         <TopPanel />
 
-        <AvailableDeck
+        <AvailableDeckPanel
           move={move}
           currentPlayerCanPick={currentPlayerCanPick}
         />
 
         <LeftPanel />
 
-        <PlayerPanel time={time} />
+        <PlayerPanel {...props} />
 
-        <PlayerDeck
+        <PlayerDeckPanel
           player={currentPlayer}
           onDrop={(strategyCard) => move.toPlayersDeck(strategyCard)}
           moveToAvailableDeck={move.toAvailableDeck}

@@ -1,19 +1,11 @@
-import { useDispatch,  } from "react-redux";
-import { setChoosePlayerAction } from "../../redux/choosePlayerAction";
+import { FunctionComponent } from "react";
 import styles from "./index.module.css";
 
-const SpeakerButton = () => {
-  const dispatch = useDispatch();
+interface IProps {
+  handleClick: () => void;
+}
 
-  const handleClick = () => {
-    dispatch(
-      setChoosePlayerAction({
-        playable: true,
-        isBeingPlayed: true,
-      })
-    );
-  };
-
+const SpeakerButton: FunctionComponent<IProps> = ({ handleClick }) => {
   return (
     <button className={styles.button} onClick={handleClick}>
       Change speaker

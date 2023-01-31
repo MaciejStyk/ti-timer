@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
-import TopPanel from "../../components/TopPanel";
+import TopPanel from "../../panels/TopPanel";
 import RenderTime from "../../components/RenderTime";
 import themes from "../../global/themes";
 import cn from "classnames";

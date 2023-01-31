@@ -1,14 +1,15 @@
 import { FunctionComponent, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import { setChoosePlayerAction } from "../../redux/choosePlayerAction";
 import { useDrag } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
 import views from "../../global/views";
 import CardPlaceholder from "../CardPlaceholder";
 import SpeakerButton from "../SpeakerButton";
-import cn from "classnames";
-import styles from "./index.module.css";
 import Tooltip from "../Tooltip";
+import styles from "./index.module.css";
+import cn from "classnames";
 
 interface Props {
   strategyCard: IStrategyCard;
@@ -22,6 +23,7 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     props;
   const { view, strategyPhase, strategyAction, choosePlayerAction } =
     useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   const [hover, setHover] = useState(false);
 
@@ -52,6 +54,17 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     }
   };
 
+  // ======== CLICK  ===========================================================
+
+  const handleClick = () => {
+    dispatch(
+      setChoosePlayerAction({
+        playable: true,
+        isBeingPlayed: true,
+      })
+    );
+  };
+
   // ======== CLASSES ==========================================================
 
   const cardContainerClasses = cn({
@@ -80,7 +93,7 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
   return (
     <div className={cardContainerClasses}>
       {choosePlayerAction.playable && !choosePlayerAction.isBeingPlayed && (
-        <SpeakerButton />
+        <SpeakerButton handleClick={handleClick} />
       )}
 
       {view === views.actionPhase &&

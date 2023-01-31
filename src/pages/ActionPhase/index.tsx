@@ -4,14 +4,14 @@ import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
 import useKeyBindings from "./hooks/useKeyBindings";
 import useStrategyAction from "./hooks/useStrategyAction";
-import PauseScreen from "../../components/PauseScreen";
-import TopPanel from "../../components/TopPanel";
-import LeftPanel from "../../components/LeftPanel";
-import PlayerPanel from "../../components/PlayerPanel";
-import BottomPanel from "../../components/BottomPanel";
+import PausePanel from "../../panels/PausePanel";
+import TopPanel from "../../panels/TopPanel";
+import LeftPanel from "../../panels/LeftPanel";
+import PlayerPanel from "../../panels/PlayerPanel";
+import BottomPanel from "../../panels/BottomPanel";
 import styles from "./index.module.css";
-import PlayerDeck from "../../components/PlayerDeck";
-import StrategyAction from "../../components/StrategyAction";
+import PlayerDeckPanel from "../../panels/PlayerDeckPanel";
+import StrategyActionPanel from "../../panels/StrategyActionPanel";
 
 const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
@@ -29,17 +29,17 @@ const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
         className={styles.fullScreenContainer}
         style={strategyAction.playedBy?.theme}
       >
-        <StrategyAction {...props} />
+        <StrategyActionPanel {...props} />
       </div>
     );
   else
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!time.isRunning && <PauseScreen />}
+        {!time.isRunning && <PausePanel />}
         <TopPanel />
         <LeftPanel />
-        <PlayerPanel time={time} />
-        <PlayerDeck
+        <PlayerPanel {...props} />
+        <PlayerDeckPanel
           player={currentPlayer}
           makeStrategyAction={makeStrategyAction}
         />

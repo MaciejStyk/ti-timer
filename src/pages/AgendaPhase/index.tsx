@@ -2,17 +2,17 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
-import TopPanel from "../../components/TopPanel";
-import CustodianPanel from "../../components/CustodianPanel";
-import AgendaPanel from "../../components/AgendaPanel";
-import LeftPanel from "../../components/LeftPanel";
-import PlayerPanel from "../../components/PlayerPanel";
-import BottomPanel from "../../components/BottomPanel";
-import PauseScreen from "../../components/PauseScreen";
+import TopPanel from "../../panels/TopPanel";
+import CustodianPanel from "../../panels/CustodianPanel";
+import AgendaPanel from "../../panels/AgendaPanel";
+import LeftPanel from "../../panels/LeftPanel";
+import PlayerPanel from "../../panels/PlayerPanel";
+import BottomPanel from "../../panels/BottomPanel";
+import PausePanel from "../../panels/PausePanel";
 import styles from "./index.module.css";
 
 const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const { time, handle } = props;
+  const { time } = props;
   const { players, playerIndex, agendaPhase } = useSelector(
     (state: RootState) => state
   );
@@ -24,26 +24,26 @@ const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
     return (
       <div className={styles.background}>
         <TopPanel />
-        <CustodianPanel endPhase={handle.endPhase} />
+        <CustodianPanel {...props} />
       </div>
     );
   } else if (!agendaPhase.isBeingVoted) {
     return (
       <div className={styles.background}>
         <TopPanel />
-        <AgendaPanel endPhase={handle.endPhase} />
+        <AgendaPanel {...props} />
       </div>
     );
   } else {
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
-        {!time.isRunning && <PauseScreen />}
+        {!time.isRunning && <PausePanel />}
 
         <TopPanel />
 
         <LeftPanel />
 
-        <PlayerPanel time={time} />
+        <PlayerPanel {...props} />
 
         <BottomPanel {...props} />
       </div>

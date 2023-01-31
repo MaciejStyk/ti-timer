@@ -1,12 +1,6 @@
 import { FunctionComponent } from "react";
 
-interface IProps {
-  time: number;
-}
-
-const RenderTime: FunctionComponent<IProps> = (props) => {
-  const { time } = props;
-
+const RenderTime: FunctionComponent<{ time: number }> = ({ time }) => {
   const renderedTime = Math.abs(time);
 
   const hours = Math.floor(renderedTime / 3600);
