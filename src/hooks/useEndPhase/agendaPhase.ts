@@ -20,7 +20,7 @@ const useEndAgendaPhase = () => {
 
   const endAgendaPhase = () => {
     if (
-      !agendaPhase.unlocked ||
+      agendaPhase.locked ||
       (!agendaPhase.beforeVoting && agendaPhase.round === 2)
     ) {
       dispatch(incrementGameRound());

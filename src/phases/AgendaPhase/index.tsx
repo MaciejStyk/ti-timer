@@ -9,12 +9,12 @@ import AgendaVoted from "./AgendaVoted";
 const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
   const { agendaPhase } = useSelector((state: RootState) => state);
 
-  if (!agendaPhase.unlocked) {
+  if (agendaPhase.locked) {
     return <AgendaLocked {...props} />;
-  } else if (!agendaPhase.isBeingVoted) {
-    return <AgendaNotVoted {...props} />;
-  } else {
+  } else if (agendaPhase.isBeingVoted) {
     return <AgendaVoted {...props} />;
+  } else {
+    return <AgendaNotVoted {...props} />;
   }
 };
 

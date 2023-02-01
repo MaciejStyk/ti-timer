@@ -1,17 +1,12 @@
 import { FunctionComponent } from "react";
-import { useSelector } from "react-redux";
-import store, { RootState } from "../../../redux";
+import useSpeaker from "../hooks/useAgenda/speaker";
 import themes from "../../../global/themes";
 import cn from "classnames";
 import styles from "./index.module.css";
 
 const SpeakerBar: FunctionComponent = () => {
-  const { players } = useSelector((state: RootState) => state);
-
-  const speaker =
-    players.find((player) => player.speaker) ||
-    store.getState().players.find((player) => player.speaker) ||
-    players[0];
+  const findSpeaker = useSpeaker();
+  const { speaker } = findSpeaker();
 
   const speakerBarClasses = cn({
     [styles.bar]: true,
