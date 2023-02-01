@@ -27,17 +27,18 @@ import {
 } from "../../redux/agendaPhase";
 
 interface IChoosePlayerPanel {
-  trigger: string;
   endPhase?: () => void;
 }
 
 const ChoosePlayerPanel: FunctionComponent<IChoosePlayerPanel> = (props) => {
-  const { trigger, endPhase } = props;
-  const { players, playerIndex, tableOrder } = useSelector(
+  const { endPhase } = props;
+  const { players, playerIndex, tableOrder, choosePlayerAction } = useSelector(
     (state: RootState) => state
   );
   const currentPlayer = players[playerIndex];
   const dispatch = useDispatch();
+
+  const trigger = choosePlayerAction.trigger;
 
   const getTitle = () => {
     switch (trigger) {
@@ -67,6 +68,7 @@ const ChoosePlayerPanel: FunctionComponent<IChoosePlayerPanel> = (props) => {
           setChoosePlayerAction({
             playable: true,
             isBeingPlayed: false,
+            trigger: "",
           })
         );
         break;
@@ -111,6 +113,7 @@ const ChoosePlayerPanel: FunctionComponent<IChoosePlayerPanel> = (props) => {
           dispatch(setNaaluTokenHolder(chosenPlayer.id));
           dispatch(setNaaluTokenBeingChanged(false));
           dispatch(setNaaluTokenChangeable(false));
+          dispatch(resetChoosePlayerAction());
           endPhase!();
           break;
 

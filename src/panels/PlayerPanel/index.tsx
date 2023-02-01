@@ -26,6 +26,7 @@ const PlayerPanel: FunctionComponent<IPhaseProps> = ({ time }) => {
   return (
     <div className={playerPanelClasses}>
       <div className={playerNameClasses}>{currentPlayer.name}</div>
+      
       <div className={styles.timeBankLeft}>
         <span>
           {agendaPhase.isBeingVoted ? "Voting" : "Turn"}{" "}
@@ -39,6 +40,7 @@ const PlayerPanel: FunctionComponent<IPhaseProps> = ({ time }) => {
           />
         </div>
       </div>
+
       <div className={styles.timeBankRight}>
         <span>Time bank</span>
         <div className={styles.timer}>

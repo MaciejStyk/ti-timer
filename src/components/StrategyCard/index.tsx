@@ -10,6 +10,7 @@ import SpeakerButton from "../SpeakerButton";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.css";
 import cn from "classnames";
+import triggers from "../../global/triggers";
 
 interface Props {
   strategyCard: IStrategyCard;
@@ -61,6 +62,7 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
       setChoosePlayerAction({
         playable: true,
         isBeingPlayed: true,
+        trigger: triggers.politicsStrategyCard,
       })
     );
   };

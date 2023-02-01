@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import views from "../../global/views";
 import { RootState } from "../../redux";
+import { setChoosePlayerAction } from "../../redux/choosePlayerAction";
 import { setPlayerIndex } from "../../redux/playerIndex";
 import { setNaaluTokenBeingChanged } from "../../redux/races";
 import { setSwapCardsBeingPlayed } from "../../redux/strategyPhase";
 import useNextPlayerIndex from "./nextPlayerIndex";
+import triggers from "../../global/triggers";
+import views from "../../global/views";
 
 const useNextPlayer = () => {
   const { view, players, races, playerIndex, strategyPhase } = useSelector(
@@ -28,6 +30,13 @@ const useNextPlayer = () => {
       strategyPhase.round === strategyPhase.numberOfRounds
     ) {
       dispatch(setNaaluTokenBeingChanged(true));
+      dispatch(
+        setChoosePlayerAction({
+          playable: true,
+          isBeingPlayed: true,
+          trigger: triggers.naaluTokenChange,
+        })
+      );
     } else {
       dispatch(setPlayerIndex(findNextPlayerIndex()));
     }

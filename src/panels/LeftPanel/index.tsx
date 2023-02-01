@@ -13,8 +13,6 @@ const LeftPanel: FunctionComponent = () => {
 
   const [hover, setHover] = useState(false);
 
-  // ======== CLASSES ==========================================================
-
   const leftPanelClasses = cn({
     [styles.playersList]: true,
     [styles.playersListNarrow]:
@@ -25,8 +23,6 @@ const LeftPanel: FunctionComponent = () => {
     [styles.playerBarContent]: true,
     [styles.lowercase]: hover,
   });
-
-  // ======== RENDER COMPONENT =================================================
 
   return (
     <div

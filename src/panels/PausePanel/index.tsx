@@ -7,7 +7,7 @@ const PausePanel = () => {
   const currentPlayer = players[playerIndex];
 
   return (
-    <div className={styles.pauseScreen} style={currentPlayer.theme}>
+    <div className={styles.pausePanel} style={currentPlayer.theme}>
     Paused
   </div>
   )

@@ -17,6 +17,8 @@ import { IPhaseProps } from "../../../types";
 import PlayerCardsPanel from "../../../panels/PlayerCardsPanel";
 import cn from "classnames";
 import styles from "./index.module.css";
+import { setChoosePlayerAction } from "../../../redux/choosePlayerAction";
+import triggers from "../../../global/triggers";
 
 const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
   const { players, races, strategyPhase } = useSelector(
@@ -137,6 +139,13 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
     dispatch(setSwapCardsPlayable(false));
     if (races.naalu.inGame) {
       dispatch(setNaaluTokenBeingChanged(true));
+      dispatch(
+        setChoosePlayerAction({
+          playable: true,
+          isBeingPlayed: true,
+          trigger: triggers.naaluTokenChange,
+        })
+      );
     } else {
       handle.endPhase();
     }
@@ -149,6 +158,13 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
       dispatch(setSwapCardsPlayable(false));
       if (races.naalu.inGame) {
         dispatch(setNaaluTokenBeingChanged(true));
+        dispatch(
+          setChoosePlayerAction({
+            playable: true,
+            isBeingPlayed: true,
+            trigger: triggers.naaluTokenChange,
+          })
+        );
       } else {
         handle.endPhase();
       }

@@ -25,8 +25,6 @@ const TopPanel = () => {
 
   const [hover, setHover] = useState<boolean>(false);
 
-  // ======== RESET GAME =======================================================
-
   const resetGame = () => {
     dispatch(setPlayers([]));
     dispatch(resetColors());
@@ -42,8 +40,6 @@ const TopPanel = () => {
     dispatch(resetChoosePlayerAction());
     dispatch(changeView(views.setupPhase));
   };
-
-  // ======== RENDER COMPONENT =================================================
 
   return (
     <div className={styles.topPanel}>

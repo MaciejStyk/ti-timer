@@ -9,7 +9,6 @@ import PlayerPanel from "../../../panels/PlayerPanel";
 import ChoosePlayerPanel from "../../../panels/ChoosePlayerPanel";
 import StrategyCard from "../../../components/StrategyCard";
 import TopPanel from "../../../panels/TopPanel";
-import triggers from "../../../global/triggers";
 import styles from "./index.module.css";
 
 const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {
@@ -29,7 +28,7 @@ const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {
       />
 
       {choosePlayerAction.isBeingPlayed ? (
-        <ChoosePlayerPanel trigger={triggers.politicsStrategyCard} />
+        <ChoosePlayerPanel />
       ) : (
         <PlayerPanel {...props} />
       )}

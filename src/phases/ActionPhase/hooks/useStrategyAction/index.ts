@@ -28,6 +28,7 @@ const useStrategyAction = (currentPlayer: IPlayer) => {
           setChoosePlayerAction({
             playable: true,
             isBeingPlayed: false,
+            trigger: "",
           })
         );
       }
