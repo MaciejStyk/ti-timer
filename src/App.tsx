@@ -2,7 +2,7 @@ import { IPhaseProps } from "./types";
 import useTime from "./hooks/useTime";
 import useKeyBindings from "./hooks/useKeyBindings";
 import useHandlers from "./hooks/useHandlers";
-import RenderApp from "./pages";
+import RenderApp from "./phases";
 
 const App = () => {
   const time = useTime();
