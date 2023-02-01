@@ -1,15 +1,10 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { IHandle, ITime } from "../../types";
+import { IPhaseProps } from "../../types";
 import views from "../../global/views";
 
-interface IProps {
-  time: ITime;
-  handle: IHandle;
-}
-
-const useKeyBindings = (props: IProps) => {
+const useKeyBindings = (props: IPhaseProps) => {
   const { time, handle } = props;
   const { view, races, strategyPhase, agendaPhase } = useSelector(
     (state: RootState) => state

@@ -4,16 +4,15 @@ import useColorPicker from "../hooks/useColorPicker";
 import cn from "classnames";
 import styles from "./index.module.css";
 
-interface IColorPicker {
+interface IProps {
   color: string;
   colorsArray: string[];
   changeColor: (color: string) => void;
   bigger: boolean;
 }
 
-const ColorPicker: FunctionComponent<IColorPicker> = (props) => {
+const ColorPicker: FunctionComponent<IProps> = (props) => {
   const { color, colorsArray, changeColor, bigger } = props;
-
   const {
     displayColorPicker,
     switchColorPicker,

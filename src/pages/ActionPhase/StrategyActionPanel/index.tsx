@@ -21,19 +21,17 @@ const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {
   return (
     <div className={styles.strategyActionContainer} style={currentPlayer.theme}>
       {!time.isRunning && <PausePanel />}
-
       <TopPanel />
       <LeftPanel />
-
       <StrategyCard
         strategyCard={strategyAction.strategyCard!}
         draggable={false}
       />
 
-      <PlayerPanel {...props} />
-
-      {choosePlayerAction.isBeingPlayed && (
+      {choosePlayerAction.isBeingPlayed ? (
         <ChoosePlayerPanel trigger={triggers.politicsStrategyCard} />
+      ) : (
+        <PlayerPanel {...props} />
       )}
 
       <BottomPanel {...props} />

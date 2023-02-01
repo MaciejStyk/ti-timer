@@ -3,9 +3,9 @@ import { DraggableArea } from "react-draggable-tags";
 import { PlusOutlined } from "@ant-design/icons";
 import { RootState } from "../../../redux";
 import { setPlayers, setSpeaker } from "../../../redux/players";
+import useDeletePlayer from "../hooks/useDeletePlayer";
 import speaker from "../../../assets/other/speaker.webp";
 import styles from "./index.module.css";
-import useDeletePlayer from "../hooks/useDeletePlayer";
 
 const PlayersList = () => {
   const { players } = useSelector((state: RootState) => state);

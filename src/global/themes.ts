@@ -1,27 +1,47 @@
 const themes = [
   {
+    // red
     color: "white",
     backgroundColor: "#dd3b34",
     textShadow: "1px 1px 1px black",
-  }, // red
+  },
   {
+    // blue
     color: "white",
     backgroundColor: "#486bfa",
     textShadow: "1px 1px 1px black",
-  }, // blue
-  { color: "black", backgroundColor: "#fdff53" }, // yellow
-  { color: "black", backgroundColor: "#6fc950" }, // green
+  },
   {
+    // yellow
+    color: "black",
+    backgroundColor: "#fdff53",
+  },
+  {
+    // green
+    color: "black",
+    backgroundColor: "#6fc950",
+  },
+  {
+    // purple
     color: "white",
     backgroundColor: "#7d21f9",
     textShadow: "1px 1px 1px black",
-  }, // purple
-  { color: "black", backgroundColor: "#e58e41" }, // orange
+  },
   {
+    // orange
+    color: "black",
+    backgroundColor: "#e58e41",
+  },
+  {
+    // black
     color: "white",
     backgroundColor: "#000000",
-  }, // black
-  { color: "black", backgroundColor: "#ff56fb" }, // magenta
+  },
+  {
+    // magenta
+    color: "black",
+    backgroundColor: "#ff56fb",
+  },
 ];
 
 export default themes;

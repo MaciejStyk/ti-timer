@@ -12,7 +12,7 @@ const SettingsForm = () => {
   const colorsArray = players.map((player) => player.theme.backgroundColor);
   const color =
     store.getState().races.argent.playedBy?.theme.backgroundColor || "ffffff";
-
+    
   const changeColor = useChangeColor();
   const handleInputChange = useInputChange();
 
@@ -37,7 +37,7 @@ const SettingsForm = () => {
       sec
       <span>Time added per round:</span>
       <input
-        type="number"
+        type={inputType.number}
         name={inputName.timeAddedPerRoundMin}
         value={timer.timeAddedPerRound.min}
         onChange={handleInputChange}

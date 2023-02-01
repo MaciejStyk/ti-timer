@@ -7,7 +7,6 @@ import usePlayerForm from "../hooks/usePlayerForm";
 
 const PlayerForm = () => {
   const { players, colors } = useSelector((state: RootState) => state);
-
   const {
     color,
     inputValue,

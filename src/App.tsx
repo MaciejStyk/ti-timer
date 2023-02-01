@@ -8,7 +8,7 @@ const App = () => {
   const time = useTime();
   const handle = useHandlers(time);
   const phaseProps: IPhaseProps = { time, handle };
-  useKeyBindings({ time, handle });
+  useKeyBindings(phaseProps);
 
   return <RenderApp {...phaseProps} />;
 };

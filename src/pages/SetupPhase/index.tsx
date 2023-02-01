@@ -6,8 +6,7 @@ import SettingsForm from "./SettingsForm";
 import useCheck from "./hooks/useCheck";
 import styles from "./index.module.css";
 
-const SetupPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const { handle } = props;
+const SetupPhase: FunctionComponent<IPhaseProps> = ({ handle }) => {
   const check = useCheck();
 
   return (

@@ -18,8 +18,6 @@ const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
   );
   const currentPlayer = players[playerIndex];
 
-  // ======== RENDER PAGE ======================================================
-
   if (!agendaPhase.unlocked) {
     return (
       <div className={styles.background}>
@@ -38,13 +36,9 @@ const AgendaPhase: FunctionComponent<IPhaseProps> = (props) => {
     return (
       <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
         {!time.isRunning && <PausePanel />}
-
         <TopPanel />
-
         <LeftPanel />
-
         <PlayerPanel {...props} />
-
         <BottomPanel {...props} />
       </div>
     );

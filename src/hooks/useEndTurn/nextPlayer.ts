@@ -11,7 +11,6 @@ const useNextPlayer = () => {
     (state: RootState) => state
   );
   const dispatch = useDispatch();
-
   const findNextPlayerIndex = useNextPlayerIndex();
 
   const switchToNextPlayer = () => {

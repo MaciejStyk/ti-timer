@@ -19,7 +19,6 @@ const ActionPhase: FunctionComponent<IPhaseProps> = (props) => {
     (state: RootState) => state
   );
   const currentPlayer = players[playerIndex];
-
   const makeStrategyAction = useStrategyAction(currentPlayer);
   useKeyBindings({ time, currentPlayer, makeStrategyAction });
 
