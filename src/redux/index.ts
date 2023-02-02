@@ -1,33 +1,33 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import playersReducer from "./players";
-import strategyPhaseReducer from "./strategyPhase";
-import timerReducer from "./timer";
 import viewReducer from "./view";
+import gameRoundReducer from "./gameRound";
+import playersReducer from "./players";
+import playerIndexReducer from "./playerIndex";
 import tableOrderReducer from "./tableOrder";
 import roundOrderReducer from "./roundOrder";
-import playerIndexReducer from "./playerIndex";
-import gameRoundReducer from "./gameRound";
 import racesReducer from "./races";
-import strategyActionReducer from "./strategyAction";
-import agendaPhaseReducer from "./agendaPhase";
-import choosePlayerAction from "./choosePlayerAction";
+import timerReducer from "./timer";
 import colorsReducer from "./colors";
+import choosePlayerAction from "./choosePlayerAction";
+import strategyActionReducer from "./strategyAction";
+import strategyPhaseReducer from "./strategyPhase";
+import agendaPhaseReducer from "./agendaPhase";
 
 const rootReducer = combineReducers({
   view: viewReducer,
   gameRound: gameRoundReducer,
-  timer: timerReducer,
   players: playersReducer,
   playerIndex: playerIndexReducer,
   tableOrder: tableOrderReducer,
   roundOrder: roundOrderReducer,
   races: racesReducer,
+  timer: timerReducer,
+  colors: colorsReducer,
+  choosePlayerAction: choosePlayerAction,
   strategyAction: strategyActionReducer,
   strategyPhase: strategyPhaseReducer,
   agendaPhase: agendaPhaseReducer,
-  choosePlayerAction: choosePlayerAction,
-  colors: colorsReducer,
 });
 
 const persistedState = localStorage.getItem("reduxState")
@@ -44,6 +44,5 @@ store.subscribe(() => {
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
 
 export default store;

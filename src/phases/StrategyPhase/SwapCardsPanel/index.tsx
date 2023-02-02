@@ -144,6 +144,7 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
           playable: true,
           isBeingPlayed: true,
           trigger: triggers.naaluTokenChange,
+          chosenPlayer: null,
         })
       );
     } else {
@@ -163,6 +164,7 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
             playable: true,
             isBeingPlayed: true,
             trigger: triggers.naaluTokenChange,
+            chosenPlayer: null,
           })
         );
       } else {

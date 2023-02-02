@@ -1,8 +1,8 @@
 enum triggers {
-  politicsStrategyCard = "Choose new speaker during strategy action",
-  politicsRiderActionCard = "Choose player to be speaker after Politics Rider AC",
-  publicExecutionDirective = "Choose player to be publicly executed",
-  naaluTokenChange = "Choose player who has naalu token",
+  politics = "Choose a new speaker during politics strategy action",
+  politicsRider = "Choose a new speaker after Politics Rider AC",
+  publicExecution = "Choose a player to be publicly executed",
+  naaluTokenChange = "Choose a player whith the naalu token",
 }
 
 export default triggers;

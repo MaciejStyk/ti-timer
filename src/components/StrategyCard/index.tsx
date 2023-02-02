@@ -62,7 +62,8 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
       setChoosePlayerAction({
         playable: true,
         isBeingPlayed: true,
-        trigger: triggers.politicsStrategyCard,
+        trigger: triggers.politics,
+        chosenPlayer: null,
       })
     );
   };

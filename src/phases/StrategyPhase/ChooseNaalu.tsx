@@ -4,12 +4,12 @@ import TopPanel from "../../panels/TopPanel";
 import ChoosePlayerPanel from "../../panels/ChoosePlayerPanel";
 import styles from "./index.module.css";
 
-const ChooseNaalu: FunctionComponent<IPhaseProps> = ({ handle }) => {
+const ChooseNaalu: FunctionComponent<IPhaseProps> = (props) => {
   return (
     <div className={styles.background}>
       <TopPanel />
       <div className={styles.panelContainer}>
-        <ChoosePlayerPanel endPhase={handle.endPhase} />
+        <ChoosePlayerPanel {...props} />
       </div>
     </div>
   );

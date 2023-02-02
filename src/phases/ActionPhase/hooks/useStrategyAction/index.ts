@@ -29,6 +29,7 @@ const useStrategyAction = (currentPlayer: IPlayer) => {
             playable: true,
             isBeingPlayed: false,
             trigger: "",
+            chosenPlayer: null,
           })
         );
       }

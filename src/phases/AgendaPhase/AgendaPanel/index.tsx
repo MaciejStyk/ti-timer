@@ -17,7 +17,7 @@ const AgendaPanel: FunctionComponent<IPhaseProps> = (props) => {
   if (choosePlayerAction.isBeingPlayed) {
     return (
       <div className={styles.container}>
-        <ChoosePlayerPanel />
+        <ChoosePlayerPanel {...props} />
       </div>
     );
   } else {

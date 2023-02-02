@@ -18,7 +18,8 @@ const useButtons = () => {
       setChoosePlayerAction({
         playable: true,
         isBeingPlayed: true,
-        trigger: triggers.politicsRiderActionCard,
+        trigger: triggers.politicsRider,
+        chosenPlayer: null,
       })
     );
   };
@@ -28,7 +29,8 @@ const useButtons = () => {
       setChoosePlayerAction({
         playable: true,
         isBeingPlayed: true,
-        trigger: triggers.publicExecutionDirective,
+        trigger: triggers.publicExecution,
+        chosenPlayer: null,
       })
     );
   };

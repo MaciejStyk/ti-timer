@@ -28,7 +28,7 @@ const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {
       />
 
       {choosePlayerAction.isBeingPlayed ? (
-        <ChoosePlayerPanel />
+        <ChoosePlayerPanel {...props} />
       ) : (
         <PlayerPanel {...props} />
       )}

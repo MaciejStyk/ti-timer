@@ -35,6 +35,7 @@ const useNextPlayer = () => {
           playable: true,
           isBeingPlayed: true,
           trigger: triggers.naaluTokenChange,
+          chosenPlayer: null,
         })
       );
     } else {
