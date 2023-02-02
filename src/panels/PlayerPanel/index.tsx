@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
 import views from "../../global/views";
-import RenderTime from "../../components/RenderTime";
+import PlayerName from "./PlayerName";
+import TimeBankLeft from "./TimeBankLeft";
+import TimeBankRight from "./TimeBankRight";
 import cn from "classnames";
 import styles from "./index.module.css";
 
 const PlayerPanel: FunctionComponent<IPhaseProps> = ({ time }) => {
-  const { players, view, playerIndex, strategyAction, agendaPhase } =
-    useSelector((state: RootState) => state);
-  const currentPlayer = players[playerIndex];
+  const { view, strategyAction } = useSelector((state: RootState) => state);
 
   const playerPanelClasses = cn({
     [styles.playerPanel]: true,
@@ -18,35 +18,11 @@ const PlayerPanel: FunctionComponent<IPhaseProps> = ({ time }) => {
     [styles.playerPanelStrategyAction]: strategyAction.isBeingPlayed,
   });
 
-  const playerNameClasses = cn({
-    [styles.playerName]: true,
-    [styles.playerNameStrategyAction]: strategyAction.isBeingPlayed,
-  });
-
   return (
     <div className={playerPanelClasses}>
-      <div className={playerNameClasses}>{currentPlayer.name}</div>
-      
-      <div className={styles.timeBankLeft}>
-        <span>
-          {agendaPhase.isBeingVoted ? "Voting" : "Turn"}{" "}
-          {time.delayed.value === 0 ? "time" : "starts in"}
-        </span>
-        <div className={styles.timer}>
-          <RenderTime
-            time={
-              time.delayed.value === 0 ? time.elapsed.value : time.delayed.value
-            }
-          />
-        </div>
-      </div>
-
-      <div className={styles.timeBankRight}>
-        <span>Time bank</span>
-        <div className={styles.timer}>
-          <RenderTime time={time.bank.value} />
-        </div>
-      </div>
+      <PlayerName />
+      <TimeBankLeft time={time} />
+      <TimeBankRight time={time} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import styles from "./index.module.css"
+import styles from "./index.module.css";
 
 const PausePanel = () => {
   const { players, playerIndex } = useSelector((state: RootState) => state);
@@ -8,9 +8,9 @@ const PausePanel = () => {
 
   return (
     <div className={styles.pausePanel} style={currentPlayer.theme}>
-    Paused
-  </div>
-  )
-}
+      Paused
+    </div>
+  );
+};
 
 export default PausePanel;
