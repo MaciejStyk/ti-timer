@@ -6,17 +6,16 @@ import {
   switchVotingStage,
 } from "../../../../redux/agendaPhase";
 import { reorderPlayers } from "../../../../redux/players";
-import useSpeaker from "./speaker";
+import useSpeaker from "../useSpeaker";
 
 const useStartSecondAgenda = () => {
   const { players, tableOrder, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
-  const findSpeaker = useSpeaker();
+  const { speakerIndex } = useSpeaker();
 
   const startSecondAgenda = () => {
-    const { speakerIndex } = findSpeaker();
     if (agendaPhase.appliedEffects.hackElection) {
       dispatch(
         reorderPlayers({

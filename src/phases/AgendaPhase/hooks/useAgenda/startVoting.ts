@@ -6,17 +6,16 @@ import {
   reorderPlayers,
   reorderPlayersWithArgentAsFirst,
 } from "../../../../redux/players";
-import useSpeaker from "./speaker";
+import useSpeaker from "../useSpeaker";
 
 const useStartVoting = () => {
   const { players, races, tableOrder, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
-  const findSpeaker = useSpeaker();
+  const { speakerIndex } = useSpeaker();
 
   const startVoting = () => {
-    const { speakerIndex } = findSpeaker();
     if (agendaPhase.appliedEffects.hackElection) {
       dispatch(
         reorderPlayers({

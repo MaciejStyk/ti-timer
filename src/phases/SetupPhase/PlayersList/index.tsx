@@ -1,16 +1,16 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { DraggableArea } from "react-draggable-tags";
 import { PlusOutlined } from "@ant-design/icons";
 import { RootState } from "../../../redux";
-import { setPlayers, setSpeaker } from "../../../redux/players";
 import useDeletePlayer from "../hooks/useDeletePlayer";
 import speaker from "../../../assets/other/speaker.webp";
+import useChangePlayers from "../hooks/useChangePlayers";
 import styles from "./index.module.css";
 
 const PlayersList = () => {
   const { players } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
   const deletePlayer = useDeletePlayer();
+  const changePlayers = useChangePlayers();
 
   return (
     <div className={styles.draggableArea}>
@@ -36,10 +36,7 @@ const PlayersList = () => {
             </button>
           </div>
         )}
-        onChange={(players) => {
-          dispatch(setPlayers(players));
-          dispatch(setSpeaker(players[0].id));
-        }}
+        onChange={changePlayers}
       />
     </div>
   );
