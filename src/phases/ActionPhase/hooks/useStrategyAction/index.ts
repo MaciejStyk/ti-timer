@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IStrategyCard } from "../../../../global/strategyCards";
 import { RootState } from "../../../../redux";
-import { setChoosePlayerAction } from "../../../../redux/choosePlayerAction";
-import { setPlayerIndex } from "../../../../redux/playerIndex";
+import { setChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
+import { setPlayerIndex } from "../../../../redux/reducers/current/playerIndex";
 import {
   exhaustStrategyCardAtPlayerDeck,
   IPlayer,
   reorderPlayers,
-} from "../../../../redux/players";
-import { playStrategyAction } from "../../../../redux/strategyAction";
+} from "../../../../redux/reducers/players";
+import { playStrategyAction } from "../../../../redux/reducers/strategyAction";
 
 const useStrategyAction = (currentPlayer: IPlayer) => {
   const { tableOrder } = useSelector((state: RootState) => state);

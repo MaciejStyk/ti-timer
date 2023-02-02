@@ -5,9 +5,11 @@ import { ITime } from "../../types";
 import views from "../../global/views";
 
 const useEndTurnDisabled = (time: ITime) => {
-  const { current, players, playerIndex, strategyPhase, choosePlayerAction } =
-    useSelector((state: RootState) => state);
-  const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
+  const { current, players, strategyPhase, choosePlayerAction } = useSelector(
+    (state: RootState) => state
+  );
+  const currentPlayer =
+    players.length !== 0 ? players[current.playerIndex] : null;
 
   const [endTurnDisabled, setEndTurnDisabled] = useState(true);
 

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { IPlayer } from "../../redux/players";
+import { IPlayer } from "../../redux/reducers/players";
 import PlayerBarContent from "./PlayerBarContent";
 import cn from "classnames";
 import styles from "./index.module.css";
@@ -13,10 +13,10 @@ interface IProps {
 
 const PlayerBar: FunctionComponent<IProps> = (props) => {
   const { player } = props;
-  const { players, playerIndex, strategyAction } = useSelector(
+  const { current, players, strategyAction } = useSelector(
     (state: RootState) => state
   );
-  const currentPlayer = players[playerIndex];
+  const currentPlayer = players[current.playerIndex];
 
   return (
     <div

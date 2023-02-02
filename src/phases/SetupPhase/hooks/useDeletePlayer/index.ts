@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { addColor } from "../../../../redux/colors";
-import { IPlayer, removePlayer } from "../../../../redux/players";
-import { setArgentPlayer } from "../../../../redux/races";
+import { addColor } from "../../../../redux/reducers/colors";
+import { IPlayer, removePlayer } from "../../../../redux/reducers/players";
+import { setArgentPlayer } from "../../../../redux/reducers/races";
 
 const useDeletePlayer = () => {
   const { races } = useSelector((state: RootState) => state);

@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { IStrategyCard } from "../global/strategyCards";
+import { IStrategyCard } from "../../global/strategyCards";
 import { IPlayer } from "./players";
 
 export interface IStrategyAction {

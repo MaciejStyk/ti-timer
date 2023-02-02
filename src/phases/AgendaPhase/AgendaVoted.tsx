@@ -11,8 +11,8 @@ import styles from "./index.module.css";
 
 const AgendaVoted: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
-  const { players, playerIndex } = useSelector((state: RootState) => state);
-  const currentPlayer = players[playerIndex];
+  const { current, players } = useSelector((state: RootState) => state);
+  const currentPlayer = players[current.playerIndex];
 
   return (
     <div className={styles.fullScreenContainer} style={currentPlayer.theme}>

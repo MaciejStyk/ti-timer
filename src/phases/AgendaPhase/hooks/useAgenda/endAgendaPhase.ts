@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import {
   resetAgendaRound,
   resetAppliedEffects,
-} from "../../../../redux/agendaPhase";
+} from "../../../../redux/reducers/agendaPhase";
 import { IPhaseProps } from "../../../../types";
 
 const useEndAgendaPhase = (props: IPhaseProps) => {

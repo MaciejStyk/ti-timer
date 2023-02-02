@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { IPlayer } from "../../redux/players";
+import { IPlayer } from "../../redux/reducers/players";
 import RenderTime from "../../components/RenderTime";
 import cn from "classnames";
 import styles from "./index.module.css";

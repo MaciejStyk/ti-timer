@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IStrategyCard } from "../../../../global/strategyCards";
 import { RootState } from "../../../../redux";
-import { IPlayer } from "../../../../redux/players";
+import { IPlayer } from "../../../../redux/reducers/players";
 import { ITime } from "../../../../types";
 
 interface IProps {

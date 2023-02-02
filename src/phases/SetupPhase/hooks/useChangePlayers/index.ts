@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { IPlayer, setPlayers, setSpeaker } from "../../../../redux/players";
+import { IPlayer, setPlayers, setSpeaker } from "../../../../redux/reducers/players";
 
 const useChangePlayers = () => {
   const dispatch = useDispatch();

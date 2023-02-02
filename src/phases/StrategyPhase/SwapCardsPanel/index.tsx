@@ -5,19 +5,19 @@ import {
   addStrategyCardToPlayerDeck,
   addStrategyCardToPlayerDeckFront,
   removeStrategyCardFromPlayerDeck,
-} from "../../../redux/players";
+} from "../../../redux/reducers/players";
 import {
   setSwapCardsBeingPlayed,
   setSwapCardsPlayable,
   switchSwapCardsStage,
-} from "../../../redux/strategyPhase";
-import { setNaaluTokenBeingChanged } from "../../../redux/races";
+} from "../../../redux/reducers/strategyPhase";
+import { setNaaluTokenBeingChanged } from "../../../redux/reducers/races";
 import { IStrategyCard } from "../../../global/strategyCards";
 import { IPhaseProps } from "../../../types";
 import PlayerCardsPanel from "../../../panels/PlayerCardsPanel";
 import cn from "classnames";
 import styles from "./index.module.css";
-import { setChoosePlayerAction } from "../../../redux/choosePlayerAction";
+import { setChoosePlayerAction } from "../../../redux/reducers/choosePlayerAction";
 import triggers from "../../../global/triggers";
 
 const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {

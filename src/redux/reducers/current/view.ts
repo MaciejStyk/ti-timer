@@ -1,7 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import views from "../global/views";
+import views from "../../../global/views";
 
-const changeView = createAction<string>("[View] Change");
+const changeView = createAction<string>("[Current] [View] Change");
 
 const initialState: string = views.setupPhase;
 

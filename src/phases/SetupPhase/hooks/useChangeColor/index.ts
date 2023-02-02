@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { setArgentPlayer } from "../../../../redux/races";
+import { setArgentPlayer } from "../../../../redux/reducers/races";
 
 const useChangeColor = () => {
   const { players } = useSelector((state: RootState) => state);

@@ -5,10 +5,10 @@ import cn from "classnames";
 import styles from "./index.module.css";
 
 const PlayerName: FunctionComponent = () => {
-  const { players, playerIndex, strategyAction } = useSelector(
+  const { current, players, strategyAction } = useSelector(
     (state: RootState) => state
   );
-  const currentPlayer = players[playerIndex];
+  const currentPlayer = players[current.playerIndex];
 
   const playerNameClasses = cn({
     [styles.playerName]: true,

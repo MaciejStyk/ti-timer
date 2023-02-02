@@ -3,7 +3,7 @@ import { RootState } from "../../../../redux";
 import {
   resetChoosePlayerAction,
   setChoosePlayerAction,
-} from "../../../../redux/choosePlayerAction";
+} from "../../../../redux/reducers/choosePlayerAction";
 import triggers from "../../../../global/triggers";
 
 const useCancel = () => {

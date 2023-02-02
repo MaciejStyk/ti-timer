@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { applyPublicExecution } from "../../../../redux/agendaPhase";
-import { resetChoosePlayerAction } from "../../../../redux/choosePlayerAction";
+import { applyPublicExecution } from "../../../../redux/reducers/agendaPhase";
+import { resetChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
 import {
   passPlayer,
   reorderPlayers,
   setSpeaker,
   unpassPlayers,
-} from "../../../../redux/players";
+} from "../../../../redux/reducers/players";
 
 const usePublicExecution = () => {
   const { players, tableOrder, choosePlayerAction } = useSelector(

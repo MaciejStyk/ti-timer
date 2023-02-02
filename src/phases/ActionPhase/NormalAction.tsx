@@ -14,8 +14,8 @@ import styles from "./index.module.css";
 
 const NormalAction: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
-  const { players, playerIndex } = useSelector((state: RootState) => state);
-  const currentPlayer = players[playerIndex];
+  const { current, players } = useSelector((state: RootState) => state);
+  const currentPlayer = players[current.playerIndex];
 
   const makeStrategyAction = useStrategyAction(currentPlayer);
   useKeyBindings({ time, currentPlayer, makeStrategyAction });

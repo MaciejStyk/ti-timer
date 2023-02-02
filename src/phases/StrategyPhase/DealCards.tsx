@@ -16,10 +16,10 @@ import styles from "./index.module.css";
 
 const DealCards: FunctionComponent<IPhaseProps> = (props) => {
   const { time, handle } = props;
-  const { players, playerIndex, strategyPhase } = useSelector(
+  const { current, players, strategyPhase } = useSelector(
     (state: RootState) => state
   );
-  const currentPlayer = players[playerIndex];
+  const currentPlayer = players[current.playerIndex];
   const currentPlayerCanPick =
     currentPlayer.strategyCards.length <
     Math.min(strategyPhase.round, strategyPhase.numberOfRounds);

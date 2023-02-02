@@ -5,11 +5,11 @@ import {
   addStrategyCardToPlayerDeck,
   IPlayer,
   removeStrategyCardFromPlayerDeck,
-} from "../../../../redux/players";
+} from "../../../../redux/reducers/players";
 import {
   addStrategyCardToAvailableDeck,
   removeStrategyCardFromAvailableDeck,
-} from "../../../../redux/strategyPhase";
+} from "../../../../redux/reducers/strategyPhase";
 
 interface IProps {
   currentPlayer: IPlayer;

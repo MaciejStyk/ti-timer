@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { setChoosePlayerAction } from "../../redux/choosePlayerAction";
+import { setChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
 import { useDrag } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
 import views from "../../global/views";

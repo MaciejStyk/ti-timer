@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "../../../../redux";
-import { applyPoliticsRider } from "../../../../redux/agendaPhase";
-import { resetChoosePlayerAction } from "../../../../redux/choosePlayerAction";
-import { reorderPlayers, setSpeaker } from "../../../../redux/players";
+import { applyPoliticsRider } from "../../../../redux/reducers/agendaPhase";
+import { resetChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
+import { reorderPlayers, setSpeaker } from "../../../../redux/reducers/players";
 
 const usePoliticsRider = () => {
   const { players, tableOrder, choosePlayerAction } = useSelector(

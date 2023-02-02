@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { useDrop } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
-import { IPlayer } from "../../redux/players";
+import { IPlayer } from "../../redux/reducers/players";
 import StrategyCard from "../../components/StrategyCard";
 import CardPlaceholder from "../../components/CardPlaceholder";
 import views from "../../global/views";

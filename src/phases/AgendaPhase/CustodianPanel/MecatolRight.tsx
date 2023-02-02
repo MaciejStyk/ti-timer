@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { unlockAgendaPhase } from "../../../redux/agendaPhase";
+import { unlockAgendaPhase } from "../../../redux/reducers/agendaPhase";
 import mecatolWithoutCustodian from "../../../assets/other/mecatol-rex-no-custodian.png";
 import cn from "classnames";
 import styles from "./index.module.css";

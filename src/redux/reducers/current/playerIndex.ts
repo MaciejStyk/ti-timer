@@ -1,6 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-const setPlayerIndex = createAction<number>("[Player Index] Set");
+const setPlayerIndex = createAction<number>("[Current] [Player Index] Set");
 
 const initialState: number = 0;
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { IPlayer } from "../../../../redux/players";
+import { IPlayer } from "../../../../redux/reducers/players";
 import { IMove, ITime } from "../../../../types";
 
 interface IProps {

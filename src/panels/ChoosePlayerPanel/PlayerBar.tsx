@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { chooseInChoosePlayerAction } from "../../redux/choosePlayerAction";
-import { IPlayer } from "../../redux/players";
+import { chooseInChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
+import { IPlayer } from "../../redux/reducers/players";
 import themes from "../../global/themes";
 import cn from "classnames";
 import styles from "./index.module.css";

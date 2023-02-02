@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
 import store, { RootState } from "../../redux";
-import { removeAllStrategyCards, reorderPlayers } from "../../redux/players";
-import { resetAvailableStrategyCards } from "../../redux/strategyPhase";
-import { changeView } from "../../redux/view";
+import { removeAllStrategyCards, reorderPlayers } from "../../redux/reducers/players";
+import { resetAvailableStrategyCards } from "../../redux/reducers/strategyPhase";
+import { changeView } from "../../redux/reducers/current/view";
 
 const useEndStatusPhase = () => {
   const { players, tableOrder } = useSelector((state: RootState) => state);

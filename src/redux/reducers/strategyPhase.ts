@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import strategyCards, { IStrategyCard } from "../global/strategyCards";
+import strategyCards, { IStrategyCard } from "../../global/strategyCards";
 
 export interface IStrategyPhase {
   availableStrategyCards: IStrategyCard[];

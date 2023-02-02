@@ -12,16 +12,10 @@ interface IProps {
 
 const useTimeAutoReset = (props: IProps) => {
   const { time, setInitialBank, setDelayEnded } = props;
-  const {
-    current,
-    timer,
-    races,
-    players,
-    playerIndex,
-    strategyPhase,
-    agendaPhase,
-  } = useSelector((state: RootState) => state);
-  const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
+  const { current, timer, races, players, strategyPhase, agendaPhase } =
+    useSelector((state: RootState) => state);
+  const currentPlayer =
+    players.length !== 0 ? players[current.playerIndex] : null;
 
   useEffect(() => {
     setInitialBank(

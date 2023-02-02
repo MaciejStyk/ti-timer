@@ -5,10 +5,11 @@ import { RootState } from "../../redux";
 import { ITime } from "../../types";
 
 const usePassDisabled = (time: ITime) => {
-  const { current, players, playerIndex, strategyAction } = useSelector(
+  const { current, players, strategyAction } = useSelector(
     (state: RootState) => state
   );
-  const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
+  const currentPlayer =
+    players.length !== 0 ? players[current.playerIndex] : null;
 
   const [passDisabled, setPassDisabled] = useState(true);
 

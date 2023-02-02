@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { stopVoting, switchVotingStage } from "../../redux/agendaPhase";
+import {
+  stopVoting,
+  switchVotingStage,
+} from "../../redux/reducers/agendaPhase";
 
 const useFinishVoting = () => {
-  const { players, playerIndex, agendaPhase } = useSelector(
+  const { current, players, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -11,8 +14,9 @@ const useFinishVoting = () => {
   const finishVoting = () => {
     if (
       agendaPhase.isBeingVoted &&
-      (playerIndex === players.length - 1 ||
-        (playerIndex === players.length - 2 && players[playerIndex + 1].passed))
+      (current.playerIndex === players.length - 1 ||
+        (current.playerIndex === players.length - 2 &&
+          players[current.playerIndex + 1].passed))
     ) {
       dispatch(stopVoting());
       dispatch(switchVotingStage());

@@ -1,7 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-const resetGameRound = createAction("[Game Round] Reset");
-const incrementGameRound = createAction("[Game Round] Increment");
+const resetGameRound = createAction("[Current] [Game Round] Reset");
+const incrementGameRound = createAction("[Current] [Game Round] Increment");
 
 const initialState: number = 1;
 

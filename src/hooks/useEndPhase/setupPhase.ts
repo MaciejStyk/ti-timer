@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
 import { RootState } from "../../redux";
-import { setPlayersTimeBank } from "../../redux/players";
+import { setPlayersTimeBank } from "../../redux/reducers/players";
 import {
   setStrategyPhaseNumberOfRounds,
   setSwapCardsPlayable,
-} from "../../redux/strategyPhase";
-import { setTableOrder } from "../../redux/tableOrder";
-import { changeView } from "../../redux/view";
+} from "../../redux/reducers/strategyPhase";
+import { setTableOrder } from "../../redux/reducers/tableOrder";
+import { changeView } from "../../redux/reducers/current/view";
 
 const useEndSetupPhase = () => {
   const { players, races, timer } = useSelector((state: RootState) => state);

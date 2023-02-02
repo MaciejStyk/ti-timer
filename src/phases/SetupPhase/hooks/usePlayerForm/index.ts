@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "../../../../redux";
 import { nanoid } from "nanoid";
 import themes from "../../../../global/themes";
-import { addPlayer } from "../../../../redux/players";
-import { removeColor } from "../../../../redux/colors";
+import { addPlayer } from "../../../../redux/reducers/players";
+import { removeColor } from "../../../../redux/reducers/colors";
 
 const usePlayerForm = () => {
   const { players, colors } = useSelector((state: RootState) => state);

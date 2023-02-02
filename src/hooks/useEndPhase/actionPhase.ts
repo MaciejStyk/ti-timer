@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import views from "../../global/views";
 import store from "../../redux";
-import { unpassPlayers } from "../../redux/players";
-import { changeView } from "../../redux/view";
+import { unpassPlayers } from "../../redux/reducers/players";
+import { changeView } from "../../redux/reducers/current/view";
 
 const useEndActionPhase = () => {
   const dispatch = useDispatch();

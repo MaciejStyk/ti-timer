@@ -1,23 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import views from "../../global/views";
 import store, { RootState } from "../../redux";
-import { setPlayerIndex } from "../../redux/playerIndex";
+import { setPlayerIndex } from "../../redux/reducers/current/playerIndex";
 import {
   sortPlayersByInitiative,
   sortPlayersStrategyCards,
-} from "../../redux/players";
-import { setRoundOrder } from "../../redux/roundOrder";
-import { setStrategyPhaseRound } from "../../redux/strategyPhase";
-import { changeView } from "../../redux/view";
+} from "../../redux/reducers/players";
+import { setRoundOrder } from "../../redux/reducers/roundOrder";
+import { setStrategyPhaseRound } from "../../redux/reducers/strategyPhase";
+import { changeView } from "../../redux/reducers/current/view";
 
 const useEndStrategyPhase = () => {
-  const { players, races, playerIndex, strategyPhase } = useSelector(
+  const { current, players, races, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
 
   const endStrategyPhase = () => {
-    if (playerIndex === players.length - 1) {
+    if (current.playerIndex === players.length - 1) {
       if (strategyPhase.round < strategyPhase.numberOfRounds) {
         dispatch(setStrategyPhaseRound(2));
       } else if (

@@ -1,28 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import viewReducer from "./view";
-import gameRoundReducer from "./gameRound";
-import playersReducer from "./players";
-import playerIndexReducer from "./playerIndex";
-import tableOrderReducer from "./tableOrder";
-import roundOrderReducer from "./roundOrder";
-import racesReducer from "./races";
-import timerReducer from "./timer";
-import colorsReducer from "./colors";
-import choosePlayerAction from "./choosePlayerAction";
-import strategyActionReducer from "./strategyAction";
-import strategyPhaseReducer from "./strategyPhase";
-import agendaPhaseReducer from "./agendaPhase";
-
-const currentReducer = combineReducers({
-  view: viewReducer,
-  gameRound: gameRoundReducer,
-});
+import playersReducer from "./reducers/players";
+import tableOrderReducer from "./reducers/tableOrder";
+import roundOrderReducer from "./reducers/roundOrder";
+import racesReducer from "./reducers/races";
+import timerReducer from "./reducers/timer";
+import colorsReducer from "./reducers/colors";
+import choosePlayerAction from "./reducers/choosePlayerAction";
+import strategyActionReducer from "./reducers/strategyAction";
+import strategyPhaseReducer from "./reducers/strategyPhase";
+import agendaPhaseReducer from "./reducers/agendaPhase";
+import currentReducer from "./reducers/current";
 
 const rootReducer = combineReducers({
   current: currentReducer,
   players: playersReducer,
-  playerIndex: playerIndexReducer,
   tableOrder: tableOrderReducer,
   roundOrder: roundOrderReducer,
   races: racesReducer,

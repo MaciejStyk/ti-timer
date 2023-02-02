@@ -1,17 +1,17 @@
 import { useDispatch } from "react-redux";
-import { resetAgendaPhase } from "../../redux/agendaPhase";
-import { resetChoosePlayerAction } from "../../redux/choosePlayerAction";
-import { resetColors } from "../../redux/colors";
-import { resetGameRound } from "../../redux/gameRound";
-import { setPlayerIndex } from "../../redux/playerIndex";
-import { setPlayers } from "../../redux/players";
-import { resetRaces } from "../../redux/races";
-import { setRoundOrder } from "../../redux/roundOrder";
-import { resetStrategyAction } from "../../redux/strategyAction";
-import { resetStrategyPhase } from "../../redux/strategyPhase";
-import { setTableOrder } from "../../redux/tableOrder";
-import { resetTimer } from "../../redux/timer";
-import { changeView } from "../../redux/view";
+import { resetAgendaPhase } from "../../redux/reducers/agendaPhase";
+import { resetChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
+import { resetColors } from "../../redux/reducers/colors";
+import { resetGameRound } from "../../redux/reducers/current/gameRound";
+import { setPlayerIndex } from "../../redux/reducers/current/playerIndex";
+import { setPlayers } from "../../redux/reducers/players";
+import { resetRaces } from "../../redux/reducers/races";
+import { setRoundOrder } from "../../redux/reducers/roundOrder";
+import { resetStrategyAction } from "../../redux/reducers/strategyAction";
+import { resetStrategyPhase } from "../../redux/reducers/strategyPhase";
+import { setTableOrder } from "../../redux/reducers/tableOrder";
+import { resetTimer } from "../../redux/reducers/timer";
+import { changeView } from "../../redux/reducers/current/view";
 import views from "../../global/views";
 
 const useResetGame = () => {

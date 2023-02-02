@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { resetChoosePlayerAction } from "../../../../redux/choosePlayerAction";
-import { setNaaluTokenHolder } from "../../../../redux/players";
+import { resetChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
+import { setNaaluTokenHolder } from "../../../../redux/reducers/players";
 import {
   setNaaluTokenBeingChanged,
   setNaaluTokenChangeable,
-} from "../../../../redux/races";
+} from "../../../../redux/reducers/races";
 import { IPhaseProps } from "../../../../types";
 
 const useNaaluTokenChange = (props: IPhaseProps) => {

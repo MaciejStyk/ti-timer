@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "../../../../redux";
-import { beginVoting } from "../../../../redux/agendaPhase";
-import { setPlayerIndex } from "../../../../redux/playerIndex";
+import { beginVoting } from "../../../../redux/reducers/agendaPhase";
+import { setPlayerIndex } from "../../../../redux/reducers/current/playerIndex";
 import {
   reorderPlayers,
   reorderPlayersWithArgentAsFirst,
-} from "../../../../redux/players";
+} from "../../../../redux/reducers/players";
 import useSpeaker from "../useSpeaker";
 
 const useStartVoting = () => {

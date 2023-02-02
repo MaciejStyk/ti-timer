@@ -13,9 +13,10 @@ import styles from "./index.module.css";
 
 const StrategyActionPanel: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
-  const { players, playerIndex, strategyAction, choosePlayerAction } =
-    useSelector((state: RootState) => state);
-  const currentPlayer = players[playerIndex];
+  const { current, players, strategyAction, choosePlayerAction } = useSelector(
+    (state: RootState) => state
+  );
+  const currentPlayer = players[current.playerIndex];
 
   return (
     <div className={styles.strategyActionContainer} style={currentPlayer.theme}>

@@ -3,8 +3,8 @@ import triggers from "../../../../global/triggers";
 import {
   switchHackElection,
   switchImperialArbiter,
-} from "../../../../redux/agendaPhase";
-import { setChoosePlayerAction } from "../../../../redux/choosePlayerAction";
+} from "../../../../redux/reducers/agendaPhase";
+import { setChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
 
 const useButtons = () => {
   const dispatch = useDispatch();

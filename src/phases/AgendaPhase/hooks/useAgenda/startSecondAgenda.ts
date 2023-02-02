@@ -4,8 +4,8 @@ import {
   beginSecondAgenda,
   resetAppliedEffects,
   switchVotingStage,
-} from "../../../../redux/agendaPhase";
-import { reorderPlayers } from "../../../../redux/players";
+} from "../../../../redux/reducers/agendaPhase";
+import { reorderPlayers } from "../../../../redux/reducers/players";
 import useSpeaker from "../useSpeaker";
 
 const useStartSecondAgenda = () => {
