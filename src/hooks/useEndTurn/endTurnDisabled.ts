@@ -5,14 +5,14 @@ import { ITime } from "../../types";
 import views from "../../global/views";
 
 const useEndTurnDisabled = (time: ITime) => {
-  const { view, players, playerIndex, strategyPhase, choosePlayerAction } =
+  const { current, players, playerIndex, strategyPhase, choosePlayerAction } =
     useSelector((state: RootState) => state);
   const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
 
   const [endTurnDisabled, setEndTurnDisabled] = useState(true);
 
   useEffect(() => {
-    switch (view) {
+    switch (current.view) {
       case views.strategyPhase:
         setEndTurnDisabled(
           !time.isRunning ||
@@ -30,7 +30,7 @@ const useEndTurnDisabled = (time: ITime) => {
     strategyPhase.round,
     choosePlayerAction.playable,
     strategyPhase.numberOfRounds,
-    view,
+    current.view,
     time.isRunning,
   ]);
 

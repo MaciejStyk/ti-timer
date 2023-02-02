@@ -9,10 +9,10 @@ import StatusPhase from "./StatusPhase";
 import AgendaPhase from "./AgendaPhase";
 
 const RenderApp = (phaseProps: IPhaseProps) => {
-  const { view } = useSelector((state: RootState) => state);
+  const { current } = useSelector((state: RootState) => state);
 
   const renderApp = () => {
-    switch (view) {
+    switch (current.view) {
       case views.setupPhase:
         return <SetupPhase {...phaseProps} />;
       case views.strategyPhase:

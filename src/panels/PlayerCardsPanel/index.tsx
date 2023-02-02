@@ -26,7 +26,7 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
     currentPlayerCanPick,
     makeStrategyAction,
   } = props;
-  const { players, view, strategyPhase } = useSelector(
+  const { players, current, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const duringSwapCards = strategyPhase.swapCards.isBeingPlayed;
@@ -45,7 +45,7 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
   const showBottomPlaceholder = isOver && currentPlayerCanPick;
 
   const draggable: (index: number) => boolean = (index) => {
-    if (view === views.strategyPhase) {
+    if (current.view === views.strategyPhase) {
       return (
         strategyPhase.swapCards.isBeingPlayed ||
         index === strategyPhase.round - 1

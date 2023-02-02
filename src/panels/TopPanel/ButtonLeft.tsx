@@ -3,11 +3,11 @@ import { RootState } from "../../redux";
 import styles from "./index.module.css";
 
 const ButtonLeft = () => {
-  const { gameRound } = useSelector((state: RootState) => state);
+  const { current } = useSelector((state: RootState) => state);
 
   return (
     <button className={styles.disabledButton} disabled>
-      Round {gameRound}
+      Round {current.gameRound}
     </button>
   );
 };

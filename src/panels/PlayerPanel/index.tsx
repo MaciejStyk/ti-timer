@@ -10,11 +10,11 @@ import cn from "classnames";
 import styles from "./index.module.css";
 
 const PlayerPanel: FunctionComponent<IPhaseProps> = ({ time }) => {
-  const { view, strategyAction } = useSelector((state: RootState) => state);
+  const { current, strategyAction } = useSelector((state: RootState) => state);
 
   const playerPanelClasses = cn({
     [styles.playerPanel]: true,
-    [styles.playerPanelActionPhase]: view === views.actionPhase,
+    [styles.playerPanelActionPhase]: current.view === views.actionPhase,
     [styles.playerPanelStrategyAction]: strategyAction.isBeingPlayed,
   });
 

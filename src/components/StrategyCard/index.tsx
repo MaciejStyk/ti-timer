@@ -22,7 +22,7 @@ interface Props {
 const StrategyCard: FunctionComponent<Props> = (props) => {
   const { strategyCard, moveBetweenDecks, draggable, makeStrategyAction } =
     props;
-  const { view, strategyPhase, strategyAction, choosePlayerAction } =
+  const { current, strategyPhase, strategyAction, choosePlayerAction } =
     useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
@@ -45,12 +45,12 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
 
   const handleDoubleClick = (strategyCard: IStrategyCard) => {
     if (
-      view === views.strategyPhase &&
+      current.view === views.strategyPhase &&
       !strategyPhase.swapCards.isBeingPlayed
     ) {
       draggable && moveBetweenDecks!(strategyCard);
     }
-    if (view === views.actionPhase) {
+    if (current.view === views.actionPhase) {
       makeStrategyAction!(strategyCard);
     }
   };
@@ -79,11 +79,11 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     [styles.strategyCardImg]: true,
     [styles.grab]: draggable,
     [styles.clickable]:
-      view === views.actionPhase &&
+      current.view === views.actionPhase &&
       !strategyCard.exhausted &&
       !strategyAction.isBeingPlayed,
     [styles.scaledBigger]:
-      view === views.strategyPhase
+      current.view === views.strategyPhase
         ? draggable && !isDragging
         : !strategyCard.exhausted && !strategyAction.isBeingPlayed,
     [styles.draggedOver]: strategyPhase.swapCards.isBeingPlayed && draggedOver,
@@ -99,7 +99,7 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
         <SpeakerButton handleClick={handleClick} />
       )}
 
-      {view === views.actionPhase &&
+      {current.view === views.actionPhase &&
         !strategyAction.isBeingPlayed &&
         hover &&
         !strategyCard.exhausted && <Tooltip number={strategyCard.id} />}

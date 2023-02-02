@@ -9,7 +9,7 @@ import triggers from "../../global/triggers";
 import views from "../../global/views";
 
 const useNextPlayer = () => {
-  const { view, players, races, playerIndex, strategyPhase } = useSelector(
+  const { current, players, races, playerIndex, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -17,14 +17,14 @@ const useNextPlayer = () => {
 
   const switchToNextPlayer = () => {
     if (
-      view === views.strategyPhase &&
+      current.view === views.strategyPhase &&
       strategyPhase.swapCards.playable &&
       playerIndex === players.length - 1 &&
       strategyPhase.round === strategyPhase.numberOfRounds
     ) {
       dispatch(setSwapCardsBeingPlayed(true));
     } else if (
-      view === views.strategyPhase &&
+      current.view === views.strategyPhase &&
       races.naalu.inGame &&
       playerIndex === players.length - 1 &&
       strategyPhase.round === strategyPhase.numberOfRounds

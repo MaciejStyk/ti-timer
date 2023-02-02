@@ -14,9 +14,13 @@ import strategyActionReducer from "./strategyAction";
 import strategyPhaseReducer from "./strategyPhase";
 import agendaPhaseReducer from "./agendaPhase";
 
-const rootReducer = combineReducers({
+const currentReducer = combineReducers({
   view: viewReducer,
   gameRound: gameRoundReducer,
+});
+
+const rootReducer = combineReducers({
+  current: currentReducer,
   players: playersReducer,
   playerIndex: playerIndexReducer,
   tableOrder: tableOrderReducer,

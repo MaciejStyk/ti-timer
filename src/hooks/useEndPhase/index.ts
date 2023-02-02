@@ -8,7 +8,7 @@ import useEndStatusPhase from "./statusPhase";
 import useEndStrategyPhase from "./strategyPhase";
 
 const useEndPhase = () => {
-  const { view } = useSelector((state: RootState) => state);
+  const { current } = useSelector((state: RootState) => state);
 
   const endSetupPhase = useEndSetupPhase();
   const endStrategyPhase = useEndStrategyPhase();
@@ -17,7 +17,7 @@ const useEndPhase = () => {
   const endAgendaPhase = useEndAgendaPhase();
 
   const endPhase = () => {
-    switch (view) {
+    switch (current.view) {
       case views.setupPhase:
         endSetupPhase();
         break;

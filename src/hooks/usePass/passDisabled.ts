@@ -5,7 +5,7 @@ import { RootState } from "../../redux";
 import { ITime } from "../../types";
 
 const usePassDisabled = (time: ITime) => {
-  const { view, players, playerIndex, strategyAction } = useSelector(
+  const { current, players, playerIndex, strategyAction } = useSelector(
     (state: RootState) => state
   );
   const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
@@ -13,7 +13,7 @@ const usePassDisabled = (time: ITime) => {
   const [passDisabled, setPassDisabled] = useState(true);
 
   useEffect(() => {
-    if (view === views.actionPhase) {
+    if (current.view === views.actionPhase) {
       setPassDisabled(
         !time.isRunning ||
           strategyAction.isBeingPlayed ||
@@ -27,7 +27,7 @@ const usePassDisabled = (time: ITime) => {
   }, [
     currentPlayer?.strategyCards.length,
     time.isRunning,
-    view,
+    current.view,
     strategyAction.isBeingPlayed,
     currentPlayer,
   ]);

@@ -6,18 +6,18 @@ import views from "../../global/views";
 
 const useKeyBindings = (props: IPhaseProps) => {
   const { time, handle } = props;
-  const { view, races, strategyPhase, agendaPhase } = useSelector(
+  const { current, races, strategyPhase, agendaPhase } = useSelector(
     (state: RootState) => state
   );
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
       if (
-        (view === views.strategyPhase &&
+        (current.view === views.strategyPhase &&
           !races.naalu.tokenBeingChanged &&
           !strategyPhase.swapCards.isBeingPlayed) ||
-        view === views.actionPhase ||
-        (view === views.agendaPhase && agendaPhase.isBeingVoted)
+        current.view === views.actionPhase ||
+        (current.view === views.agendaPhase && agendaPhase.isBeingVoted)
       ) {
         if (
           !event.ctrlKey &&
@@ -33,7 +33,7 @@ const useKeyBindings = (props: IPhaseProps) => {
           handle.pause();
         }
       }
-      if (view === views.actionPhase && !handle.passDisabled) {
+      if (current.view === views.actionPhase && !handle.passDisabled) {
         if (event.ctrlKey && event.code === "Enter") {
           event.preventDefault();
           handle.pass();
@@ -45,7 +45,7 @@ const useKeyBindings = (props: IPhaseProps) => {
       window.removeEventListener("keydown", listener);
     };
   }, [
-    view,
+    current.view,
     time.isRunning,
     races.naalu.tokenBeingChanged,
     strategyPhase.swapCards.isBeingPlayed,

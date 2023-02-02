@@ -12,9 +12,15 @@ interface IProps {
 
 const useTimeAutoReset = (props: IProps) => {
   const { time, setInitialBank, setDelayEnded } = props;
-  const { view, timer, races, players, playerIndex, strategyPhase, agendaPhase } = useSelector(
-    (state: RootState) => state
-  );
+  const {
+    current,
+    timer,
+    races,
+    players,
+    playerIndex,
+    strategyPhase,
+    agendaPhase,
+  } = useSelector((state: RootState) => state);
   const currentPlayer = players.length !== 0 ? players[playerIndex] : null;
 
   useEffect(() => {
@@ -28,17 +34,17 @@ const useTimeAutoReset = (props: IProps) => {
     time.elapsed.reset();
     time.bank.reset();
     if (
-      (view === views.strategyPhase &&
+      (current.view === views.strategyPhase &&
         !races.naalu.tokenBeingChanged &&
         !strategyPhase.swapCards.isBeingPlayed) ||
-      view === views.actionPhase ||
-      (view === views.agendaPhase && agendaPhase.isBeingVoted)
+      current.view === views.actionPhase ||
+      (current.view === views.agendaPhase && agendaPhase.isBeingVoted)
     ) {
       time.delayed.start();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    view,
+    current.view,
     currentPlayer?.id,
     time.bank.reset,
     time.bank.start,
