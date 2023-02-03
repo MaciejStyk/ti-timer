@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux";
+import { useDispatch } from "react-redux";
 import { passPlayer } from "../../redux/reducers/players";
 import { ITime } from "../../types";
+import useCurrentPlayer from "../useCurrentPlayer";
 import usePassDisabled from "./passDisabled";
 
 interface IProps {
@@ -11,9 +11,7 @@ interface IProps {
 
 const usePass = (props: IProps) => {
   const { time, endTurn } = props;
-  const { current, players } = useSelector((state: RootState) => state);
-  const currentPlayer =
-    players.length !== 0 ? players[current.playerIndex] : null;
+  const { currentPlayer } = useCurrentPlayer();
   const dispatch = useDispatch();
 
   const passDisabled = usePassDisabled(time);

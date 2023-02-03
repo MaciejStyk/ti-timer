@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import playersReducer from "./reducers/players";
 import tableOrderReducer from "./reducers/tableOrder";
-import roundOrderReducer from "./reducers/roundOrder";
 import racesReducer from "./reducers/races";
 import timerReducer from "./reducers/timer";
 import colorsReducer from "./reducers/colors";
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   current: currentReducer,
   players: playersReducer,
   tableOrder: tableOrderReducer,
-  roundOrder: roundOrderReducer,
   races: racesReducer,
   timer: timerReducer,
   colors: colorsReducer,

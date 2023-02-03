@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { ITime } from "../../types";
-import views from "../../global/views";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import useCurrentPlayer from "../useCurrentPlayer";
+import views from "../../global/views";
 
 interface IProps {
   time: ITime;
@@ -12,10 +13,9 @@ interface IProps {
 
 const useTimeAutoReset = (props: IProps) => {
   const { time, setInitialBank, setDelayEnded } = props;
-  const { current, timer, races, players, strategyPhase, agendaPhase } =
+  const { current, timer, races, strategyPhase, agendaPhase } =
     useSelector((state: RootState) => state);
-  const currentPlayer =
-    players.length !== 0 ? players[current.playerIndex] : null;
+    const { currentPlayer } = useCurrentPlayer();
 
   useEffect(() => {
     setInitialBank(

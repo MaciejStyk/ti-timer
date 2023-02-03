@@ -1,22 +1,23 @@
 import { FunctionComponent, Fragment } from "react";
 import { useDrop } from "react-dnd";
-import StrategyCard from "../../../components/StrategyCard";
-import CardPlaceholder from "../../../components/CardPlaceholder";
 import { IStrategyCard } from "../../../global/strategyCards";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { IMove } from "../../../types";
+import useCurrentPlayer from "../../../hooks/useCurrentPlayer";
+import StrategyCard from "../../../components/StrategyCard";
+import CardPlaceholder from "../../../components/CardPlaceholder";
 import cn from "classnames";
 import styles from "./index.module.css";
 
 interface IProps {
   move: IMove;
-  currentPlayerCanPick: boolean;
 }
 
 const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
-  const { move, currentPlayerCanPick } = props;
+  const { move } = props;
   const { strategyPhase } = useSelector((state: RootState) => state);
+  const { currentPlayerCanPick } = useCurrentPlayer();
 
   // ======== DRAG N DROP  =====================================================
 

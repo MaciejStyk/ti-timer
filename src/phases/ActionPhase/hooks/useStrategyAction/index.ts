@@ -5,13 +5,14 @@ import { setChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAc
 import { setPlayerIndex } from "../../../../redux/reducers/current/playerIndex";
 import {
   exhaustStrategyCardAtPlayerDeck,
-  IPlayer,
   reorderPlayers,
 } from "../../../../redux/reducers/players";
 import { playStrategyAction } from "../../../../redux/reducers/strategyAction";
+import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
-const useStrategyAction = (currentPlayer: IPlayer) => {
+const useStrategyAction = () => {
   const { tableOrder } = useSelector((state: RootState) => state);
+  const { currentPlayer } = useCurrentPlayer();
   const dispatch = useDispatch();
 
   const makeStrategyAction = (strategyCard: IStrategyCard) => {
@@ -19,7 +20,7 @@ const useStrategyAction = (currentPlayer: IPlayer) => {
       dispatch(
         playStrategyAction({
           isBeingPlayed: true,
-          playedBy: currentPlayer,
+          playedBy: currentPlayer!,
           strategyCard: strategyCard,
         })
       );
@@ -35,13 +36,13 @@ const useStrategyAction = (currentPlayer: IPlayer) => {
       }
       dispatch(
         exhaustStrategyCardAtPlayerDeck({
-          id: currentPlayer.id,
+          id: currentPlayer!.id,
           strategyCard: strategyCard,
         })
       );
       dispatch(
         reorderPlayers({
-          startingPlayer: currentPlayer,
+          startingPlayer: currentPlayer!,
           order: tableOrder,
         })
       );

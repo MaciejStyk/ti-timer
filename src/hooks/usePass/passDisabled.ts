@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import views from "../../global/views";
 import { RootState } from "../../redux";
 import { ITime } from "../../types";
+import useCurrentPlayer from "../useCurrentPlayer";
+import views from "../../global/views";
 
 const usePassDisabled = (time: ITime) => {
-  const { current, players, strategyAction } = useSelector(
-    (state: RootState) => state
-  );
-  const currentPlayer =
-    players.length !== 0 ? players[current.playerIndex] : null;
+  const { current, strategyAction } = useSelector((state: RootState) => state);
+  const { currentPlayer } = useCurrentPlayer();
 
   const [passDisabled, setPassDisabled] = useState(true);
 

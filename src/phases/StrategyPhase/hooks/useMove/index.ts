@@ -3,34 +3,29 @@ import { IStrategyCard } from "../../../../global/strategyCards";
 import { RootState } from "../../../../redux";
 import {
   addStrategyCardToPlayerDeck,
-  IPlayer,
   removeStrategyCardFromPlayerDeck,
 } from "../../../../redux/reducers/players";
 import {
   addStrategyCardToAvailableDeck,
   removeStrategyCardFromAvailableDeck,
 } from "../../../../redux/reducers/strategyPhase";
+import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
-interface IProps {
-  currentPlayer: IPlayer;
-  currentPlayerCanPick: boolean;
-}
-
-const useMove = (props: IProps) => {
-  const { currentPlayer, currentPlayerCanPick } = props;
+const useMove = () => {
   const { strategyPhase } = useSelector((state: RootState) => state);
+  const { currentPlayer, currentPlayerCanPick } = useCurrentPlayer();
   const dispatch = useDispatch();
 
   const toPlayersDeck = (strategyCard: IStrategyCard) => {
     if (
-      !currentPlayer.strategyCards.some(
+      !currentPlayer?.strategyCards.some(
         (card) => card.id === strategyCard.id
       ) &&
       currentPlayerCanPick
     ) {
       dispatch(
         addStrategyCardToPlayerDeck({
-          id: currentPlayer.id,
+          id: currentPlayer!.id,
           strategyCard: strategyCard,
         })
       );
@@ -47,7 +42,7 @@ const useMove = (props: IProps) => {
       dispatch(addStrategyCardToAvailableDeck(strategyCard));
       dispatch(
         removeStrategyCardFromPlayerDeck({
-          id: currentPlayer.id,
+          id: currentPlayer!.id,
           strategyCard: strategyCard,
         })
       );

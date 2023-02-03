@@ -1,9 +1,7 @@
 import { FunctionComponent } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
+import useCurrentPlayer from "../../hooks/useCurrentPlayer";
 import useKeyBindings from "./hooks/useKeyBindings";
-import useStrategyAction from "./hooks/useStrategyAction";
 import PausePanel from "../../panels/PausePanel";
 import TopPanel from "../../panels/TopPanel";
 import LeftPanel from "../../panels/LeftPanel";
@@ -14,22 +12,17 @@ import styles from "./index.module.css";
 
 const NormalAction: FunctionComponent<IPhaseProps> = (props) => {
   const { time } = props;
-  const { current, players } = useSelector((state: RootState) => state);
-  const currentPlayer = players[current.playerIndex];
+  const { currentPlayer } = useCurrentPlayer();
 
-  const makeStrategyAction = useStrategyAction(currentPlayer);
-  useKeyBindings({ time, currentPlayer, makeStrategyAction });
+  useKeyBindings(props);
 
   return (
-    <div className={styles.fullScreenContainer} style={currentPlayer.theme}>
+    <div className={styles.fullScreenContainer} style={currentPlayer?.theme}>
       {!time.isRunning && <PausePanel />}
       <TopPanel />
       <LeftPanel />
       <PlayerPanel {...props} />
-      <PlayerCardsPanel
-        player={currentPlayer}
-        makeStrategyAction={makeStrategyAction}
-      />
+      <PlayerCardsPanel player={currentPlayer} />
       <BottomPanel {...props} />
     </div>
   );

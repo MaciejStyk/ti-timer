@@ -6,7 +6,7 @@ import {
   sortPlayersByInitiative,
   sortPlayersStrategyCards,
 } from "../../redux/reducers/players";
-import { setRoundOrder } from "../../redux/reducers/roundOrder";
+import { setRoundOrder } from "../../redux/reducers/current/roundOrder";
 import { setStrategyPhaseRound } from "../../redux/reducers/strategyPhase";
 import { changeView } from "../../redux/reducers/current/view";
 

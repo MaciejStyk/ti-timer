@@ -5,7 +5,7 @@ import { reorderPlayers } from "../../redux/reducers/players";
 import { resetStrategyAction } from "../../redux/reducers/strategyAction";
 
 const useFinishStrategyAction = () => {
-  const { current, players, roundOrder, strategyAction } = useSelector(
+  const { current, players, strategyAction } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const useFinishStrategyAction = () => {
     ) {
       dispatch(
         reorderPlayers({
-          startingPlayer: roundOrder[0],
-          order: roundOrder,
+          startingPlayer: current.roundOrder[0],
+          order: current.roundOrder,
         })
       );
       dispatch(

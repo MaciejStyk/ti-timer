@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { IPlayer } from "../../../../redux/reducers/players";
 import { IMove, ITime } from "../../../../types";
+import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
 interface IProps {
   time: ITime;
-  currentPlayer: IPlayer;
-  currentPlayerCanPick: boolean;
   move: IMove;
 }
 
 const useKeyBindings = (props: IProps) => {
-  const { time, currentPlayer, currentPlayerCanPick, move } = props;
+  const { time, move } = props;
   const { strategyPhase } = useSelector((state: RootState) => state);
+  const { currentPlayer, currentPlayerCanPick } = useCurrentPlayer();
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
@@ -33,7 +32,7 @@ const useKeyBindings = (props: IProps) => {
           );
         }
         if (
-          currentPlayer.strategyCards.some(
+          currentPlayer?.strategyCards.some(
             (card, index) =>
               card.id === cardID && index === strategyPhase.round - 1
           )
@@ -50,7 +49,7 @@ const useKeyBindings = (props: IProps) => {
       window.removeEventListener("keydown", listener);
     };
   }, [
-    currentPlayer.strategyCards,
+    currentPlayer?.strategyCards,
     currentPlayerCanPick,
     time.isRunning,
     strategyPhase.availableStrategyCards,

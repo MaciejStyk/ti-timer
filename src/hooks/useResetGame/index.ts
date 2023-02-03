@@ -6,7 +6,7 @@ import { resetGameRound } from "../../redux/reducers/current/gameRound";
 import { setPlayerIndex } from "../../redux/reducers/current/playerIndex";
 import { setPlayers } from "../../redux/reducers/players";
 import { resetRaces } from "../../redux/reducers/races";
-import { setRoundOrder } from "../../redux/reducers/roundOrder";
+import { setRoundOrder } from "../../redux/reducers/current/roundOrder";
 import { resetStrategyAction } from "../../redux/reducers/strategyAction";
 import { resetStrategyPhase } from "../../redux/reducers/strategyPhase";
 import { setTableOrder } from "../../redux/reducers/tableOrder";

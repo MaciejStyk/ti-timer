@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { ITime } from "../../types";
 import views from "../../global/views";
+import useCurrentPlayer from "../useCurrentPlayer";
 
 const useEndTurnDisabled = (time: ITime) => {
-  const { current, players, strategyPhase, choosePlayerAction } = useSelector(
+  const { current, strategyPhase, choosePlayerAction } = useSelector(
     (state: RootState) => state
   );
-  const currentPlayer =
-    players.length !== 0 ? players[current.playerIndex] : null;
+  const { currentPlayer } = useCurrentPlayer();
 
   const [endTurnDisabled, setEndTurnDisabled] = useState(true);
 

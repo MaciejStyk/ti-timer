@@ -1,13 +1,11 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
+import useCurrentPlayer from "../../hooks/useCurrentPlayer";
 import styles from "./index.module.css";
 
 const PausePanel = () => {
-  const { current, players } = useSelector((state: RootState) => state);
-  const currentPlayer = players[current.playerIndex];
+  const { currentPlayer } = useCurrentPlayer();
 
   return (
-    <div className={styles.pausePanel} style={currentPlayer.theme}>
+    <div className={styles.pausePanel} style={currentPlayer?.theme}>
       Paused
     </div>
   );

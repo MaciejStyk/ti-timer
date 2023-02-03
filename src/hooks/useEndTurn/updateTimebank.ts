@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux";
+import { useDispatch } from "react-redux";
 import { updatePlayersTimebank } from "../../redux/reducers/players";
 import { ITime } from "../../types";
+import useCurrentPlayer from "../useCurrentPlayer";
 
 const useUpdateTimebank = (time: ITime) => {
-  const { current, players } = useSelector((state: RootState) => state);
-  const currentPlayer = players.length !== 0 ? players[current.playerIndex] : null;
+  const { currentPlayer } = useCurrentPlayer();
   const dispatch = useDispatch();
 
   const updateCurrentPlayerTimebank = () => {
