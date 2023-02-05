@@ -1,10 +1,9 @@
 import { FunctionComponent, Fragment } from "react";
-import { useDrop } from "react-dnd";
-import { IStrategyCard } from "../../../global/strategyCards";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { IMove } from "../../../types";
 import useCurrentPlayer from "../../../hooks/useCurrentPlayer";
+import useDnD from "../hooks/useDnD";
 import StrategyCard from "../../../components/StrategyCard";
 import CardPlaceholder from "../../../components/CardPlaceholder";
 import cn from "classnames";
@@ -18,22 +17,7 @@ const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
   const { move } = props;
   const { strategyPhase } = useSelector((state: RootState) => state);
   const { currentPlayerCanPick } = useCurrentPlayer();
-
-  // ======== DRAG N DROP  =====================================================
-
-  const [{ isOver, draggedCard, canDrop }, dropRefBack] = useDrop({
-    accept: "strategyCard",
-    drop: (strategyCard: IStrategyCard) => move.toAvailableDeck(strategyCard),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      draggedCard: monitor.getItem(),
-      canDrop: monitor.canDrop(),
-    }),
-  });
-
-  const showTopPlaceholder = isOver && !currentPlayerCanPick;
-
-  // ======== CLASSES ==========================================================
+  const { dropRef, canDrop, draggedCard, showPlaceholder } = useDnD(move);
 
   const strategyCardsContainerClasses = cn({
     [styles.strategyCardsContainer]: true,
@@ -42,14 +26,11 @@ const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
       strategyPhase.availableStrategyCards.length < 3,
   });
 
-  // ======== RENDER COMPONENT =================================================
-
   return (
-    <div className={strategyCardsContainerClasses} ref={dropRefBack}>
-      {showTopPlaceholder &&
-        strategyPhase.availableStrategyCards.length === 0 && (
-          <CardPlaceholder />
-        )}
+    <div className={strategyCardsContainerClasses} ref={dropRef}>
+      {showPlaceholder && strategyPhase.availableStrategyCards.length === 0 && (
+        <CardPlaceholder />
+      )}
 
       {strategyPhase.availableStrategyCards.map(
         (strategyCard, index, cardsArray) => {
@@ -63,17 +44,17 @@ const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
           }
           return (
             <Fragment key={strategyCard.id}>
-              {showTopPlaceholder &&
-                showBefore &&
-                index === placeholderIndex && <CardPlaceholder />}
+              {showPlaceholder && showBefore && index === placeholderIndex && (
+                <CardPlaceholder />
+              )}
               <StrategyCard
                 strategyCard={strategyCard}
                 moveBetweenDecks={move.toPlayersDeck}
                 draggable={currentPlayerCanPick}
               />
-              {showTopPlaceholder &&
-                !showBefore &&
-                index === placeholderIndex && <CardPlaceholder />}
+              {showPlaceholder && !showBefore && index === placeholderIndex && (
+                <CardPlaceholder />
+              )}
             </Fragment>
           );
         }
