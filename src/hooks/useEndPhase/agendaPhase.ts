@@ -13,7 +13,7 @@ import { changeView } from "../../redux/reducers/current/view";
 import { setNaaluTokenChangeable } from "../../redux/reducers/settings/races";
 
 const useEndAgendaPhase = () => {
-  const { players, settings, tableOrder, agendaPhase } = useSelector(
+  const { players, settings, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const useEndAgendaPhase = () => {
           startingPlayer:
             store.getState().players.find((player) => player.speaker) ||
             players[0],
-          order: tableOrder,
+          order: settings.tableOrder,
         })
       );
       dispatch(unpassPlayers());

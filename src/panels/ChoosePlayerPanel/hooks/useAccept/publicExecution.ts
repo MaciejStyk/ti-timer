@@ -10,7 +10,7 @@ import {
 } from "../../../../redux/reducers/players";
 
 const usePublicExecution = () => {
-  const { players, tableOrder, choosePlayerAction } = useSelector(
+  const { settings, players, choosePlayerAction } = useSelector(
     (state: RootState) => state
   );
   const { chosenPlayer } = choosePlayerAction;
@@ -20,20 +20,20 @@ const usePublicExecution = () => {
     dispatch(unpassPlayers());
     dispatch(passPlayer(chosenPlayer!.id));
     if (chosenPlayer!.speaker) {
-      const speakerIndex = tableOrder.findIndex(
+      const speakerIndex = settings.tableOrder.findIndex(
         (player) => player.id === chosenPlayer!.id
       );
       const newSpeakerIndex =
         speakerIndex < players.length - 1 ? speakerIndex + 1 : 0;
-      let newSpeaker = tableOrder[newSpeakerIndex];
+      let newSpeaker = settings.tableOrder[newSpeakerIndex];
       dispatch(setSpeaker(newSpeaker.id));
       dispatch(
         reorderPlayers({
           startingPlayer:
-            tableOrder[
+            settings.tableOrder[
               newSpeakerIndex < players.length - 1 ? newSpeakerIndex + 1 : 0
             ],
-          order: tableOrder,
+          order: settings.tableOrder,
         })
       );
     }

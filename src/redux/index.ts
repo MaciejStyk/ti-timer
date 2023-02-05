@@ -7,13 +7,11 @@ import choosePlayerAction from "./reducers/choosePlayerAction";
 import strategyActionReducer from "./reducers/strategyAction";
 import strategyPhaseReducer from "./reducers/strategyPhase";
 import agendaPhaseReducer from "./reducers/agendaPhase";
-import tableOrderReducer from "./reducers/settings/tableOrder";
 
 const rootReducer = combineReducers({
   settings: settingsReducer,
   current: currentReducer,
   players: playersReducer,
-  tableOrder: tableOrderReducer,
   choosePlayerAction: choosePlayerAction,
   strategyAction: strategyActionReducer,
   strategyPhase: strategyPhaseReducer,

@@ -11,7 +11,7 @@ import { playStrategyAction } from "../../../../redux/reducers/strategyAction";
 import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
 const useStrategyAction = () => {
-  const { tableOrder } = useSelector((state: RootState) => state);
+  const { settings } = useSelector((state: RootState) => state);
   const { currentPlayer } = useCurrentPlayer();
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ const useStrategyAction = () => {
       dispatch(
         reorderPlayers({
           startingPlayer: currentPlayer!,
-          order: tableOrder,
+          order: settings.tableOrder,
         })
       );
       dispatch(setPlayerIndex(0));

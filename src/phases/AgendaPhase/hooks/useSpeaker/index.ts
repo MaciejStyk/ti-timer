@@ -2,12 +2,12 @@ import { useSelector } from "react-redux";
 import store, { RootState } from "../../../../redux";
 
 const useSpeaker = () => {
-  const { players, tableOrder } = useSelector((state: RootState) => state);
+  const { settings, players } = useSelector((state: RootState) => state);
 
   const speaker =
     store.getState().players.find((player) => player.speaker) || players[0];
 
-  const speakerIndex = tableOrder.findIndex(
+  const speakerIndex = settings.tableOrder.findIndex(
     (player) => player.id === speaker.id
   );
 

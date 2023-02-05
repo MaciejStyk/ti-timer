@@ -9,7 +9,7 @@ import { reorderPlayers } from "../../../../redux/reducers/players";
 import useSpeaker from "../useSpeaker";
 
 const useStartSecondAgenda = () => {
-  const { players, tableOrder, agendaPhase } = useSelector(
+  const { settings, players, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const useStartSecondAgenda = () => {
       dispatch(
         reorderPlayers({
           startingPlayer:
-            tableOrder[
+            settings.tableOrder[
               speakerIndex < players.length - 1 ? speakerIndex + 1 : 0
             ],
-          order: tableOrder,
+          order: settings.tableOrder,
         })
       );
     }

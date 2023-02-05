@@ -9,7 +9,7 @@ import {
 import useSpeaker from "../useSpeaker";
 
 const useStartVoting = () => {
-  const { settings, players, tableOrder, agendaPhase } = useSelector(
+  const { settings, players, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const useStartVoting = () => {
       dispatch(
         reorderPlayers({
           startingPlayer:
-            tableOrder[
+            settings.tableOrder[
               speakerIndex === 0 ? players.length - 1 : speakerIndex - 1
             ],
-          order: tableOrder,
+          order: settings.tableOrder,
           clockwise: false,
         })
       );

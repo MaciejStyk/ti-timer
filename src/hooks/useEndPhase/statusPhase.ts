@@ -6,7 +6,7 @@ import { resetAvailableStrategyCards } from "../../redux/reducers/strategyPhase"
 import { changeView } from "../../redux/reducers/current/view";
 
 const useEndStatusPhase = () => {
-  const { players, tableOrder } = useSelector((state: RootState) => state);
+  const { settings, players } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   const endStatusPhase = () => {
@@ -14,14 +14,14 @@ const useEndStatusPhase = () => {
     dispatch(resetAvailableStrategyCards());
     const speaker =
       store.getState().players.find((player) => player.speaker) || players[0];
-    const speakerIndex = tableOrder.findIndex(
+    const speakerIndex = settings.tableOrder.findIndex(
       (player) => player.id === speaker.id
     );
     dispatch(
       reorderPlayers({
         startingPlayer:
-          tableOrder[speakerIndex < players.length - 1 ? speakerIndex + 1 : 0],
-        order: tableOrder,
+        settings.tableOrder[speakerIndex < players.length - 1 ? speakerIndex + 1 : 0],
+        order: settings.tableOrder,
       })
     );
     dispatch(changeView(views.agendaPhase));
