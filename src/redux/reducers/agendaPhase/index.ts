@@ -20,10 +20,16 @@ const beginVoting = createAction("[Agenda Phase] Begin voting");
 const stopVoting = createAction("[Agenda Phase] Stop voting");
 const beginSecondAgenda = createAction("[Agenda Phase] Begin second agenda");
 const applyPoliticsRider = createAction("[Agenda Phase] Apply politics rider");
-const applyPublicExecution = createAction("[Agenda Phase] Apply Public Execution");
+const applyPublicExecution = createAction(
+  "[Agenda Phase] Apply Public Execution"
+);
 const switchHackElection = createAction("[Agenda Phase] Switch Hack Election");
-const switchImperialArbiter = createAction("[Agenda Phase] Switch Imperial Arbiter");
-const resetAppliedEffects = createAction("[Agenda Phase] Reset applied effects");
+const switchImperialArbiter = createAction(
+  "[Agenda Phase] Switch Imperial Arbiter"
+);
+const resetAppliedEffects = createAction(
+  "[Agenda Phase] Reset applied effects"
+);
 const resetAgendaRound = createAction("[Agenda Phase] Reset agenda round");
 
 const initialState: IAgendaPhase = {
@@ -87,7 +93,6 @@ export {
   resetAgendaPhase,
   unlockAgendaPhase,
   switchVotingStage,
-  
   beginVoting,
   stopVoting,
   beginSecondAgenda,
