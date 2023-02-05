@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import themes from "../../global/themes";
+import themes from "../../../global/themes";
 
 const resetColors = createAction("[Colors] Reset");
 const addColor = createAction<string>("[Colors] Add");

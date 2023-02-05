@@ -1,18 +1,18 @@
 import { useSelector } from "react-redux";
 import { inputName, inputType } from "../../../global/inputs";
-import store, { RootState } from "../../../redux";
+import { RootState } from "../../../redux";
 import ColorPicker from "../ColorPicker";
 import useInputChange from "../hooks/useInputChange";
 import useChangeColor from "../hooks/useChangeColor";
 import styles from "./index.module.css";
 
 const SettingsForm = () => {
-  const { players, timer, races } = useSelector((state: RootState) => state);
+  const { settings, players } = useSelector((state: RootState) => state);
 
   const colorsArray = players.map((player) => player.theme.backgroundColor);
   const color =
-    store.getState().races.argent.playedBy?.theme.backgroundColor || "ffffff";
-    
+    settings.races.argent.playedBy?.theme.backgroundColor || "ffffff";
+
   const changeColor = useChangeColor();
   const handleInputChange = useInputChange();
 
@@ -23,7 +23,7 @@ const SettingsForm = () => {
         type={inputType.number}
         name={inputName.timeBankMin}
         min="0"
-        value={timer.timeBank.min}
+        value={settings.timer.timeBank.min}
         onChange={handleInputChange}
       />
       min
@@ -31,7 +31,7 @@ const SettingsForm = () => {
         type={inputType.number}
         name={inputName.timeBankSec}
         min="0"
-        value={timer.timeBank.sec}
+        value={settings.timer.timeBank.sec}
         onChange={handleInputChange}
       />
       sec
@@ -39,14 +39,14 @@ const SettingsForm = () => {
       <input
         type={inputType.number}
         name={inputName.timeAddedPerRoundMin}
-        value={timer.timeAddedPerRound.min}
+        value={settings.timer.timeAddedPerRound.min}
         onChange={handleInputChange}
       />
       min
       <input
         type={inputType.number}
         name={inputName.timeAddedPerRoundSec}
-        value={timer.timeAddedPerRound.sec}
+        value={settings.timer.timeAddedPerRound.sec}
         onChange={handleInputChange}
       />
       sec
@@ -55,7 +55,7 @@ const SettingsForm = () => {
         type={inputType.number}
         name={inputName.timeDelayedPerTurnMin}
         min="0"
-        value={timer.timeDelayedPerTurn.min}
+        value={settings.timer.timeDelayedPerTurn.min}
         onChange={handleInputChange}
       />
       min
@@ -63,7 +63,7 @@ const SettingsForm = () => {
         type={inputType.number}
         name={inputName.timeDelayedPerTurnSec}
         min="0"
-        value={timer.timeDelayedPerTurn.sec}
+        value={settings.timer.timeDelayedPerTurn.sec}
         onChange={handleInputChange}
       />
       sec
@@ -71,7 +71,7 @@ const SettingsForm = () => {
       <input
         type={inputType.checkbox}
         name={inputName.naaluInGame}
-        checked={races.naalu.inGame}
+        checked={settings.races.naalu.inGame}
         onChange={handleInputChange}
       ></input>
       <span className={styles.empty}></span>
@@ -79,11 +79,11 @@ const SettingsForm = () => {
       <input
         type={inputType.checkbox}
         name={inputName.argentInGame}
-        checked={races.argent.inGame}
+        checked={settings.races.argent.inGame}
         onChange={handleInputChange}
       ></input>
-      {races.argent.inGame && <span>Player:</span>}
-      {races.argent.inGame && (
+      {settings.races.argent.inGame && <span>Player:</span>}
+      {settings.races.argent.inGame && (
         <ColorPicker
           color={color}
           colorsArray={colorsArray}
@@ -96,7 +96,7 @@ const SettingsForm = () => {
       <input
         type={inputType.checkbox}
         name={inputName.winnuOrHacanInGame}
-        checked={races.winnuOrHacan.inGame}
+        checked={settings.races.winnuOrHacan.inGame}
         onChange={handleInputChange}
       ></input>
     </div>

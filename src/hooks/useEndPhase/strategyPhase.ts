@@ -11,7 +11,7 @@ import { setStrategyPhaseRound } from "../../redux/reducers/strategyPhase";
 import { changeView } from "../../redux/reducers/current/view";
 
 const useEndStrategyPhase = () => {
-  const { current, players, races, strategyPhase } = useSelector(
+  const { settings, current, players, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const useEndStrategyPhase = () => {
       if (strategyPhase.round < strategyPhase.numberOfRounds) {
         dispatch(setStrategyPhaseRound(2));
       } else if (
-        !store.getState().races.naalu.tokenChangeable &&
+        !store.getState().settings.races.naalu.tokenChangeable &&
         !store.getState().strategyPhase.swapCards.playable
       ) {
         dispatch(setPlayerIndex(0));
@@ -29,7 +29,7 @@ const useEndStrategyPhase = () => {
         dispatch(sortPlayersStrategyCards());
         dispatch(
           sortPlayersByInitiative({
-            naaluInGame: races.naalu.inGame,
+            naaluInGame: settings.races.naalu.inGame,
           })
         );
         dispatch(setRoundOrder(store.getState().players));

@@ -9,7 +9,7 @@ import {
 import useSpeaker from "../useSpeaker";
 
 const useStartVoting = () => {
-  const { players, races, tableOrder, agendaPhase } = useSelector(
+  const { settings, players, tableOrder, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -28,8 +28,8 @@ const useStartVoting = () => {
         })
       );
     }
-    if (races.argent.inGame && races.argent.playedBy) {
-      dispatch(reorderPlayersWithArgentAsFirst(races.argent.playedBy));
+    if (settings.races.argent.inGame && settings.races.argent.playedBy) {
+      dispatch(reorderPlayersWithArgentAsFirst(settings.races.argent.playedBy));
     }
     if (store.getState().players[0].passed) {
       dispatch(setPlayerIndex(1));

@@ -1,23 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
+import settingsReducer from "./reducers/settings";
+import currentReducer from "./reducers/current";
 import playersReducer from "./reducers/players";
-import tableOrderReducer from "./reducers/tableOrder";
-import racesReducer from "./reducers/races";
-import timerReducer from "./reducers/timer";
-import colorsReducer from "./reducers/colors";
 import choosePlayerAction from "./reducers/choosePlayerAction";
 import strategyActionReducer from "./reducers/strategyAction";
 import strategyPhaseReducer from "./reducers/strategyPhase";
 import agendaPhaseReducer from "./reducers/agendaPhase";
-import currentReducer from "./reducers/current";
+import tableOrderReducer from "./reducers/settings/tableOrder";
 
 const rootReducer = combineReducers({
+  settings: settingsReducer,
   current: currentReducer,
   players: playersReducer,
   tableOrder: tableOrderReducer,
-  races: racesReducer,
-  timer: timerReducer,
-  colors: colorsReducer,
   choosePlayerAction: choosePlayerAction,
   strategyAction: strategyActionReducer,
   strategyPhase: strategyPhaseReducer,

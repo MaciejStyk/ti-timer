@@ -5,7 +5,7 @@ import {
   setNaaluInGame,
   setNaaluTokenChangeable,
   setWinnuOrHacanInGame,
-} from "../../../../redux/reducers/races";
+} from "../../../../redux/reducers/settings/races";
 import {
   setTimeAddedPerRoundMin,
   setTimeAddedPerRoundSec,
@@ -13,7 +13,7 @@ import {
   setTimeBankSec,
   setTimeDelayedPerTurnMin,
   setTimeDelayedPerTurnSec,
-} from "../../../../redux/reducers/timer";
+} from "../../../../redux/reducers/settings/timer";
 import { inputName } from "../../../../global/inputs";
 
 const useInputChange = () => {

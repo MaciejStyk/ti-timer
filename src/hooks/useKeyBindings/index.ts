@@ -6,7 +6,7 @@ import views from "../../global/views";
 
 const useKeyBindings = (props: IPhaseProps) => {
   const { time, handle } = props;
-  const { current, races, strategyPhase, agendaPhase } = useSelector(
+  const { settings, current, strategyPhase, agendaPhase } = useSelector(
     (state: RootState) => state
   );
 
@@ -14,7 +14,7 @@ const useKeyBindings = (props: IPhaseProps) => {
     const listener = (event: KeyboardEvent) => {
       if (
         (current.view === views.strategyPhase &&
-          !races.naalu.tokenBeingChanged &&
+          !settings.races.naalu.tokenBeingChanged &&
           !strategyPhase.swapCards.isBeingPlayed) ||
         current.view === views.actionPhase ||
         (current.view === views.agendaPhase && agendaPhase.isBeingVoted)
@@ -47,7 +47,7 @@ const useKeyBindings = (props: IPhaseProps) => {
   }, [
     current.view,
     time.isRunning,
-    races.naalu.tokenBeingChanged,
+    settings.races.naalu.tokenBeingChanged,
     strategyPhase.swapCards.isBeingPlayed,
     agendaPhase.isBeingVoted,
     handle,

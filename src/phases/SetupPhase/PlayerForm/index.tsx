@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 import usePlayerForm from "../hooks/usePlayerForm";
 
 const PlayerForm = () => {
-  const { players, colors } = useSelector((state: RootState) => state);
+  const { settings, players } = useSelector((state: RootState) => state);
   const {
     color,
     inputValue,
@@ -27,7 +27,7 @@ const PlayerForm = () => {
 
       <ColorPicker
         color={color}
-        colorsArray={colors}
+        colorsArray={settings.colors}
         changeColor={changeColor}
         bigger={true}
       />

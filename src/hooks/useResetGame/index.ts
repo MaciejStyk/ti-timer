@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
 import { resetAgendaPhase } from "../../redux/reducers/agendaPhase";
 import { resetChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
-import { resetColors } from "../../redux/reducers/colors";
+import { resetColors } from "../../redux/reducers/settings/colors";
 import { resetGameRound } from "../../redux/reducers/current/gameRound";
 import { setPlayerIndex } from "../../redux/reducers/current/playerIndex";
 import { setPlayers } from "../../redux/reducers/players";
-import { resetRaces } from "../../redux/reducers/races";
+import { resetRaces } from "../../redux/reducers/settings/races";
 import { setRoundOrder } from "../../redux/reducers/current/roundOrder";
 import { resetStrategyAction } from "../../redux/reducers/strategyAction";
 import { resetStrategyPhase } from "../../redux/reducers/strategyPhase";
-import { setTableOrder } from "../../redux/reducers/tableOrder";
-import { resetTimer } from "../../redux/reducers/timer";
+import { setTableOrder } from "../../redux/reducers/settings/tableOrder";
+import { resetTimer } from "../../redux/reducers/settings/timer";
 import { changeView } from "../../redux/reducers/current/view";
 import views from "../../global/views";
 

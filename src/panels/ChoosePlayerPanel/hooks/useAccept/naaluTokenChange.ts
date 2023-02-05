@@ -5,7 +5,7 @@ import { setNaaluTokenHolder } from "../../../../redux/reducers/players";
 import {
   setNaaluTokenBeingChanged,
   setNaaluTokenChangeable,
-} from "../../../../redux/reducers/races";
+} from "../../../../redux/reducers/settings/races";
 import { IPhaseProps } from "../../../../types";
 
 const useNaaluTokenChange = (props: IPhaseProps) => {

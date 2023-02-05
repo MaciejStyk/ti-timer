@@ -8,12 +8,12 @@ import {
   reorderPlayers,
   unpassPlayers,
 } from "../../redux/reducers/players";
-import { setNaaluTokenChangeable } from "../../redux/reducers/races";
 import { setSwapCardsPlayable } from "../../redux/reducers/strategyPhase";
 import { changeView } from "../../redux/reducers/current/view";
+import { setNaaluTokenChangeable } from "../../redux/reducers/settings/races";
 
 const useEndAgendaPhase = () => {
-  const { players, timer, races, tableOrder, agendaPhase } = useSelector(
+  const { players, settings, tableOrder, agendaPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -25,11 +25,11 @@ const useEndAgendaPhase = () => {
     ) {
       dispatch(incrementGameRound());
       dispatch(setPlayerIndex(0));
-      if (races.naalu.inGame) {
+      if (settings.races.naalu.inGame) {
         dispatch(setNaaluTokenChangeable(true));
       }
       if (
-        races.winnuOrHacan.inGame ||
+        settings.races.winnuOrHacan.inGame ||
         agendaPhase.appliedEffects.imperialArbiter
       ) {
         dispatch(setSwapCardsPlayable(true));
@@ -43,7 +43,7 @@ const useEndAgendaPhase = () => {
         })
       );
       dispatch(unpassPlayers());
-      dispatch(addTimeToAllPlayersAfterRound(timer.timeAddedPerRound));
+      dispatch(addTimeToAllPlayersAfterRound(settings.timer.timeAddedPerRound));
       dispatch(changeView(views.strategyPhase));
     }
   };

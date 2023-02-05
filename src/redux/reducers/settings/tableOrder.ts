@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { IPlayer } from "./players";
+import { IPlayer } from "../players";
 
 const setTableOrder = createAction<IPlayer[]>("[Table Order] Set");
 

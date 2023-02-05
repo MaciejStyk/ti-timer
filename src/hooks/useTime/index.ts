@@ -5,16 +5,17 @@ import { useTimer } from "../useTimer";
 import useTimeAutoReset from "./autoReset";
 
 const useTime = () => {
-  const { timer } = useSelector((state: RootState) => state);
+  const { settings } = useSelector((state: RootState) => state);
 
   const [delayEnded, setDelayEnded] = useState(false);
   const [initialBank, setInitialBank] = useState(
-    timer.timeBank.min * 60 + timer.timeBank.sec
+    settings.timer.timeBank.min * 60 + settings.timer.timeBank.sec
   );
 
   const delayed = useTimer({
     initialTime:
-      timer.timeDelayedPerTurn.min * 60 + timer.timeDelayedPerTurn.sec,
+      settings.timer.timeDelayedPerTurn.min * 60 +
+      settings.timer.timeDelayedPerTurn.sec,
     endTime: 0,
     timerType: "DECREMENTAL",
     onTimeOver: () => {

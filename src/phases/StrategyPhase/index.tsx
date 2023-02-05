@@ -7,9 +7,9 @@ import SwapCards from "./SwapCards";
 import DealCards from "./DealCards";
 
 const StrategyPhase: FunctionComponent<IPhaseProps> = (props) => {
-  const { races, strategyPhase } = useSelector((state: RootState) => state);
+  const { settings, strategyPhase } = useSelector((state: RootState) => state);
 
-  if (races.naalu.tokenBeingChanged) {
+  if (settings.races.naalu.tokenBeingChanged) {
     return <ChooseNaalu {...props} />;
   } else if (strategyPhase.swapCards.isBeingPlayed) {
     return <SwapCards {...props} />;

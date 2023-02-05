@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { setChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
 import { setPlayerIndex } from "../../redux/reducers/current/playerIndex";
-import { setNaaluTokenBeingChanged } from "../../redux/reducers/races";
 import { setSwapCardsBeingPlayed } from "../../redux/reducers/strategyPhase";
+import { setNaaluTokenBeingChanged } from "../../redux/reducers/settings/races";
 import useNextPlayerIndex from "./nextPlayerIndex";
 import triggers from "../../global/triggers";
 import views from "../../global/views";
 
 const useNextPlayer = () => {
-  const { current, players, races, strategyPhase } = useSelector(
+  const { settings, current, players, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const useNextPlayer = () => {
       dispatch(setSwapCardsBeingPlayed(true));
     } else if (
       current.view === views.strategyPhase &&
-      races.naalu.inGame &&
+      settings.races.naalu.inGame &&
       current.playerIndex === players.length - 1 &&
       strategyPhase.round === strategyPhase.numberOfRounds
     ) {

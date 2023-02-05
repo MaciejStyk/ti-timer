@@ -11,7 +11,7 @@ import {
   setSwapCardsPlayable,
   switchSwapCardsStage,
 } from "../../../redux/reducers/strategyPhase";
-import { setNaaluTokenBeingChanged } from "../../../redux/reducers/races";
+import { setNaaluTokenBeingChanged } from "../../../redux/reducers/settings/races";
 import { IStrategyCard } from "../../../global/strategyCards";
 import { IPhaseProps } from "../../../types";
 import PlayerCardsPanel from "../../../panels/PlayerCardsPanel";
@@ -21,7 +21,7 @@ import { setChoosePlayerAction } from "../../../redux/reducers/choosePlayerActio
 import triggers from "../../../global/triggers";
 
 const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
-  const { players, races, strategyPhase } = useSelector(
+  const { settings, players, strategyPhase } = useSelector(
     (state: RootState) => state
   );
   const dispatch = useDispatch();
@@ -137,7 +137,7 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
   const handleCancel = () => {
     dispatch(setSwapCardsBeingPlayed(false));
     dispatch(setSwapCardsPlayable(false));
-    if (races.naalu.inGame) {
+    if (settings.races.naalu.inGame) {
       dispatch(setNaaluTokenBeingChanged(true));
       dispatch(
         setChoosePlayerAction({
@@ -157,7 +157,7 @@ const SwapCardsPanel: FunctionComponent<IPhaseProps> = ({ handle }) => {
     if (!beforeSwap) {
       dispatch(setSwapCardsBeingPlayed(false));
       dispatch(setSwapCardsPlayable(false));
-      if (races.naalu.inGame) {
+      if (settings.races.naalu.inGame) {
         dispatch(setNaaluTokenBeingChanged(true));
         dispatch(
           setChoosePlayerAction({
