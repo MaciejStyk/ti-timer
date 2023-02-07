@@ -43,7 +43,7 @@ const initialState: IStrategyPhase = {
   round: 1,
   numberOfRounds: 1,
   swapCards: {
-    playable: false,
+    playable: true,
     isBeingPlayed: false,
     beforeSwap: true,
   },

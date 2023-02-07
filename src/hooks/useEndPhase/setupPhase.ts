@@ -4,7 +4,6 @@ import { RootState } from "../../redux";
 import { setPlayersTimeBank } from "../../redux/reducers/players";
 import {
   setStrategyPhaseNumberOfRounds,
-  setSwapCardsPlayable,
 } from "../../redux/reducers/strategyPhase";
 import { changeView } from "../../redux/reducers/current/view";
 import { setTableOrder } from "../../redux/reducers/settings/tableOrder";
@@ -17,7 +16,6 @@ const useEndSetupPhase = () => {
     dispatch(setTableOrder(players));
     dispatch(setPlayersTimeBank(settings.timer.timeBank));
     dispatch(setStrategyPhaseNumberOfRounds(players.length <= 4 ? 2 : 1));
-    dispatch(setSwapCardsPlayable(settings.races.winnuOrHacan.inGame));
     dispatch(changeView(views.strategyPhase));
   };
 

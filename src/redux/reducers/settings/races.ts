@@ -11,9 +11,6 @@ export interface IRaces {
     inGame: boolean;
     playedBy: IPlayer | null;
   };
-  winnuOrHacan: {
-    inGame: boolean;
-  };
 }
 
 const resetRaces = createAction("[Races] Reset");
@@ -28,9 +25,6 @@ const setArgentInGame = createAction<boolean>("[Races] Set Argent in game");
 const setArgentPlayer = createAction<IRaces["argent"]["playedBy"]>(
   "[Races] Set Argent player"
 );
-const setWinnuOrHacanInGame = createAction<boolean>(
-  "[Races] Set Winnu or Hacan in game"
-);
 
 const initialState: IRaces = {
   naalu: {
@@ -41,9 +35,6 @@ const initialState: IRaces = {
   argent: {
     inGame: false,
     playedBy: null,
-  },
-  winnuOrHacan: {
-    inGame: false,
   },
 };
 
@@ -64,9 +55,6 @@ const racesReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setArgentPlayer, (state, action) => {
       state.argent.playedBy = action.payload;
-    })
-    .addCase(setWinnuOrHacanInGame, (state, action) => {
-      state.winnuOrHacan.inGame = action.payload;
     });
 });
 
@@ -77,7 +65,6 @@ export {
   setNaaluTokenChangeable,
   setArgentInGame,
   setArgentPlayer,
-  setWinnuOrHacanInGame,
 };
 
 export default racesReducer;

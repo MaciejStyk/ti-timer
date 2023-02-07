@@ -1,9 +1,6 @@
 import { useDispatch } from "react-redux";
 import triggers from "../../../../global/triggers";
-import {
-  switchHackElection,
-  switchImperialArbiter,
-} from "../../../../redux/reducers/agendaPhase";
+import { switchHackElection } from "../../../../redux/reducers/agendaPhase";
 import { setChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
 
 const useButtons = () => {
@@ -35,15 +32,10 @@ const useButtons = () => {
     );
   };
 
-  const handleImperialArbiter = () => {
-    dispatch(switchImperialArbiter());
-  };
-
   return {
     handleHackElection,
     handlePoliticsRider,
     handlePublicExecution,
-    handleImperialArbiter,
   };
 };
 

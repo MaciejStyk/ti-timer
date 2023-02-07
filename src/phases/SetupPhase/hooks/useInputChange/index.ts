@@ -4,7 +4,6 @@ import {
   setArgentPlayer,
   setNaaluInGame,
   setNaaluTokenChangeable,
-  setWinnuOrHacanInGame,
 } from "../../../../redux/reducers/settings/races";
 import {
   setTimeAddedPerRoundMin,
@@ -48,9 +47,6 @@ const useInputChange = () => {
         if (!event.target.checked) {
           dispatch(setArgentPlayer(null));
         }
-        break;
-      case inputName.winnuOrHacanInGame:
-        dispatch(setWinnuOrHacanInGame(event.target.checked));
         break;
     }
   };

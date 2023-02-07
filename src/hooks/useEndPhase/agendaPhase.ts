@@ -28,12 +28,6 @@ const useEndAgendaPhase = () => {
       if (settings.races.naalu.inGame) {
         dispatch(setNaaluTokenChangeable(true));
       }
-      if (
-        settings.races.winnuOrHacan.inGame ||
-        agendaPhase.appliedEffects.imperialArbiter
-      ) {
-        dispatch(setSwapCardsPlayable(true));
-      }
       dispatch(
         reorderPlayers({
           startingPlayer:
@@ -42,6 +36,7 @@ const useEndAgendaPhase = () => {
           order: settings.tableOrder,
         })
       );
+      dispatch(setSwapCardsPlayable(true));
       dispatch(unpassPlayers());
       dispatch(addTimeToAllPlayersAfterRound(settings.timer.timeAddedPerRound));
       dispatch(changeView(views.strategyPhase));

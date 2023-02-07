@@ -9,7 +9,6 @@ export interface IAgendaPhase {
     politicsRider: boolean;
     publicExecution: boolean;
     hackElection: boolean;
-    imperialArbiter: boolean;
   };
 }
 
@@ -24,9 +23,6 @@ const applyPublicExecution = createAction(
   "[Agenda Phase] Apply Public Execution"
 );
 const switchHackElection = createAction("[Agenda Phase] Switch Hack Election");
-const switchImperialArbiter = createAction(
-  "[Agenda Phase] Switch Imperial Arbiter"
-);
 const resetAppliedEffects = createAction(
   "[Agenda Phase] Reset applied effects"
 );
@@ -41,7 +37,6 @@ const initialState: IAgendaPhase = {
     politicsRider: false,
     publicExecution: false,
     hackElection: false,
-    imperialArbiter: false,
   },
 };
 
@@ -72,10 +67,6 @@ const agendaPhaseReducer = createReducer(initialState, (builder) => {
     .addCase(switchHackElection, (state) => {
       state.appliedEffects.hackElection = !state.appliedEffects.hackElection;
     })
-    .addCase(switchImperialArbiter, (state) => {
-      state.appliedEffects.imperialArbiter =
-        !state.appliedEffects.imperialArbiter;
-    })
     .addCase(resetAppliedEffects, (state) => {
       state.appliedEffects.hackElection = false;
       state.appliedEffects.politicsRider = false;
@@ -99,7 +90,6 @@ export {
   applyPoliticsRider,
   applyPublicExecution,
   switchHackElection,
-  switchImperialArbiter,
   resetAppliedEffects,
   resetAgendaRound,
 };

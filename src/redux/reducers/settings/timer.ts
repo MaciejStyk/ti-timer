@@ -33,11 +33,11 @@ const setTimeDelayedPerTurnSec = createAction<number>(
 
 const initialState: ITimer = {
   timeBank: {
-    min: 20,
+    min: 15,
     sec: 0,
   },
   timeAddedPerRound: {
-    min: 15,
+    min: 12,
     sec: 0,
   },
   timeDelayedPerTurn: {

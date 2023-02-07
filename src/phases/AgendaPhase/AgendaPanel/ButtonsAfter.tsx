@@ -4,33 +4,16 @@ import { RootState } from "../../../redux";
 import { IPhaseProps } from "../../../types";
 import useButtons from "../hooks/useButtons";
 import useAgenda from "../hooks/useAgenda";
-import cn from "classnames";
 import styles from "./index.module.css";
 
 const ButtonsAfter: FunctionComponent<IPhaseProps> = (props) => {
   const { agendaPhase } = useSelector((state: RootState) => state);
 
-  const { handlePoliticsRider, handlePublicExecution, handleImperialArbiter } =
-    useButtons();
+  const { handlePoliticsRider, handlePublicExecution } = useButtons();
   const handleAgendaPhase = useAgenda(props);
-
-  const imperialArbiterButtonClasses = cn({
-    [styles.button]: true,
-    [styles.wider]: true,
-    [styles.active]: agendaPhase.appliedEffects.imperialArbiter,
-  });
 
   return (
     <div className={styles.buttonContainer}>
-      <button
-        className={imperialArbiterButtonClasses}
-        onClick={handleImperialArbiter}
-      >
-        {agendaPhase.appliedEffects.imperialArbiter
-          ? "Arbiter elected"
-          : "Imperial Arbiter"}
-      </button>
-
       {!agendaPhase.appliedEffects.politicsRider && (
         <button className={styles.button} onClick={handlePoliticsRider}>
           Politics Rider

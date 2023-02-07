@@ -92,13 +92,6 @@ const SettingsForm = () => {
         />
       )}
       <span className={styles.empty}></span>
-      <span>Winnu or Hacan in game:</span>
-      <input
-        type={inputType.checkbox}
-        name={inputName.winnuOrHacanInGame}
-        checked={settings.races.winnuOrHacan.inGame}
-        onChange={handleInputChange}
-      ></input>
     </div>
   );
 };
