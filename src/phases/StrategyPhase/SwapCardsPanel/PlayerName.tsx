@@ -2,11 +2,7 @@ import { FunctionComponent } from "react";
 import { IPlayer } from "../../../redux/reducers/players";
 import styles from "./index.module.css";
 
-interface IProps {
-  player: IPlayer;
-}
-
-const PlayerName: FunctionComponent<IProps> = ({ player }) => {
+const PlayerName: FunctionComponent<{ player: IPlayer }> = ({ player }) => {
   return (
     <div
       className={styles.playerName}

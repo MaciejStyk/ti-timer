@@ -3,7 +3,7 @@ import { useDrop } from "react-dnd";
 import { IStrategyCard } from "../../../../global/strategyCards";
 import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
-const useDnD = (move: IMove) => {
+const useAvailableDnD = (move: IMove) => {
   const { currentPlayerCanPick } = useCurrentPlayer();
 
   const [{ isOver, draggedCard, canDrop }, dropRef] = useDrop({
@@ -21,4 +21,4 @@ const useDnD = (move: IMove) => {
   return { dropRef, canDrop, draggedCard, showPlaceholder };
 };
 
-export default useDnD;
+export default useAvailableDnD;

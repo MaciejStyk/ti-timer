@@ -31,7 +31,6 @@ const DealCards: FunctionComponent<IPhaseProps> = (props) => {
       <PlayerCardsPanel
         player={currentPlayer}
         onDrop={(strategyCard) => move.toPlayersDeck(strategyCard)}
-        moveToAvailableDeck={move.toAvailableDeck}
       />
       <BottomPanel {...props} />
     </div>

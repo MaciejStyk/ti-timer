@@ -18,8 +18,8 @@ const LeftPanel: FunctionComponent = () => {
   return (
     <div
       className={leftPanelClasses}
-      onMouseEnter={() => setHover((prevState) => !prevState)}
-      onMouseLeave={() => setHover((prevState) => !prevState)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       {players.map((player) => (
         <PlayerBar player={player} hover={hover} />

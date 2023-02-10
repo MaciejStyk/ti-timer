@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux";
 import { IMove } from "../../../types";
 import useCurrentPlayer from "../../../hooks/useCurrentPlayer";
-import useDnD from "../hooks/useDnD";
+import useAvailableDnD from "../hooks/useAvailableDnD";
 import StrategyCard from "../../../components/StrategyCard";
 import CardPlaceholder from "../../../components/CardPlaceholder";
 import cn from "classnames";
@@ -17,7 +17,7 @@ const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
   const { move } = props;
   const { strategyPhase } = useSelector((state: RootState) => state);
   const { currentPlayerCanPick } = useCurrentPlayer();
-  const { dropRef, canDrop, draggedCard, showPlaceholder } = useDnD(move);
+  const { dropRef, canDrop, draggedCard, showPlaceholder } = useAvailableDnD(move);
 
   const strategyCardsContainerClasses = cn({
     [styles.strategyCardsContainer]: true,
