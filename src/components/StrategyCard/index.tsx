@@ -1,16 +1,14 @@
 import { FunctionComponent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { setChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
 import { useDrag } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
 import views from "../../global/views";
 import CardPlaceholder from "../CardPlaceholder";
 import SpeakerButton from "../SpeakerButton";
-import Tooltip from "../Tooltip";
-import styles from "./index.module.css";
+import Tooltip from "./Tooltip";
 import cn from "classnames";
-import triggers from "../../global/triggers";
+import styles from "./index.module.css";
 
 interface Props {
   strategyCard: IStrategyCard;
@@ -22,9 +20,9 @@ interface Props {
 const StrategyCard: FunctionComponent<Props> = (props) => {
   const { strategyCard, moveBetweenDecks, draggable, makeStrategyAction } =
     props;
-  const { current, strategyPhase, strategyAction, choosePlayerAction } =
-    useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
+  const { current, strategyPhase, strategyAction } = useSelector(
+    (state: RootState) => state
+  );
 
   const [hover, setHover] = useState(false);
 
@@ -55,19 +53,6 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     }
   };
 
-  // ======== CLICK  ===========================================================
-
-  const handleClick = () => {
-    dispatch(
-      setChoosePlayerAction({
-        playable: true,
-        isBeingPlayed: true,
-        trigger: triggers.politics,
-        chosenPlayer: null,
-      })
-    );
-  };
-
   // ======== CLASSES ==========================================================
 
   const cardContainerClasses = cn({
@@ -95,14 +80,8 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
 
   return (
     <div className={cardContainerClasses}>
-      {choosePlayerAction.playable && !choosePlayerAction.isBeingPlayed && (
-        <SpeakerButton handleClick={handleClick} />
-      )}
-
-      {current.view === views.actionPhase &&
-        !strategyAction.isBeingPlayed &&
-        hover &&
-        !strategyCard.exhausted && <Tooltip number={strategyCard.id} />}
+      <SpeakerButton />
+      <Tooltip hover={hover} strategyCard={strategyCard} />
 
       <img
         src={strategyCard.exhausted ? strategyCard.urlBack : strategyCard.url}

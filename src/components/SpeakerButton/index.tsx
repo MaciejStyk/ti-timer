@@ -1,15 +1,33 @@
 import { FunctionComponent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setChoosePlayerAction } from "../../redux/reducers/choosePlayerAction";
+import { RootState } from "../../redux";
+import triggers from "../../global/triggers";
 import styles from "./index.module.css";
 
-interface IProps {
-  handleClick: () => void;
-}
+const SpeakerButton: FunctionComponent = () => {
+  const { choosePlayerAction } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
-const SpeakerButton: FunctionComponent<IProps> = ({ handleClick }) => {
+  const handleClick = () => {
+    dispatch(
+      setChoosePlayerAction({
+        playable: true,
+        isBeingPlayed: true,
+        trigger: triggers.politics,
+        chosenPlayer: null,
+      })
+    );
+  };
+
   return (
-    <button className={styles.button} onClick={handleClick}>
-      Change speaker
-    </button>
+    <>
+      {choosePlayerAction.playable && !choosePlayerAction.isBeingPlayed && (
+        <button className={styles.button} onClick={handleClick}>
+          Change speaker
+        </button>
+      )}
+    </>
   );
 };
 
