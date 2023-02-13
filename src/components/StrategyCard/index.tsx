@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { useDrag } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
-import views from "../../global/views";
+import useStrategyAction from "../../phases/ActionPhase/hooks/useStrategyAction";
 import CardPlaceholder from "../CardPlaceholder";
-import SpeakerButton from "../SpeakerButton";
+import SpeakerButton from "./SpeakerButton";
 import Tooltip from "./Tooltip";
+import views from "../../global/views";
 import cn from "classnames";
 import styles from "./index.module.css";
-import useStrategyAction from "../../phases/ActionPhase/hooks/useStrategyAction";
 
 interface Props {
   strategyCard: IStrategyCard;
@@ -25,9 +25,6 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
   const makeStrategyAction = useStrategyAction();
 
   const [hover, setHover] = useState(false);
-
-  // ======== DRAG N DROP  =====================================================
-
   const [draggedOver, setDraggedOver] = useState(false);
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -38,8 +35,6 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     }),
     canDrag: draggable,
   });
-
-  // ======== DOUBLE CLICK  ====================================================
 
   const handleDoubleClick = (strategyCard: IStrategyCard) => {
     if (
@@ -52,8 +47,6 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
       makeStrategyAction!(strategyCard);
     }
   };
-
-  // ======== CLASSES ==========================================================
 
   const cardContainerClasses = cn({
     [styles.cardContainer]: !strategyAction.isBeingPlayed,
@@ -74,8 +67,6 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
     [styles.draggedOver]: strategyPhase.swapCards.isBeingPlayed && draggedOver,
   });
 
-  // ======== RENDER COMPONENT =================================================
-
   if (isDragging) return <CardPlaceholder />;
 
   return (
@@ -88,7 +79,7 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
         id={String(strategyCard.id)}
         alt={`${strategyCard.name} card`}
         className={strategyCardClasses}
-        ref={views.strategyPhase && dragRef}
+        ref={dragRef}
         onDoubleClick={() => handleDoubleClick(strategyCard)}
         draggable={draggable}
         onDragEnter={() => setDraggedOver(true)}
