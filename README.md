@@ -4,11 +4,14 @@ This is the timer app for the board game **Twilight Imperium 4th Edition** that 
 
 If you want, you can reach out to me via maciej.styk@gmail.com about any bugs or fixes.
 
-There are no "undo" or "return" buttons so sensitive plays like playing strategy action, resetting whole app or passing players are possible via double click. The rest is normally clickable. 
-
-There is also no "Checks and Balances" law panel. Just swap picked strategy cards at the end of Strategy Phase (always enabled in case of misspicks).
-
 Have fun and most of all - quicker games!
+
+## Keep in mind: ##
+
+- There are no "undo" or "return" buttons so sensitive plays like playing strategy action, resetting whole app or passing players are possible via double click. The rest is normally clickable. 
+- There is also no "Checks and Balances" law panel. Just swap picked strategy cards at the end of Strategy Phase (always enabled in case of misspicks).
+- App is not for mobiles, normal and big screens only.
+
 
 ## General hot keys:
 
