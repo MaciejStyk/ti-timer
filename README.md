@@ -1,6 +1,6 @@
 # Twilight Imperium 4 timer
 
-This is the timer app for the board game **Twilight Imperium 4th Edition** that I have written in order to shorten our playtime and to be able to focus more on the game itself rather than keeping up with the correct order which changes all the time. 
+This is the timer app for the board game **Twilight Imperium 4th Edition** that I have written in order to shorten our playtime and to be able to focus more on the game itself rather than keeping up with the correct order which changes often. 
 
 If you want, you can reach out to me via maciej.styk@gmail.com about any bugs or fixes.
 
