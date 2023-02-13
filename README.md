@@ -1,25 +1,27 @@
 # Twilight Imperium 4 timer
 
-This is the timer app for the board game Twilight Imperium 4th Edition. 
+This is the timer app for the board game **Twilight Imperium 4th Edition** that I have written in order to shorten our playtime and to be able to focus more on the game itself rather than keeping up with the correct order which changes all the time. 
 
-If you want you can reach out to me via maciej.styk@gmail.com about any bugs or fixes.
+If you want, you can reach out to me via maciej.styk@gmail.com about any bugs or fixes.
 
 There are no "undo" or "return" buttons so sensitive plays like playing strategy action, resetting whole app or passing players are possible via double click. The rest is normally clickable. 
 
 There is also no "Checks and Balances" law panel. Just swap picked strategy cards at the end of Strategy Phase (always enabled in case of misspicks).
 
+Have fun and most of all - quicker games!
+
 ## General hot keys:
 
-### enter - end turn
-### space - pause timer
-### ctrl + enter - pass
+- enter - end turn
+- space - pause timer
+- ctrl + enter - pass
 
 ## Strategy phase hot keys:
 
-### [number] - pick or unpick strategy card [number]
-### double click on strategy card - pick or unpick
+- *[number]* - pick or unpick strategy card *[number]*
+- double click on strategy card - pick or unpick strategy card
 
 ## Action phase hot keys:
 
-### double [number] - play corresponding strategy action
-### double click on strategy card - play corresponding strategy action
+- double *[number]* - play corresponding strategy action
+- double click on strategy card - play corresponding strategy action
