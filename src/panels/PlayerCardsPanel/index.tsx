@@ -13,7 +13,7 @@ import cn from "classnames";
 import styles from "./index.module.css";
 
 interface IProps {
-  player?: IPlayer;
+  player: IPlayer;
   onDrop?: (strategyCard: IStrategyCard) => void;
 }
 
@@ -39,7 +39,7 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
   return (
     <div className={playerDeckClasses} ref={dropRef}>
       <Info player={player} isOver={isOver} />
-      {player?.strategyCards.map((strategyCard, index) => (
+      {player.strategyCards.map((strategyCard, index) => (
         <StrategyCard
           key={strategyCard.id}
           strategyCard={strategyCard}

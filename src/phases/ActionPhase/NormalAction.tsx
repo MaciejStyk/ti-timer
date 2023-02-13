@@ -22,7 +22,7 @@ const NormalAction: FunctionComponent<IPhaseProps> = (props) => {
       <TopPanel />
       <LeftPanel />
       <PlayerPanel {...props} />
-      <PlayerCardsPanel player={currentPlayer} />
+      <PlayerCardsPanel player={currentPlayer!} />
       <BottomPanel {...props} />
     </div>
   );

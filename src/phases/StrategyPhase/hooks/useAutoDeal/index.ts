@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { IHandle, IMove } from "../../../../types";
+import { IHandle } from "../../../../types";
 import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
+import useMove from "../useMove";
 
-interface IProps {
-  move: IMove;
-  handle: IHandle;
-}
-
-const useAutoDeal = (props: IProps) => {
-  const { move, handle } = props;
+const useAutoDeal = (handle: IHandle) => {
   const { players, strategyPhase } = useSelector((state: RootState) => state);
   const { currentPlayer } = useCurrentPlayer();
+  const move = useMove();
 
   useEffect(() => {
     if (

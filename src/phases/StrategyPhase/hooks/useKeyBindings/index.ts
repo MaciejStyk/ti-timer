@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
-import { IMove, ITime } from "../../../../types";
+import { ITime } from "../../../../types";
 import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
+import useMove from "../useMove";
 
-interface IProps {
-  time: ITime;
-  move: IMove;
-}
-
-const useKeyBindings = (props: IProps) => {
-  const { time, move } = props;
+const useKeyBindings = (time: ITime) => {
   const { strategyPhase } = useSelector((state: RootState) => state);
   const { currentPlayer, currentPlayerCanPick } = useCurrentPlayer();
+  const move = useMove();
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {

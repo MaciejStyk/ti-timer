@@ -18,8 +18,8 @@ const DealCards: FunctionComponent<IPhaseProps> = (props) => {
   const { currentPlayer } = useCurrentPlayer();
 
   const move = useMove();
-  useAutoDeal({ handle, move });
-  useKeyBindings({ time, move });
+  useAutoDeal(handle);
+  useKeyBindings(time);
 
   return (
     <div className={styles.fullScreenContainer} style={currentPlayer?.theme}>
@@ -31,7 +31,7 @@ const DealCards: FunctionComponent<IPhaseProps> = (props) => {
       <LeftPanel />
       <PlayerPanel {...props} />
       <PlayerCardsPanel
-        player={currentPlayer}
+        player={currentPlayer!}
         onDrop={(strategyCard) => move.toPlayersDeck(strategyCard)}
       />
       <BottomPanel {...props} />
