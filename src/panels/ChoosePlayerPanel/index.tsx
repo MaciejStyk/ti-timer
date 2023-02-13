@@ -4,7 +4,7 @@ import { RootState } from "../../redux";
 import { IPhaseProps } from "../../types";
 import triggers from "../../global/triggers";
 import Title from "./Title";
-import ChoosePlayer from "./Players";
+import Players from "./Players";
 import Buttons from "./Buttons";
 import cn from "classnames";
 import styles from "./index.module.css";
@@ -25,7 +25,7 @@ const ChoosePlayerPanel: FunctionComponent<IPhaseProps> = (props) => {
   return (
     <div className={choosePlayerPanelClasses}>
       <Title />
-      <ChoosePlayer />
+      <Players />
       <Buttons {...props} />
     </div>
   );
