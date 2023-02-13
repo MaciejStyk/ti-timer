@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ti-timer/static/css/main.51f54f06.css",
-    "main.js": "/ti-timer/static/js/main.99cc0101.js",
+    "main.css": "/ti-timer/static/css/main.b42fba21.css",
+    "main.js": "/ti-timer/static/js/main.ea5d6c87.js",
     "static/media/status-phase-cover.jpg": "/ti-timer/static/media/status-phase-cover.5f9f5792662e6a7aa717.jpg",
     "static/media/agenda-phase-cover.jpg": "/ti-timer/static/media/agenda-phase-cover.2803f552263b9fc31f5c.jpg",
     "static/media/strategy-phase-cover.jpg": "/ti-timer/static/media/strategy-phase-cover.1693a1f95a33acd8916a.jpg",
@@ -26,11 +26,11 @@
     "static/media/technology.webp": "/ti-timer/static/media/technology.131b7f53e0c436b93d8c.webp",
     "static/media/speaker.webp": "/ti-timer/static/media/speaker.11efbee787be07f3ddd2.webp",
     "index.html": "/ti-timer/index.html",
-    "main.51f54f06.css.map": "/ti-timer/static/css/main.51f54f06.css.map",
-    "main.99cc0101.js.map": "/ti-timer/static/js/main.99cc0101.js.map"
+    "main.b42fba21.css.map": "/ti-timer/static/css/main.b42fba21.css.map",
+    "main.ea5d6c87.js.map": "/ti-timer/static/js/main.ea5d6c87.js.map"
   },
   "entrypoints": [
-    "static/css/main.51f54f06.css",
-    "static/js/main.99cc0101.js"
+    "static/css/main.b42fba21.css",
+    "static/js/main.ea5d6c87.js"
   ]
 }
