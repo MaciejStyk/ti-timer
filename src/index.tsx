@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { DndProvider } from "react-dnd";
@@ -11,11 +12,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <DndProvider backend={HTML5Backend}>
-      <App />
-    </DndProvider>
-  </Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <DndProvider backend={HTML5Backend}>
+        <App />
+      </DndProvider>
+    </Provider>
+  </React.StrictMode>
 );
