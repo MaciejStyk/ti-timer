@@ -24,7 +24,7 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
 
   const move = useMove();
   const { currentPlayerCanPick } = useCurrentPlayer();
-  const { dropRef, isOver, canDrop, draggable } = useDnD(onDrop!);
+  const { dropRef, isOver, canDrop, isDraggable } = useDnD({ onDrop });
   const showPlaceholder = isOver && currentPlayerCanPick;
 
   const playerDeckClasses = cn({
@@ -43,7 +43,7 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
         <StrategyCard
           key={strategyCard.id}
           strategyCard={strategyCard}
-          draggable={draggable(index)}
+          draggable={isDraggable(index)}
           moveBetweenDecks={move.toAvailableDeck}
         />
       ))}

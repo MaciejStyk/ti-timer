@@ -14,11 +14,10 @@ interface IProps {
   onDrop: (strategyCard: IStrategyCard) => void;
 }
 
-const AvailableCardsPanel: FunctionComponent<IProps> = (props) => {
-  const { onDrop } = props;
+const AvailableCardsPanel: FunctionComponent<IProps> = ({ onDrop }) => {
   const { strategyPhase } = useSelector((state: RootState) => state);
   const { currentPlayerCanPick } = useCurrentPlayer();
-  const { dropRef, isOver, canDrop, draggedCard } = useDnD(onDrop);
+  const { dropRef, isOver, canDrop, draggedCard } = useDnD({ onDrop });
   const showPlaceholder = isOver && !currentPlayerCanPick;
   const move = useMove();
 

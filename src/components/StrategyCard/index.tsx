@@ -1,9 +1,9 @@
 import { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { useDrag } from "react-dnd";
 import { IStrategyCard } from "../../global/strategyCards";
-import useStrategyAction from "../../phases/ActionPhase/hooks/useStrategyAction";
+import useDnD from "../../hooks/useDnD";
+import useDoubleClick from "./useDoubleClick";
 import CardPlaceholder from "../CardPlaceholder";
 import SpeakerButton from "./SpeakerButton";
 import Tooltip from "./Tooltip";
@@ -22,31 +22,11 @@ const StrategyCard: FunctionComponent<Props> = (props) => {
   const { current, strategyPhase, strategyAction } = useSelector(
     (state: RootState) => state
   );
-  const makeStrategyAction = useStrategyAction();
+  const { dragRef, isDragging } = useDnD({ strategyCard, draggable });
+  const handleDoubleClick = useDoubleClick({ draggable, moveBetweenDecks });
 
   const [hover, setHover] = useState(false);
   const [draggedOver, setDraggedOver] = useState(false);
-
-  const [{ isDragging }, dragRef] = useDrag({
-    type: "strategyCard",
-    item: strategyCard,
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-    canDrag: draggable,
-  });
-
-  const handleDoubleClick = (strategyCard: IStrategyCard) => {
-    if (
-      current.view === views.strategyPhase &&
-      !strategyPhase.swapCards.isBeingPlayed
-    ) {
-      draggable && moveBetweenDecks!(strategyCard);
-    }
-    if (current.view === views.actionPhase) {
-      makeStrategyAction!(strategyCard);
-    }
-  };
 
   const cardContainerClasses = cn({
     [styles.cardContainer]: !strategyAction.isBeingPlayed,
