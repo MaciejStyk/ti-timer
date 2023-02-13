@@ -1,4 +1,6 @@
-# Twilight Imperium 4 timer
+# Twilight Imperium 4 Timer
+
+https://maciejstyk.github.io/ti-timer/
 
 This is the timer app for the board game **Twilight Imperium 4th Edition** that I have written in order to shorten our playtime and to be able to focus more on the game itself rather than keeping up with the correct order which changes often. 
 
