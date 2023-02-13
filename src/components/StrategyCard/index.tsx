@@ -9,20 +9,20 @@ import SpeakerButton from "../SpeakerButton";
 import Tooltip from "./Tooltip";
 import cn from "classnames";
 import styles from "./index.module.css";
+import useStrategyAction from "../../phases/ActionPhase/hooks/useStrategyAction";
 
 interface Props {
   strategyCard: IStrategyCard;
-  moveBetweenDecks?: (strategyCard: IStrategyCard) => void;
   draggable: boolean;
-  makeStrategyAction?: (strategyCard: IStrategyCard) => void;
+  moveBetweenDecks?: (strategyCard: IStrategyCard) => void;
 }
 
 const StrategyCard: FunctionComponent<Props> = (props) => {
-  const { strategyCard, moveBetweenDecks, draggable, makeStrategyAction } =
-    props;
+  const { strategyCard, moveBetweenDecks, draggable } = props;
   const { current, strategyPhase, strategyAction } = useSelector(
     (state: RootState) => state
   );
+  const makeStrategyAction = useStrategyAction();
 
   const [hover, setHover] = useState(false);
 

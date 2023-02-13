@@ -4,7 +4,7 @@ import { IStrategyCard } from "../../global/strategyCards";
 import { RootState } from "../../redux";
 import views from "../../global/views";
 
-const usePlayerDnD = (onDrop: (strategyCard: IStrategyCard) => void) => {
+const useDnD = (onDrop: (strategyCard: IStrategyCard) => void) => {
   const { current, strategyPhase } = useSelector((state: RootState) => state);
 
   const [{ isOver, canDrop, draggedCard }, dropRef] = useDrop({
@@ -31,4 +31,4 @@ const usePlayerDnD = (onDrop: (strategyCard: IStrategyCard) => void) => {
   return { dropRef, isOver, canDrop, draggedCard, draggable };
 };
 
-export default usePlayerDnD;
+export default useDnD;

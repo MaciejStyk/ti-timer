@@ -1,14 +1,10 @@
-import { IMove } from "../../../../types";
 import { useDrop } from "react-dnd";
 import { IStrategyCard } from "../../../../global/strategyCards";
-import useCurrentPlayer from "../../../../hooks/useCurrentPlayer";
 
-const useAvailableDnD = (move: IMove) => {
-  const { currentPlayerCanPick } = useCurrentPlayer();
-
+const useAvailableDnD = (onDrop: (strategyCard: IStrategyCard) => void) => {
   const [{ isOver, draggedCard, canDrop }, dropRef] = useDrop({
     accept: "strategyCard",
-    drop: (strategyCard: IStrategyCard) => move.toAvailableDeck(strategyCard),
+    drop: onDrop,
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       draggedCard: monitor.getItem(),
@@ -16,9 +12,7 @@ const useAvailableDnD = (move: IMove) => {
     }),
   });
 
-  const showPlaceholder = isOver && !currentPlayerCanPick;
-
-  return { dropRef, canDrop, draggedCard, showPlaceholder };
+  return { dropRef, isOver, canDrop, draggedCard };
 };
 
 export default useAvailableDnD;

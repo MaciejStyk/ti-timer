@@ -4,14 +4,13 @@ import { RootState } from "../../redux";
 import { IStrategyCard } from "../../global/strategyCards";
 import { IPlayer } from "../../redux/reducers/players";
 import useCurrentPlayer from "../../hooks/useCurrentPlayer";
-import useStrategyAction from "../../phases/ActionPhase/hooks/useStrategyAction";
 import StrategyCard from "../../components/StrategyCard";
 import CardPlaceholder from "../../components/CardPlaceholder";
 import useMove from "../../phases/StrategyPhase/hooks/useMove";
-import usePlayerDnD from "./usePlayerDnD";
+import useDnD from "../../hooks/useDnD";
+import Info from "./Info";
 import cn from "classnames";
 import styles from "./index.module.css";
-import Info from "./Info";
 
 interface IProps {
   player?: IPlayer;
@@ -24,11 +23,9 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
   const duringSwapCards = strategyPhase.swapCards.isBeingPlayed;
 
   const move = useMove();
-  const makeStrategyAction = useStrategyAction();
   const { currentPlayerCanPick } = useCurrentPlayer();
-  const { dropRef, isOver, canDrop, showPlaceholder, draggable } = usePlayerDnD(
-    onDrop!
-  );
+  const { dropRef, isOver, canDrop, draggable } = useDnD(onDrop!);
+  const showPlaceholder = isOver && currentPlayerCanPick;
 
   const playerDeckClasses = cn({
     [styles.playerDeck]: true,
@@ -46,9 +43,8 @@ const PlayerCardsPanel: FunctionComponent<IProps> = (props) => {
         <StrategyCard
           key={strategyCard.id}
           strategyCard={strategyCard}
-          moveBetweenDecks={move.toAvailableDeck}
           draggable={draggable(index)}
-          makeStrategyAction={makeStrategyAction}
+          moveBetweenDecks={move.toAvailableDeck}
         />
       ))}
       {showPlaceholder && <CardPlaceholder />}

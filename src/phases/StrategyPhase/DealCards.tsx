@@ -25,7 +25,9 @@ const DealCards: FunctionComponent<IPhaseProps> = (props) => {
     <div className={styles.fullScreenContainer} style={currentPlayer?.theme}>
       {!time.isRunning && <PausePanel />}
       <TopPanel />
-      <AvailableCardsPanel move={move} />
+      <AvailableCardsPanel
+        onDrop={(strategyCard) => move.toAvailableDeck(strategyCard)}
+      />
       <LeftPanel />
       <PlayerPanel {...props} />
       <PlayerCardsPanel
