@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/ti-timer/static/css/main.51f54f06.css",
+    "main.js": "/ti-timer/static/js/main.99cc0101.js",
+    "static/media/status-phase-cover.jpg": "/ti-timer/static/media/status-phase-cover.5f9f5792662e6a7aa717.jpg",
+    "static/media/agenda-phase-cover.jpg": "/ti-timer/static/media/agenda-phase-cover.2803f552263b9fc31f5c.jpg",
+    "static/media/strategy-phase-cover.jpg": "/ti-timer/static/media/strategy-phase-cover.1693a1f95a33acd8916a.jpg",
+    "static/media/leadership-back.png": "/ti-timer/static/media/leadership-back.fa74f7ff324c93cf53a1.png",
+    "static/media/imperial-back.png": "/ti-timer/static/media/imperial-back.55ff61a32a1d298c9540.png",
+    "static/media/technology-back.png": "/ti-timer/static/media/technology-back.6eef224adc113d70f886.png",
+    "static/media/warfare-back.png": "/ti-timer/static/media/warfare-back.ffa46cbccda659981b81.png",
+    "static/media/trade-back.png": "/ti-timer/static/media/trade-back.57c4a128aacf97f03e0c.png",
+    "static/media/cover.jpg": "/ti-timer/static/media/cover.46de91f23b9265195610.jpg",
+    "static/media/construction-back.png": "/ti-timer/static/media/construction-back.968d26315b8ffeb84bc6.png",
+    "static/media/politics-back.png": "/ti-timer/static/media/politics-back.90feba380702fdb33ff8.png",
+    "static/media/diplomacy-back.png": "/ti-timer/static/media/diplomacy-back.e654a751bee1ee570f0f.png",
+    "static/media/mecatol-rex-custodian.png": "/ti-timer/static/media/mecatol-rex-custodian.f772bd4dcb28afb71b82.png",
+    "static/media/mecatol-rex-no-custodian.png": "/ti-timer/static/media/mecatol-rex-no-custodian.258eae0d486ce7f1b06f.png",
+    "static/media/diplomacy.webp": "/ti-timer/static/media/diplomacy.5696a0afc64920eed3c1.webp",
+    "static/media/construction.webp": "/ti-timer/static/media/construction.37253eb35a77e0513aa9.webp",
+    "static/media/warfare.webp": "/ti-timer/static/media/warfare.41a3884e7fe0e894d02c.webp",
+    "static/media/politics.webp": "/ti-timer/static/media/politics.19ace4c448f3e7f381d8.webp",
+    "static/media/trade.webp": "/ti-timer/static/media/trade.ea8955596a6649f2795b.webp",
+    "static/media/imperial.webp": "/ti-timer/static/media/imperial.917bf5506ee9d8ccc996.webp",
+    "static/media/leadership.webp": "/ti-timer/static/media/leadership.a7a0b17b9cc5614f4ff9.webp",
+    "static/media/technology.webp": "/ti-timer/static/media/technology.131b7f53e0c436b93d8c.webp",
+    "static/media/speaker.webp": "/ti-timer/static/media/speaker.11efbee787be07f3ddd2.webp",
+    "index.html": "/ti-timer/index.html",
+    "main.51f54f06.css.map": "/ti-timer/static/css/main.51f54f06.css.map",
+    "main.99cc0101.js.map": "/ti-timer/static/js/main.99cc0101.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51f54f06.css",
+    "static/js/main.99cc0101.js"
+  ]
+}
