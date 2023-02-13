@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux";
+import { switchSwapCardsStage } from "../../../../redux/reducers/strategyPhase";
 import { setChoosePlayerAction } from "../../../../redux/reducers/choosePlayerAction";
 import { setNaaluTokenBeingChanged } from "../../../../redux/reducers/settings/races";
 import {
@@ -9,12 +10,12 @@ import {
 import { IPhaseProps } from "../../../../types";
 import triggers from "../../../../global/triggers";
 
-const useSwapCancel = (props: IPhaseProps) => {
+const useSwap = (props: IPhaseProps) => {
   const { handle } = props;
-  const { settings } = useSelector((state: RootState) => state);
+  const { settings, strategyPhase } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
-  const handleSwapCancel = () => {
+  const handleCancel = () => {
     dispatch(setSwapCardsBeingPlayed(false));
     dispatch(setSwapCardsPlayable(false));
     if (settings.races.naalu.inGame) {
@@ -32,7 +33,14 @@ const useSwapCancel = (props: IPhaseProps) => {
     }
   };
 
-  return handleSwapCancel;
+  const handleAccept = () => {
+    dispatch(switchSwapCardsStage());
+    if (!strategyPhase.swapCards.beforeSwap) {
+      handleCancel();
+    }
+  };
+
+  return { handleCancel, handleAccept };
 };
 
-export default useSwapCancel;
+export default useSwap;
