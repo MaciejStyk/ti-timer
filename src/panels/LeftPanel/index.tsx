@@ -22,7 +22,7 @@ const LeftPanel: FunctionComponent = () => {
       onMouseLeave={() => setHover(false)}
     >
       {players.map((player) => (
-        <PlayerBar player={player} hover={hover} />
+        <PlayerBar player={player} hover={hover} key={player.id}/>
       ))}
     </div>
   );
